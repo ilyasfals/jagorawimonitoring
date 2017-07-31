@@ -1,0 +1,390 @@
+/* @import url(http://fonts.googleapis.com/css?family=Kreon:400,700); */
+
+html,
+body {
+    height: 100%;
+    /* The html and body elements cannot have any padding or margin. */
+    -webkit-font-smoothing: antialiased;
+    font: normal 14px arial,sans-serif;
+    margin-top: 20px;
+
+}
+.line-separator {
+
+}
+.row {
+	padding-bottom: 5px;
+	margin-left:0px;
+  	margin-right:0px;
+}
+.sangatBaik{
+	background-color: #0080ff;
+}
+.baik{
+	background-color: #80ff80;
+}
+.kurang{
+	background-color: #ffff53;
+}
+.sangatKurang{
+	background-color: #ff2222;
+}
+.warningNorm{
+	background-color: #c0c0c0;
+}
+/* Wrapper for page content to push down footer */
+#wrap {
+  min-height: 100%;
+  height: auto !important;
+  height: 100%;
+  /* Negative indent footer by its height */
+  margin: 0 auto -60px;
+  /* Pad bottom by footer height */
+  padding: 0 0 60px;
+}
+.error {
+	color: #ff2222;
+}
+
+
+.entitasDescription{
+	padding-top:200px;	
+}
+/* Set the fixed height of the footer here */
+#footer {
+  height: 60px;
+  background-color: #f5f5f5;
+  margin-top:50px;
+  padding-top:20px;
+  padding-bottom:20px;
+}
+
+
+/* Custom page CSS
+-------------------------------------------------- */
+
+#wrap > .container {
+  padding: 15px 0 15px 0;
+}
+.container .credit {
+  margin: 20px 0;
+}
+
+#footer {
+  background-color:#414141;
+}
+
+#footer a {
+  color:#efefef;
+}
+
+h1,h2,h3,h4 {
+  font-family: 'Kreon', serif;
+  vertical-align:middle;
+}
+
+header {
+  background: #D9EDF7;
+  padding: 15px 0 15px 0;
+  color:#000000;
+}
+
+header h1,header h2,header h3 a,header a,header a:hover {
+  color:#101010;
+  font-weight:800;
+  text-decoration:none;
+}
+
+/* tombol konfig di header */
+header h3 {
+  font-family: 'Kreon', serif;
+  background: #ffcc33;
+  padding:10px;
+  border-radius:3px;
+  font-size:34px;
+  padding:12px 10px 6px 10px;
+}
+
+
+#nav {
+  width: 100%;
+  position:relative;
+  top:-32px;
+  opacity:0.95;
+}
+.pull-right>.dropdown-menu {
+    right: 0;
+    left: auto;
+    z-index: 1001;
+}
+
+
+#nav.affix {
+   position: fixed;
+   top: 0;
+   z-index:10;
+   -webkit-transition: all .6s ease-in-out;
+}
+
+#footer > .container {
+  
+}
+
+@media (min-width: 767px) {
+  .navbar-nav.nav-justified > li{
+      float:none;
+  }
+}
+.navbar-nav {
+  margin: 1px 1px; 
+}
+  
+/* customize nav style */
+.navbar-custom {
+    background-color: #2e2e2e;
+	font-weight:700;
+    text-transform:uppercase;
+    border-width:0;
+}
+.navbar-custom  .navbar-nav>li>a {
+	color: #ddd;
+}
+.navbar-custom  .navbar-nav li>a:hover, .navbar-nav li .open, .navbar-custom .navbar-nav .active a  {
+	background-color: #000;
+}
+.navbar-custom .dropdown-menu{
+	right:0;
+}
+.navbar-custom .navbar-nav>.dropdown>a .caret {
+	border-top-color: #999;
+	border-bottom-color: #999;
+}
+
+.navbar-collapse.in { /*3.0.2 bug workaround*/
+    overflow-y: visible;
+}
+
+.navbar-toggle {
+	outline:0;
+}
+
+.divider {
+	height:100px;
+}
+
+.panel {
+	border-width:0;
+}
+
+@media (max-width: 768px) {
+	header {
+		height: 95px;
+	}
+}
+
+
+.scroll-top {
+   position:fixed;
+   bottom:0;
+   right:6%;
+   z-index:100;
+   background: #ffcc33;
+   font-size:24px;
+   border-top-left-radius:3px;
+   border-top-right-radius:3px;
+}
+.scroll-top a:link,.scroll-top a:visited {
+  color:#222;
+} 
+
+.form-back {
+   position:fixed;
+   top:0;
+   right:6%;
+   z-index:100;
+   background: #ff4a4a;
+   font-size:24px;
+   border-bottom-left-radius:3px;
+   border-bottom-right-radius:3px;
+   color:#222;
+}
+.form-back a:link,.scroll-top a:visited {
+  color:#222;
+} 
+
+/* datatable */
+.dataTableClass {
+		font-size: 9pt;
+}
+tfoot input, tfoot select {
+	margin: 0.5em 0;
+	width: 100%;
+	color: #444;
+}
+/* Pagination */
+.dataTables_paginate {
+	font-size: xx-small;
+}
+
+.pagination>li:first-child>a, .pagination>li:first-child>span {
+   border-radius: 1px 1px 0 0;
+}
+.pagination>li:last-child>a, .pagination>li:last-child>span {
+	border-radius: 1px 1px 0 0;
+}
+
+/* button */
+.btn {
+	border-radius: 1px 1px 0 0;
+	font-size: 8pt;
+	
+}
+.btn-info:hover {
+    color: #fff;
+    background-color: #D9EDF7;
+    border-color: #d9edf7;
+}
+.btn-custom {
+	background-color: #4aaad9;
+	font-size: 8pt;
+	border-color: #FFFFFF;
+	color: #FFFFFF;
+}
+
+
+/* FORMULIR */
+.help {
+	padding: 6px 12px;
+	text-align: left;
+}
+input , textarea, select {
+    background-color: white;
+    background-image: none;
+    color: #2e3436;
+    
+}
+input:-webkit-autofill, textarea:-webkit-autofill, select:-webkit-autofill {
+    background-color: white;
+    background-image: none;
+    color: rgb(0, 0, 0);
+}
+
+.control-label-right{
+    padding-top: 0px;
+/*     padding-top: 7px; */
+    margin-bottom: 0;
+    text-align: left;
+    font-weight: normal;
+}
+
+.control-label-right-formPenilaian{
+	padding-left: 0px;
+    padding-top: 0px;
+/*     padding-top: 7px; */
+    margin-bottom: 0;
+    text-align: left;
+    font-weight: normal;
+}
+
+.form-control{
+	font-size: x-small;
+	height: auto;
+	border-radius: 1px;
+}
+
+.formulirTambahPaket {
+    background-color: #D3D4D6;
+    font-size: x-small;
+    padding: 40px 30px 40px 30px;
+}
+.formulir{
+	padding: 0 30px 0 30px;
+}
+.form-group {
+	margin-bottom: 2px;
+}
+
+label {
+    display: inline-block;
+    max-width: 100%;
+    margin-bottom: 5px;
+    font-weight: 700;
+    color: #333333;
+}
+.well-sm {
+    padding: 6px;
+    border-radius: 1px;
+    background-color: #D3D4D6;
+    border-color: #D3D4D6;
+}
+
+.tableTitle {
+	color: #2e3436;
+	font-size: 28px;
+/* 	font-weight: bold; */
+	text-align: center;
+	padding-top: 30px;
+}
+
+.tableTitleEntitas {
+	color: #2e3436;
+	font-size: 16px;
+/* 	font-weight: bold; */
+	text-align: center;
+	text-transform: uppercase;
+	padding-bottom: 10px;
+}
+
+/* Tab Data */
+
+.tabData {
+	text-align: center;
+	padding-bottom: 20px;
+	font-size: 8pt;
+	
+}
+.tabData .nav-tabs > li, .nav-pills > li {
+    float:none;
+    display:inline-block;
+    *display:inline; /* ie7 fix */
+    zoom:1; /* hasLayout ie7 trigger */
+    background-color: #D9EDF7;
+  	border-radius: 1px 1px 0 0;
+  	color: black;	
+}
+
+.nav-tabs>li>a {
+    margin-right: 0px;
+    line-height: 1;
+    border: 1px solid transparent;
+    border-radius: 4px 4px 0 0;
+}
+
+.tabData .nav-tabs>li {
+	opacity: 0.5;
+}
+
+.tabData .nav-tabs>li.active {
+	opacity: 1;
+}
+.tabData .nav-tabs>li:hover {
+	opacity: 1;
+}
+#wrapper {
+    padding-left: 100px;
+}
+
+#page-wrapper {
+    width: 100%;
+    padding: 0;
+    background-color: #fff;
+}
+@media(min-width:768px) {
+    #wrapper {
+        padding-left: 225px;
+    }
+
+    #page-wrapper {
+        padding: 10px;
+    }
+}
