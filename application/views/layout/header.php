@@ -5,36 +5,20 @@
                 <small>Jasa Marga Jagorawi Monitoring System</small>
             </a><span class="btn btn-success btn-rounded collapse-sidebar"></span></div>
         <div class="collapse navbar-collapse" id="yii_booster_collapse_yw1"><span id="mobile-search"></span>
-            <form class="navbar-form navbar-left" id="nav-search">
-                <div class="form-group"><input class="form-control ui-autocomplete-input" role="search"
-                                               autocomplete="off" placeholder="Cari nama penduduk" id="query_penduduk"
-                                               type="text" value="" name="query_penduduk"><span role="status"
-                                                                                                aria-live="polite"
-                                                                                                class="ui-helper-hidden-accessible"></span>
-                </div>
-                <div class="form-group" style="margin-left:20px;"><input class="form-control ui-autocomplete-input"
-                                                                         autocomplete="off"
-                                                                         placeholder="Cari No KK/Kepala Keluarga"
-                                                                         id="query_kk" type="text" value=""
-                                                                         name="query_kk"><span role="status"
-                                                                                               aria-live="polite"
-                                                                                               class="ui-helper-hidden-accessible"></span>
-                </div>
-            </form>
             <ul class="pull-right nav navbar-nav" id="yw2">
                 <li id="notifikasi">
-                    <a title="Pemberitahuan" href="https://demo4.mitradesa.id/index.php/site/#"><i
+                    <a title="Pemberitahuan" href="#"><i
                                 class="fa fa-bell-o"></i>
                     </a></li>
                 <li class="user-profile dropdown">
                     <a class="dropdown-toggle" data-toggle="dropdown"
-                       href="https://demo4.mitradesa.id/index.php/user/profile/profile">admin <span
+                       href="#">admin <span
                                 class="caret"></span></a>
                     <ul id="yw3" class="dropdown-menu">
                         <li>
-                            <a tabindex="-1" href="https://demo4.mitradesa.id/index.php/user/profile">Profil</a></li>
+                            <a tabindex="-1" href="#">Profil</a></li>
                         <li>
-                            <a tabindex="-1" href="https://demo4.mitradesa.id/index.php/user/profile/changepassword">Ubah
+                            <a tabindex="-1" href="#">Ubah
                                 sandi</a></li>
                     </ul>
                 </li>

@@ -30,11 +30,7 @@
 
         <div class="row">
             <div class="col-md-12">
-                <?php
-                    if ( $isi ) {
-                        $this->load->view($isi);
-                    }
-                ?>
+                <?php echo $contents;?>
             </div>
         </div>
         <!-- end:Content -->
