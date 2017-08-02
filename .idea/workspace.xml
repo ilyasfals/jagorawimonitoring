@@ -1,37 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="207f57c9-72a2-4c96-83a7-64e06186e3ed" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/application/controllers/Comcens.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/application/controllers/Employees.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/application/controllers/Pulls.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/application/libraries/template.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/application/models/Comcen_model.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/application/models/Employees_model.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/application/models/Pulls_model.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/application/views/comcens/create.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/application/views/comcens/index.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/application/views/comcens/success.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/application/views/comcens/view.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/application/views/employees/create.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/application/views/employees/index.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/application/views/employees/success.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/application/views/employees/view.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/application/views/pull/create.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/application/views/pull/index.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/application/views/pull/success.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/application/views/pull/view.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/assets/js/login.js" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/views/Home/index.php" afterPath="$PROJECT_DIR$/application/views/home/index.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/config/autoload.php" afterPath="$PROJECT_DIR$/application/config/autoload.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/controllers/Home.php" afterPath="$PROJECT_DIR$/application/controllers/Home.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/views/layout/header.php" afterPath="$PROJECT_DIR$/application/views/layout/header.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/views/layout/konten.php" afterPath="$PROJECT_DIR$/application/views/layout/konten.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/views/login_view.php" afterPath="$PROJECT_DIR$/application/views/login_view.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/css/login.css" afterPath="$PROJECT_DIR$/assets/css/login.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/login.html" afterPath="$PROJECT_DIR$/assets/login.html" />
-    </list>
+    <list default="true" id="207f57c9-72a2-4c96-83a7-64e06186e3ed" name="Default" comment="" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -230,7 +200,7 @@
   <component name="ProjectFrameBounds">
     <option name="y" value="23" />
     <option name="width" value="1280" />
-    <option name="height" value="773" />
+    <option name="height" value="693" />
   </component>
   <component name="ProjectView">
     <navigator currentView="ProjectPane" proportions="" version="1">
@@ -572,22 +542,21 @@
       <option name="presentableId" value="Default" />
       <updated>1501471880018</updated>
       <workItem from="1501471881463" duration="4512000" />
-      <workItem from="1501556124405" duration="11750000" />
+      <workItem from="1501556124405" duration="12535000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="16262000" />
+    <option name="totallyTimeSpent" value="17047000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="0" y="23" width="1280" height="773" extended-state="6" />
-    <editor active="true" />
+    <frame x="0" y="23" width="1280" height="693" extended-state="0" />
     <layout>
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.32954547" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.37179488" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
