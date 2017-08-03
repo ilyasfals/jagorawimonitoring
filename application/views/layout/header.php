@@ -108,8 +108,7 @@
                                 class="fa icon-setting"></i> <span>Pengaturan</span></a></li>
             </ul>
             <div class="copyright">
-                <p><strong>Versi: 2.1.13</strong></p>
-                <p>Code Name</p>
+                <p><strong>Versi: 1.0</strong></p>
                 <img src="<?php echo base_url();?>assets/images/jm-banner.png" alt="jmj" class="code-name">
                 <p>Dikembangkan oleh <br>
                     <a href="#" title="">

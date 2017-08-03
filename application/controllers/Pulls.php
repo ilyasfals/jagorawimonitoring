@@ -11,11 +11,11 @@ class Pulls extends CI_Controller {
 
     public function index()
     {
-        $data['pull'] = $this->pulls_model->get_pull();
         $data['title'] = 'Pull Toll';
+        $data['subtitle'] = 'Daftar Transaksi';
 
         $this->load->library('parser');
-        $this->template->load('default_layout', 'contents' , 'pull/index', $data);
+        $this->template->load('wrapper', 'contents' , 'pull/index', $data);
     }
 
     public function view($slug = NULL)
@@ -49,8 +49,6 @@ class Pulls extends CI_Controller {
             $this->load->view('news/create');
             $this->load->view('templates/footer');
             $this->template->load('default_layout', 'contents' , 'employees/index', $data);
-
-
         }
         else
         {

@@ -4,30 +4,6 @@
     <!-- begin:article -->
     <div class="article">
         <div id="loading" class="hide">Loading..</div>
-        <!-- <nav class="child-navbar" role="navigation">
-        <div class="container-fluid"> -->
-        <!-- </div>
-</nav> -->
-        <!-- begin:breadcrumb -->
-
-        <div class="row">
-            <div class="col-md-12">
-                <i class="fa fa-home"></i>
-            </div>
-        </div>
-
-        <!-- end:breadcrumb -->
-
-        <!-- begin:heading-title -->
-        <!-- <div class="row">
-          <div class="col-md-12">
-            <h2>Mitra Desa</h2>
-          </div>
-        </div> -->
-        <!-- end:heading-title -->
-
-        <!-- begin:Content -->
-
         <div class="row">
             <div class="col-md-12">
                 <?php echo $contents;?>

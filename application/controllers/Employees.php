@@ -12,11 +12,10 @@ class Employees extends CI_Controller {
 
     public function index()
     {
-        $data['employees'] = $this->employees_model->get_employees();
         $data['title'] = 'Daftar Pegawai';
 
         $this->load->library('parser');
-        $this->template->load('wrapper', 'contents' , 'employees/karyawan', $data);
+        $this->template->load('wrapper', 'contents' , 'employees/index', $data);
     }
 
     public function view($slug = NULL)
@@ -65,40 +64,5 @@ class Employees extends CI_Controller {
            "select npp,nama from employees limit 1"
        )->result();
         echo json_encode($sql);
-    }
-
-    function datatables_ajax()
-    {
-        /** AJAX Handle */
-        if(
-            isset($_SERVER['HTTP_X_REQUESTED_WITH']) &&
-            !empty($_SERVER['HTTP_X_REQUESTED_WITH']) &&
-            strtolower($_SERVER['HTTP_X_REQUESTED_WITH']) == 'xmlhttprequest'
-        )
-        {
-
-            $this->load->model('MEmployees');
-
-            /**
-             * Mengambil Parameter dan Perubahan nilai dari setiap
-             * aktifitas pada table
-             */
-            $datatables  = $_POST;
-            $datatables['table']    = 'employees';
-            $datatables['id-table'] = 'id';
-            /**
-             * Kolom yang ditampilkan
-             */
-            $datatables['col-display'] = array(
-                'npp',
-                'nama'
-            );
-            /**
-             * menggunakan table join
-             */
-//            $datatables['join']    = 'INNER JOIN position ON position = id_position';
-            $this->MEmployees->Datatables($datatables);
-        }
-        return;
     }
 }
