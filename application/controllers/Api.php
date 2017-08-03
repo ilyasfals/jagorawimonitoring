@@ -43,6 +43,176 @@ class Api extends CI_Controller
         return;
     }
 
+    public function departement()
+    {
+        /** AJAX Handle */
+        if (
+            isset($_SERVER['HTTP_X_REQUESTED_WITH']) &&
+            !empty($_SERVER['HTTP_X_REQUESTED_WITH']) &&
+            strtolower($_SERVER['HTTP_X_REQUESTED_WITH']) == 'xmlhttprequest'
+        ) {
+
+            $this->load->model('Datatables_model');
+
+            /**
+             * Mengambil Parameter dan Perubahan nilai dari setiap
+             * aktifitas pada table
+             */
+            $datatables = $_POST;
+            $datatables['table'] = 'departement';
+            $datatables['id-table'] = 'id';
+            /**
+             * Kolom yang ditampilkan
+             */
+            $datatables['col-display'] = array(
+                'kode',
+                'nama'
+            );
+            /**
+             * menggunakan table join
+             */
+            //            $datatables['join']    = 'INNER JOIN position ON position = id_position';
+            $this->Datatables_model->Datatables($datatables);
+        }
+        return;
+    }
+
+    public function seksi()
+    {
+        /** AJAX Handle */
+        if (
+            isset($_SERVER['HTTP_X_REQUESTED_WITH']) &&
+            !empty($_SERVER['HTTP_X_REQUESTED_WITH']) &&
+            strtolower($_SERVER['HTTP_X_REQUESTED_WITH']) == 'xmlhttprequest'
+        ) {
+
+            $this->load->model('Datatables_model');
+
+            /**
+             * Mengambil Parameter dan Perubahan nilai dari setiap
+             * aktifitas pada table
+             */
+            $datatables = $_POST;
+            $datatables['table'] = 'seksi';
+            $datatables['id-table'] = 'id';
+            /**
+             * Kolom yang ditampilkan
+             */
+            $datatables['col-display'] = array(
+                'kode',
+                'nama'
+            );
+            /**
+             * menggunakan table join
+             */
+            //            $datatables['join']    = 'INNER JOIN position ON position = id_position';
+            $this->Datatables_model->Datatables($datatables);
+        }
+        return;
+    }
+
+    public function jabatan()
+    {
+        /** AJAX Handle */
+        if (
+            isset($_SERVER['HTTP_X_REQUESTED_WITH']) &&
+            !empty($_SERVER['HTTP_X_REQUESTED_WITH']) &&
+            strtolower($_SERVER['HTTP_X_REQUESTED_WITH']) == 'xmlhttprequest'
+        ) {
+
+            $this->load->model('Datatables_model');
+
+            /**
+             * Mengambil Parameter dan Perubahan nilai dari setiap
+             * aktifitas pada table
+             */
+            $datatables = $_POST;
+            $datatables['table'] = 'jabatan';
+            $datatables['id-table'] = 'id';
+            /**
+             * Kolom yang ditampilkan
+             */
+            $datatables['col-display'] = array(
+                'kode',
+                'nama'
+            );
+            /**
+             * menggunakan table join
+             */
+            //            $datatables['join']    = 'INNER JOIN position ON position = id_position';
+            $this->Datatables_model->Datatables($datatables);
+        }
+        return;
+    }
+
+    public function posisi()
+    {
+        /** AJAX Handle */
+        if (
+            isset($_SERVER['HTTP_X_REQUESTED_WITH']) &&
+            !empty($_SERVER['HTTP_X_REQUESTED_WITH']) &&
+            strtolower($_SERVER['HTTP_X_REQUESTED_WITH']) == 'xmlhttprequest'
+        ) {
+
+            $this->load->model('Datatables_model');
+
+            /**
+             * Mengambil Parameter dan Perubahan nilai dari setiap
+             * aktifitas pada table
+             */
+            $datatables = $_POST;
+            $datatables['table'] = 'posisi';
+            $datatables['id-table'] = 'id';
+            /**
+             * Kolom yang ditampilkan
+             */
+            $datatables['col-display'] = array(
+                'kode',
+                'nama'
+            );
+            /**
+             * menggunakan table join
+             */
+            //            $datatables['join']    = 'INNER JOIN position ON position = id_position';
+            $this->Datatables_model->Datatables($datatables);
+        }
+        return;
+    }
+
+    public function role()
+    {
+        /** AJAX Handle */
+        if (
+            isset($_SERVER['HTTP_X_REQUESTED_WITH']) &&
+            !empty($_SERVER['HTTP_X_REQUESTED_WITH']) &&
+            strtolower($_SERVER['HTTP_X_REQUESTED_WITH']) == 'xmlhttprequest'
+        ) {
+
+            $this->load->model('Datatables_model');
+
+            /**
+             * Mengambil Parameter dan Perubahan nilai dari setiap
+             * aktifitas pada table
+             */
+            $datatables = $_POST;
+            $datatables['table'] = 'role';
+            $datatables['id-table'] = 'id';
+            /**
+             * Kolom yang ditampilkan
+             */
+            $datatables['col-display'] = array(
+                'kode',
+                'nama'
+            );
+            /**
+             * menggunakan table join
+             */
+            //            $datatables['join']    = 'INNER JOIN position ON position = id_position';
+            $this->Datatables_model->Datatables($datatables);
+        }
+        return;
+    }
+
     public function pulls()
     {
         /** AJAX Handle */

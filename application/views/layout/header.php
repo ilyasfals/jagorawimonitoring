@@ -92,8 +92,8 @@
                     </div>
                 </li>
                 <li class="dropdownmenu"><a class="collapsed" data-toggle="collapse"
-                                            href="https://demo4.mitradesa.id/#pengguna" data-href="#pengguna"
-                                            data-link="/index.php/user/admin/admin"><i class="fa icon-user"></i> <span>Pengguna</span>
+                                            href="<?php echo base_url()?>#pengguna" data-href="#pengguna"
+                                            data-link="#"><i class="fa icon-user"></i> <span>Pengguna</span>
                         <span class="caret"></span></a>
                     <div id="pengguna" class="collapse">
                         <ul id="yw10" class="nav nav-pills nav-stacked">
@@ -104,8 +104,27 @@
                         </ul>
                     </div>
                 </li>
-                <li><a href="<?php echo base_url();?>datamaster"><i
-                                class="fa icon-setting"></i> <span>Pengaturan</span></a></li>
+                <!--<li><a href="<?php /*echo base_url();*/?>datamaster"><i
+                                class="fa icon-setting"></i> <span>Pengaturan</span></a></li>-->
+                <li class="dropdownmenu"><a class="collapsed" data-toggle="collapse"
+                                            href="<?php echo base_url()?>#pengaturan" data-href="#pengaturan"
+                                            data-link="#"><i class="fa icon-setting"></i> <span>Pengaturan</span>
+                        <span class="caret"></span></a>
+                    <div id="pengaturan" class="collapse">
+                        <ul id="yw10" class="nav nav-pills nav-stacked">
+                            <li>
+                                <a href="<?php echo base_url();?>pengaturan/departement">Departement / Bagian</a></li>
+                            <li>
+                                <a href="<?php echo base_url();?>pengaturan/seksi">Seksi / Sub Bagian</a></li>
+                            <li>
+                                <a href="<?php echo base_url();?>pengaturan/jabatan">Jabatan</a></li>
+                            <li>
+                                <a href="<?php echo base_url();?>pengaturan/posisi">Posisi</a></li>
+                            <li>
+                                <a href="<?php echo base_url();?>pengaturan/role">Role</a></li>
+                        </ul>
+                    </div>
+                </li>
             </ul>
             <div class="copyright">
                 <p><strong>Versi: 1.0</strong></p>

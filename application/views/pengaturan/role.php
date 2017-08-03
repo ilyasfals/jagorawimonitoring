@@ -7,7 +7,7 @@
 <div class="row">
     <div class="col-lg-12">
         <h1 class="page-header">
-            Pegawai <small><?php echo $title; ?></small>
+            Departement <small><?php echo $title; ?></small>
         </h1>
         <a href="<?php echo base_url('employees/create');?>" class="btn btn-default" role="button">
             <span class="glyphicon glyphicon-plus" aria-hidden="true"> Tambah</span>
@@ -18,14 +18,14 @@
         <table id="datatableId" class="display" cellspacing="0" width="100%">
             <thead>
             <tr>
-                <th>Npp</th>
+                <th>Kode</th>
                 <th>Nama</th>
 
             </tr>
             </thead>
             <tfoot>
             <tr>
-                <th>Npp</th>
+                <th>Kode</th>
                 <th>Nama</th>
 
             </tr>
@@ -52,7 +52,7 @@
             "processing": true,
             "serverSide": true,
             "ajax": {
-                "url": "<?php echo base_url('api/employees');?>",
+                "url": "<?php echo base_url('api/role');?>",
                 "type": "POST"
             }
         });
