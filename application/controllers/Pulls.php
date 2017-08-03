@@ -56,4 +56,13 @@ class Pulls extends CI_Controller {
             $this->load->view('news/success');
         }
     }
+
+    //Checklist
+    public function checklist(){
+        $data['title'] = 'Pull Toll';
+        $data['subtitle'] = 'Checklist';
+
+        $this->load->library('parser');
+        $this->template->load('wrapper', 'contents' , 'pull/checklist', $data);
+    }
 }
