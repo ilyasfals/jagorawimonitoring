@@ -8,8 +8,8 @@
 <div class="row">
     <div class="col-lg-12">
         <ul class="nav nav-tabs">
-            <li role="presentation" class="active"><a href="<?php echo base_url('pulls/index');?>">Transaksi</a></li>
-            <li role="presentation"><a href="<?php echo base_url('pulls/checklist');?>">Checklist</a></li>
+            <li role="presentation"><a href="<?php echo base_url('pulls/index');?>">Transaksi</a></li>
+            <li role="presentation" class="active"><a href="<?php echo base_url('pulls/checklist');?>">Checklist</a></li>
         </ul>
     </div>
     <div class="col-lg-12">

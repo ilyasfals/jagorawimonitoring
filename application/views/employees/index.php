@@ -9,6 +9,9 @@
         <h1 class="page-header">
             Pegawai <small><?php echo $title; ?></small>
         </h1>
+        <a href="<?php echo base_url('employees/create');?>" class="btn btn-default" role="button">
+            <span class="glyphicon glyphicon-plus" aria-hidden="true"> Tambah Pegawai</span>
+        </a>
     </div>
 
     <div class="col-lg-12">
