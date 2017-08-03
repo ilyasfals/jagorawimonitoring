@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Aug 01, 2017 at 02:23 PM
+-- Generation Time: Aug 03, 2017 at 09:24 AM
 -- Server version: 10.1.21-MariaDB
 -- PHP Version: 5.6.30
 
@@ -43,14 +43,14 @@ CREATE TABLE `employees` (
   `aktif_sejak` date NOT NULL,
   `aktif_sampai` date NOT NULL,
   `id_user` bigint(20) NOT NULL,
-  `id` bigint(20) NOT NULL
+  `id_employees` bigint(20) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `employees`
 --
 
-INSERT INTO `employees` (`npp`, `nama`, `jabatan`, `posisi`, `seksi`, `departemen`, `induk_organisasi`, `lokasi`, `jenis_kelamin`, `ur_fung_jab`, `tanggungan`, `aktif_sejak`, `aktif_sampai`, `id_user`, `id`) VALUES
+INSERT INTO `employees` (`npp`, `nama`, `jabatan`, `posisi`, `seksi`, `departemen`, `induk_organisasi`, `lokasi`, `jenis_kelamin`, `ur_fung_jab`, `tanggungan`, `aktif_sejak`, `aktif_sampai`, `id_user`, `id_employees`) VALUES
 ('01173', 'M. NAFHAN', 0, 0, 0, 0, 0, 0, '', 0, 0, '0000-00-00', '0000-00-00', 0, 53),
 ('01354', 'SRI SULISTYANI', 0, 0, 0, 0, 0, 0, '', 0, 0, '0000-00-00', '0000-00-00', 0, 54),
 ('01395', 'ABDUL JALIL M.', 0, 0, 0, 0, 0, 0, '', 0, 0, '0000-00-00', '0000-00-00', 0, 55),
@@ -291,12 +291,22 @@ INSERT INTO `news` (`id`, `title`, `slug`, `text`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `pull`
+-- Table structure for table `pulls`
 --
 
-CREATE TABLE `pull` (
-  `id` bigint(20) NOT NULL
+CREATE TABLE `pulls` (
+  `id_pulls` bigint(20) NOT NULL,
+  `tanggal` date NOT NULL,
+  `shift` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `pulls`
+--
+
+INSERT INTO `pulls` (`id_pulls`, `tanggal`, `shift`) VALUES
+(1, '2017-08-03', 1),
+(2, '2017-08-03', 2);
 
 -- --------------------------------------------------------
 
@@ -327,7 +337,7 @@ INSERT INTO `users` (`id_user`, `nama`, `email`, `username`, `password`) VALUES
 -- Indexes for table `employees`
 --
 ALTER TABLE `employees`
-  ADD PRIMARY KEY (`id`),
+  ADD PRIMARY KEY (`id_employees`),
   ADD UNIQUE KEY `npp_unique` (`npp`);
 
 --
@@ -336,6 +346,12 @@ ALTER TABLE `employees`
 ALTER TABLE `news`
   ADD PRIMARY KEY (`id`),
   ADD KEY `slug` (`slug`);
+
+--
+-- Indexes for table `pulls`
+--
+ALTER TABLE `pulls`
+  ADD PRIMARY KEY (`id_pulls`);
 
 --
 -- Indexes for table `users`
@@ -353,7 +369,7 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `employees`
 --
 ALTER TABLE `employees`
-  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=267;
+  MODIFY `id_employees` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=267;
 --
 -- AUTO_INCREMENT for table `news`
 --

@@ -7,6 +7,13 @@
 
 <div class="row">
     <div class="col-lg-12">
+        <ul class="nav nav-tabs">
+            <li role="presentation" class="active"><a href="<?php echo base_url('pulls/index');?>">Home</a></li>
+            <li role="presentation"><a href="<?php echo base_url('pulls/checklist');?>">Profile</a></li>
+            <li role="presentation"><a href="#">Messages</a></li>
+        </ul>
+    </div>
+    <div class="col-lg-12">
         <h1 class="page-header">
             Pegawai <small><?php echo $title; ?></small>
         </h1>
