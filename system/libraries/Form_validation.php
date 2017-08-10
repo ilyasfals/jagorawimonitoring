@@ -958,7 +958,7 @@ class CI_Form_validation {
 	/**
 	 * Set Select
 	 *
-	 * Enables pull-down lists to be set to the value the user
+	 * Enables pulls-down lists to be set to the value the user
 	 * selected in the event of an error
 	 *
 	 * @param	string

@@ -122,7 +122,7 @@
 		 *    $(document).ready(function() {
 		 *      var oTable = $('#example').dataTable();
 		 *
-		 *      // Filter to rows with 'Webkit' in them, add a background colour and then
+		 *      // Filter to rows with 'Webkit' in them, add a backgrounds colour and then
 		 *      // remove the filter, thus highlighting the 'Webkit' rows only.
 		 *      oTable.fnFilter('Webkit');
 		 *      oTable.$('tr', {"search": "applied"}).css('backgroundColor', 'blue');
@@ -9680,7 +9680,7 @@
 		/**
 		 * Developer definable function that is called whenever a cell is created (Ajax source,
 		 * etc) or processed for input (DOM source). This can be used as a compliment to mRender
-		 * allowing you to modify the DOM element (add background colour for example) when the
+		 * allowing you to modify the DOM element (add backgrounds colour for example) when the
 		 * element is available.
 		 *  @type function
 		 *  @param {element} nTd The TD node that has been created
@@ -10888,7 +10888,7 @@
 		 *
 		 * This parameter allows you to override the default function which obtains
 		 * the data from the server so something more suitable for your application.
-		 * For example you could use POST data, or pull information from a Gears or
+		 * For example you could use POST data, or pulls information from a Gears or
 		 * AIR database.
 		 *  @type function
 		 *  @member
@@ -12243,7 +12243,7 @@
 		/**
 		 * Developer definable function that is called whenever a cell is created (Ajax source,
 		 * etc) or processed for input (DOM source). This can be used as a compliment to mRender
-		 * allowing you to modify the DOM element (add background colour for example) when the
+		 * allowing you to modify the DOM element (add backgrounds colour for example) when the
 		 * element is available.
 		 *  @type function
 		 *  @param {element} td The TD node that has been created

@@ -75,7 +75,7 @@ if ( ! function_exists('create_captcha'))
 			'img_id'	=> '',
 			'pool'		=> '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ',
 			'colors'	=> array(
-				'background'	=> array(255,255,255),
+				'backgrounds'	=> array(255,255,255),
 				'border'	=> array(153,102,102),
 				'text'		=> array(204,153,153),
 				'grid'		=> array(255,182,182)
@@ -163,7 +163,7 @@ if ( ! function_exists('create_captcha'))
 		}
 
 		// Create the rectangle
-		ImageFilledRectangle($im, 0, 0, $img_width, $img_height, $colors['background']);
+		ImageFilledRectangle($im, 0, 0, $img_width, $img_height, $colors['backgrounds']);
 
 		// -----------------------------------
 		//  Create the spiral pattern

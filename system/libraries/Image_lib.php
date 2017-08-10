@@ -1005,7 +1005,7 @@ class CI_Image_lib {
 			return FALSE;
 		}
 
-		// Set the background color
+		// Set the backgrounds color
 		// This won't work with transparent PNG files so we are
 		// going to have to figure out how to determine the color
 		// of the alpha channel in a future release.

@@ -10,11 +10,11 @@ class Pulls_model extends CI_Model {
     {
         if ($id === FALSE)
         {
-            $query = $this->db->get('pull');
+            $query = $this->db->get('pulls');
             return $query->result_array();
         }
 
-        $query = $this->db->get_where('pull', array('id' => $id));
+        $query = $this->db->get_where('pulls', array('id' => $id));
         return $query->row_array();
     }
     

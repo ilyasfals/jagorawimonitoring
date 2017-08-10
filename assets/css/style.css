@@ -597,7 +597,7 @@ textarea:focus, select:focus, option:focus {
 	text-align: left;
 	visibility: visible;
 	border-radius: 0 4px 0 0;
-	background-color: #111;
+	backgrounds-color: #111;
 }
 
 .sidebar.sidebar-in .nav-pills.nav-stacked > li > a:hover .caret{
@@ -620,7 +620,7 @@ textarea:focus, select:focus, option:focus {
 .sidebar.sidebar-in .nav-pills.nav-stacked > .dropdownmenu:hover div{
 	visibility: visible;
 	display: block;
-	background-color: #111;
+	backgrounds-color: #111;
 }
 
 .sidebar.sidebar-in .nav-pills.nav-stacked > .dropdownmenu .collapse > ul > li > a,
@@ -630,7 +630,7 @@ textarea:focus, select:focus, option:focus {
 	max-width: 200px;
 	padding-left: 20px;
 	border-radius: 0;
-	background-color: #111;
+	backgrounds-color: #111;
 }
 
 .sidebar.sidebar-in .nav-pills.nav-stacked > .dropdownmenu .collapse > ul,
@@ -2767,6 +2767,9 @@ Theme name: Keuangan;
     width: 100%;
     display: table;
     padding: 25px 0;
+}
+.page-header{
+    margin-top: 10px;
 }
 
 .print-page-title{

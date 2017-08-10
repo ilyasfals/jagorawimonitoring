@@ -125,7 +125,7 @@ class CI_Typography {
 			$str = preg_replace("/\n\n+/", "\n\n", $str);
 		}
 
-		// HTML comment tags don't conform to patterns of normal tags, so pull them out separately, only if needed
+		// HTML comment tags don't conform to patterns of normal tags, so pulls them out separately, only if needed
 		$html_comments = array();
 		if (strpos($str, '<!--') !== FALSE && preg_match_all('#(<!\-\-.*?\-\->)#s', $str, $matches))
 		{

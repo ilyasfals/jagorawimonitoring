@@ -15,7 +15,7 @@ class Pulls extends CI_Controller {
         $data['subtitle'] = 'Daftar Transaksi';
 
         $this->load->library('parser');
-        $this->template->load('wrapper', 'contents' , 'pull/index', $data);
+        $this->template->load('wrapper', 'contents' , 'pulls/index', $data);
     }
 
     public function view($slug = NULL)
@@ -38,17 +38,14 @@ class Pulls extends CI_Controller {
         $this->load->helper('form');
         $this->load->library('form_validation');
 
-        $data['title'] = 'Formulir pegawai';
+        $data['title'] = 'Formulir Pull Tol';
 
         $this->form_validation->set_rules('npp', 'NPP', 'required');
         $this->form_validation->set_rules('nama', 'Nama', 'required');
 
         if ($this->form_validation->run() === FALSE)
         {
-            $this->load->view('templates/header', $data);
-            $this->load->view('news/create');
-            $this->load->view('templates/footer');
-            $this->template->load('default_layout', 'contents' , 'employees/index', $data);
+            $this->template->load('wrapper', 'contents' , 'pulls/create', $data);
         }
         else
         {
@@ -63,6 +60,6 @@ class Pulls extends CI_Controller {
         $data['subtitle'] = 'Checklist';
 
         $this->load->library('parser');
-        $this->template->load('wrapper', 'contents' , 'pull/checklist', $data);
+        $this->template->load('wrapper', 'contents' , 'pulls/checklist', $data);
     }
 }

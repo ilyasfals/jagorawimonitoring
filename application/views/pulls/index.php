@@ -14,8 +14,16 @@
     </div>
     <div class="col-lg-12">
         <h1 class="page-header">
-            Pegawai <small><?php echo $title; ?></small>
+            <?php echo $title.' <small>'.$subtitle.'</small>'; ?>
         </h1>
+
+    </div>
+</div>
+<div class="row">
+    <div class="col-lg-12">
+        <a href="<?php echo base_url('pulls/create');?>" class="btn btn-default" role="button">
+            <span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Transaksi
+        </a>
     </div>
 
     <div class="col-lg-12">
