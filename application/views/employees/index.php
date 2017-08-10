@@ -10,11 +10,7 @@
             Pegawai <small><?php echo $title; ?></small>
         </h1>
         <a href="<?php echo base_url('employees/create');?>" class="btn btn-default" role="button">
-<<<<<<< HEAD
             <span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Pegawai
-=======
-            <span class="glyphicon glyphicon-plus" aria-hidden="true"> Tambah</span>
->>>>>>> 52a13abebe3f27496880edd7f35a5ff7257021c4
         </a>
     </div>
 
