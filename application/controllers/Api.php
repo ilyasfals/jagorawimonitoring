@@ -213,7 +213,7 @@ class Api extends CI_Controller
         return;
     }
 
-    public function pulls()
+    public function pulls($id_pulls=NULL)
     {
         /** AJAX Handle */
         if (
@@ -221,29 +221,63 @@ class Api extends CI_Controller
             !empty($_SERVER['HTTP_X_REQUESTED_WITH']) &&
             strtolower($_SERVER['HTTP_X_REQUESTED_WITH']) == 'xmlhttprequest'
         ) {
+            if($id_pulls==NULL) {
 
-            $this->load->model('Datatables_model');
+                $this->load->model('Datatables_model');
 
-            /**
-             * Mengambil Parameter dan Perubahan nilai dari setiap
-             * aktifitas pada table
-             */
-            $datatables = $_POST;
-            $datatables['table'] = 'pulls';
-            $datatables['id-table'] = 'id_pulls';
-            /**
-             * Kolom yang ditampilkan
-             */
-            $datatables['col-display'] = array(
-                'tanggal',
-                'shift'
-            );
-            /**
-             * menggunakan table join
-             */
-            //            $datatables['join']    = 'INNER JOIN position ON position = id_position';
+                /**
+                 * Mengambil Parameter dan Perubahan nilai dari setiap
+                 * aktifitas pada table
+                 */
+                $datatables = $_POST;
+                $datatables['table'] = 'pulls';
+                $datatables['id-table'] = 'id_pulls';
+                /**
+                 * Kolom yang ditampilkan
+                 */
+                $datatables['col-display'] = array(
+                    'id_pulls',
+                    'tanggal',
+                    'id_gerbang',
+                    'pengawas1',
+                    'shift'
+                );
+                /**
+                 * menggunakan table join
+                 */
+                //            $datatables['join']    = 'INNER JOIN position ON position = id_position';
 
-            $this->Datatables_model->Datatables($datatables);
+                $this->Datatables_model->Datatables($datatables);
+            }
+            else{
+                $this->load->model('Datatables_model');
+
+                /**
+                 * Mengambil Parameter dan Perubahan nilai dari setiap
+                 * aktifitas pada table
+                 */
+                $datatables = $_POST;
+                $datatables['table'] = 'gardu';
+                $datatables['id-table'] = 'id_gardu';
+                $datatables['init-where'] = 'id_pulls = '.$id_pulls;
+                /**
+                 * Kolom yang ditampilkan
+                 */
+                $datatables['col-display'] = array(
+                    'id_gardu',
+                    'id_gardu',
+                    'real_petugas',
+                    'pemasukan',
+
+                );
+                /**
+                 * menggunakan table join
+                 */
+                //            $datatables['join']    = 'INNER JOIN position ON position = id_position';
+
+                $this->Datatables_model->Datatables($datatables);
+            }
+
         }
         return;
     }

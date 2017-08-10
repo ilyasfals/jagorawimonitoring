@@ -18,30 +18,36 @@ class Pulls extends CI_Controller {
         $this->template->load('wrapper', 'contents' , 'pulls/index', $data);
     }
 
-    public function view($slug = NULL)
+    public function view($id_pulls = NULL)
     {
-        $data['news_item'] = $this->news_model->get_news($slug);
+        $data['pulls_item'] = $this->pulls_model->get_pull($id_pulls);
 
-        if (empty($data['news_item']))
+        if (empty($data['pulls_item']))
         {
                 show_404();
         }
 
-        $data['title'] = $data['news_item']['title'];
+        $data['title'] = $data['pulls_item']['id_gerbang'].'-'.$data['pulls_item']['tanggal'].'-'.$data['pulls_item']['shift'];
+        $data['subtitle'] = 'Gardu';
 
-        $this->load->view('templates/header', $data);
-        $this->load->view('news/view', $data);
-        $this->load->view('templates/footer');
+
+        $this->load->library('parser');
+        $this->template->load('wrapper', 'contents' , 'pulls/view', $data);
     }
+
     public function create()
     {
         $this->load->helper('form');
         $this->load->library('form_validation');
-
         $data['title'] = 'Formulir Pull Tol';
 
-        $this->form_validation->set_rules('npp', 'NPP', 'required');
-        $this->form_validation->set_rules('nama', 'Nama', 'required');
+        $this->load->model('employees_model');
+        $data['employees'] = $this->employees_model->get_employees();
+
+        $this->form_validation->set_rules('id_gerbang', 'Gerbang Tol', 'required');
+        $this->form_validation->set_rules('tanggal', 'Tanggal', 'required');
+        $this->form_validation->set_rules('shift', 'Shift', 'required');
+        $this->form_validation->set_rules('pengawas1', 'Pengawas', 'required');
 
         if ($this->form_validation->run() === FALSE)
         {
@@ -49,8 +55,35 @@ class Pulls extends CI_Controller {
         }
         else
         {
-            $this->news_model->set_news();
-            $this->load->view('news/success');
+            $this->pulls_model->set_pull();
+            redirect('pulls/index/');
+        }
+    }
+
+    public function createGardu($id_pulls = NULL)
+    {
+        $this->load->helper('form');
+        $this->load->library('form_validation');
+        $data['title'] = 'Formulir Gardu Tol';
+        $data['id_pulls'] = $id_pulls;
+
+        $this->load->model('employees_model');
+        $data['employees'] = $this->employees_model->get_employees();
+
+        $this->form_validation->set_rules('plan_petugas', 'Rencana Petugas', 'required');
+        $this->form_validation->set_rules('real_petugas', 'Realisasi Petugas', 'required');
+        $this->form_validation->set_rules('jam_hadir', 'Jam Hadir', 'required');
+        $this->form_validation->set_rules('sifat_tugas', 'Sifat Tugas', 'required');
+        $this->form_validation->set_rules('cashbox', 'Cash Box', 'required');
+
+        if ($this->form_validation->run() === FALSE)
+        {
+            $this->template->load('wrapper', 'contents' , 'pulls/createGardu', $data);
+        }
+        else
+        {
+            $this->pulls_model->set_gardu();
+            $this->load->view('pulls/success');
         }
     }
 

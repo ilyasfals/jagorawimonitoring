@@ -51,8 +51,8 @@ class Datatables_model extends CI_Model {
          * pencarian aktif jika ada karakter masuk pada kolom pencarian.
          */
         if ($where != '') {
-            $sql .= " WHERE " . $where;
-
+//            $sql .= " WHERE " . $where;
+            $sql .= " WHERE ".$dt['init-where'].'AND '. $where;
         }
 
         // sorting

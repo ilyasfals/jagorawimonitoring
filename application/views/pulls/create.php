@@ -10,10 +10,7 @@
 
 <link href="<?php echo base_url('assets/css/select2.min.css');?>" rel="stylesheet" />
 <link href="<?php echo base_url('assets/css/bootstrap-datepicker3.min.css');?>" rel="stylesheet" />
-<!--<link href="--><?php //echo base_url('assets/css/style-form.css');?><!--" rel="stylesheet" />-->
 <link href="<?php echo base_url('assets/css/media-queries.css');?>" rel="stylesheet" />
-
-
 
 <div class="row">
     <div class="col-md-10">
@@ -24,9 +21,9 @@
                 <div class="form-group">
                     <label class="col-sm-2 control-label" for="textinput">Gerbang Tol</label>
                     <div class="col-sm-6">
-                        <select class="form-control select2-single-basic">
-                            <option>Taman Mini</option>
-                            <option>Cibubur</option>
+                        <select class="form-control select2-single-basic" name="id_gerbang">
+                            <option value="1">Taman Mini</option>
+                            <option value="2">Cibubur</option>
                         </select>
                     </div>
                 </div>
@@ -34,9 +31,41 @@
                 <div class="form-group">
                     <label class="col-sm-2 control-label" for="textinput">Tanggal</label>
                     <div class="col-sm-2">
-                        <input type="text" id="tanggal" class="form-control datepicker" placeholder="dd-mm-yyyy" aria-describedby="basic-addon2">
+                        <input type="text" id="tanggal" name="tanggal" class="form-control datepicker" placeholder="dd-mm-yyyy" aria-describedby="basic-addon2">
                     </div>
                 </div>
+                <div class="form-group">
+                    <label class="col-sm-2 control-label" for="textinput">Shift</label>
+                    <div class="col-sm-6">
+                        <select class="form-control select2-single-basic" name="shift">
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-2 control-label" for="textinput">Pengawas 1</label>
+                    <div class="col-sm-6">
+                        <select class="form-control select2-single-basic" name="pengawas1">
+                            <?php $i = 0; foreach ($employees as $employees_item): ?>
+                                <?php echo '<option value="'.$employees_item['id_employees'].'">'.$employees_item['nama'].'</option>'; ?>
+                            <?php endforeach; ?>
+                        </select>
+                    </div>
+                </div>
+<!--                <div class="form-group">-->
+<!--                    <label class="col-sm-2 control-label" for="textinput">Pengawas 2</label>-->
+<!--                    <div class="col-sm-6">-->
+<!--                        <select class="form-control select2-single-basic" name="pengawas[]">-->
+<!--                            <option value="">--kosong--</option>-->
+<!--                            --><?php //$i = 0; foreach ($employees as $employees_item): ?>
+<!--                                --><?php //echo '<option value="'.$employees_item['id_employees'].'">'.$employees_item['nama'].'</option>'; ?>
+<!--                            --><?php //endforeach; ?>
+<!--                        </select>-->
+<!--                    </div>-->
+<!--                </div>-->
+
 
                 <button type="submit" class="btn btn-next col-sm-offset-2">Next <i class="fa fa-angle-right"></i></button>
             </fieldset>

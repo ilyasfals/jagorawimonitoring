@@ -30,7 +30,10 @@
         <table id="datatableId" class="display" cellspacing="0" width="100%">
             <thead>
             <tr>
+                <th>#</th>
                 <th>Tanggal</th>
+                <th>Gerbang</th>
+                <th>Pengawas</th>
                 <th>Shift</th>
 
             </tr>
@@ -38,6 +41,8 @@
             <tfoot>
             <tr>
                 <th>Tanggal</th>
+                <th>Gerbang</th>
+                <th>Pengawas</th>
                 <th>Shift</th>
 
             </tr>
@@ -59,6 +64,26 @@
         // DataTable
         // No. 2
         var table = $('#datatableId').DataTable({
+            "aoColumns" : [
+                { "sWidth": "3%",  "bSortable": false },
+                { "sWidth": "10%" },
+                {
+                    "sWidth" : "30%",
+                    "sName": "gerbang",
+                },
+                {
+                    "sWidth" : "30%",
+                    "sName": "pengawas",
+                },
+                {
+                    "sWidth" : "10%",
+                    "mRender": function(data, oObj, row)
+                    {
+                        return "<a href='<?php echo base_url('pulls/view'); ?>/"+ row[0] + "'>"+data+"</a>";
+                    }
+                },
+
+            ],
             "processing": true,
             "serverSide": true,
             "ajax": {
