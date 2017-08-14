@@ -15,11 +15,20 @@
 
 <div class="row">
     <div class="col-md-10">
-        <form role="form" action="<?php echo base_url('pulls/createGardu');?>" class="form-horizontal" method="post">
+        <form role="form" action="<?php echo base_url('pulls/createPullsGardu');?>" class="form-horizontal" method="post">
             <input type="hidden" name="id_pulls" value="<?php echo $id_pulls; ?>">
             <fieldset>
                 <legend>Gardu Tol (Pra Tugas)</legend>
 
+                <div class="form-group">
+                    <label class="col-sm-2 control-label" for="textinput">Gardu Tol</label>
+                    <div class="col-sm-6">
+                        <select class="form-control select2-single-basic" name="id_gardus">
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                        </select>
+                    </div>
+                </div>
                 <div class="form-group">
                     <label class="col-sm-2 control-label" for="textinput">Renc. Petugas</label>
                     <div class="col-sm-6">

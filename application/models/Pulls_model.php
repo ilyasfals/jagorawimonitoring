@@ -32,17 +32,19 @@ class Pulls_model extends CI_Model {
 
         return $this->db->insert('pulls', $data);
     }
-    public function set_gardu()
+    public function set_pullsgardu()
     {
         $this->load->helper('url');
 
         $data = array(
             'id_pulls' => $this->input->post('id_pulls'),
+            'id_gardus' => $this->input->post('id_gardus'),
             'plan_petugas' => $this->input->post('plan_petugas'),
+            'real_petugas' => $this->input->post('real_petugas'),
             'jam_hadir' => $this->input->post('jam_hadir'),
             'sifat_tugas' => $this->input->post('sifat_tugas'),
             'cashbox' => $this->input->post('cashbox')
         );
-        return $this->db->insert('gardu', $data);
+        return $this->db->insert('pulls_gardu', $data);
     }
 }

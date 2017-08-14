@@ -60,7 +60,7 @@ class Pulls extends CI_Controller {
         }
     }
 
-    public function createGardu($id_pulls = NULL)
+    public function createPullsGardu($id_pulls = NULL)
     {
         $this->load->helper('form');
         $this->load->library('form_validation');
@@ -78,12 +78,12 @@ class Pulls extends CI_Controller {
 
         if ($this->form_validation->run() === FALSE)
         {
-            $this->template->load('wrapper', 'contents' , 'pulls/createGardu', $data);
+            $this->template->load('wrapper', 'contents' , 'pulls/createpullsgardu', $data);
         }
         else
         {
-            $this->pulls_model->set_gardu();
-            $this->load->view('pulls/success');
+            $this->pulls_model->set_pullsgardu();
+            redirect('pulls/view/'.$this->input->post('id_pulls'));
         }
     }
 

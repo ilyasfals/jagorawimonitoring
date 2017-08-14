@@ -257,15 +257,15 @@ class Api extends CI_Controller
                  * aktifitas pada table
                  */
                 $datatables = $_POST;
-                $datatables['table'] = 'gardu';
-                $datatables['id-table'] = 'id_gardu';
+                $datatables['table'] = 'pulls_gardu';
+                $datatables['id-table'] = 'id_pulls_gardu';
                 $datatables['init-where'] = 'id_pulls = '.$id_pulls;
                 /**
                  * Kolom yang ditampilkan
                  */
                 $datatables['col-display'] = array(
-                    'id_gardu',
-                    'id_gardu',
+                    'id_pulls_gardu',
+                    'id_gardus',
                     'real_petugas',
                     'pemasukan',
 

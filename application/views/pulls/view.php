@@ -21,7 +21,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 </div>
 <div class="row">
     <div class="col-lg-12">
-        <a href="<?php echo base_url('pulls/creategardu').'/'.$pulls_item['id_pulls'];?>" class="btn btn-default" role="button">
+        <a href="<?php echo base_url('pulls/createpullsgardu').'/'.$pulls_item['id_pulls'];?>" class="btn btn-default" role="button">
             <span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Transaksi
         </a>
     </div>
