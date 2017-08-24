@@ -45,7 +45,12 @@ body{
     scrollbar-face-color: #121212;
     z-index: 1;
 }
-
+.big-font{
+    margin: top;
+    padding-top: 100pt;
+    font-size: 40pt;
+    font-weight: bold;
+}
 ::-moz-selection {
     background: #DD1859;
     color: #fff;
@@ -1034,7 +1039,7 @@ textarea:focus, select:focus, option:focus {
     text-decoration: none;
 }
 
-/*
+
 .row .col-md-12:nth-child(n+1):after,
 .row .col-md-12:nth-child(n+1):before,
 .row .col-md-6:nth-child(2n+1):after,
@@ -1042,16 +1047,15 @@ textarea:focus, select:focus, option:focus {
 .row .col-md-4:nth-child(4n+1):after,
 .row .col-md-4:nth-child(4n+1):before,
 .row .col-md-3:nth-child(4n+1):after,
-.row .col-md-3:nth-child(4n+1):before*/
+.row .col-md-3:nth-child(4n+1):before
 
-/*.col-md-12:nth-child(n+1),
+.col-md-12:nth-child(n+1),
 .col-md-6:nth-child(2n+1),
 .col-md-4:nth-child(4n+1),
 .col-md-4:nth-child(3n+1) {
 	clear: both;
 	display: table;
 }
-*/
 
 /* grid */
 .grid-header{
@@ -1110,7 +1114,8 @@ textarea:focus, select:focus, option:focus {
 
 .grid-content {
     clear: both;
-    padding: 20px 25px 20px;
+    padding: 10px 10px 10px;
+    margin-top: 10px;
 }
 
 .grid-content.padding10{ padding: 10px 12px; }
@@ -3300,3 +3305,12 @@ margin-right: 0.5cm;
 margin-left: 0.5cm;
 margin-right: 0.2cm;
 }*/
+
+.white-box{
+    background-color: #FFFFFF;
+    padding-right: 50px;
+    padding-left: 50px;
+    padding-top: 15px;
+    padding-bottom: 15px;
+}
+/*Dashboard*/

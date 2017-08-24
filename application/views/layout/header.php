@@ -50,24 +50,18 @@
                     <a href="<?php echo base_url();?>pulls"><i class="fa icon-highway"></i> <span>Pull Toll</span></a>
                 </li>
                 <li>
-                    <a href="<?php echo base_url();?>senkoms"><i class="fa icon-senkom"></i> <span>Sentral Komunikasi</span></a>
+                    <a href="<?php echo base_url();?>senkoms"><i class="fa icon-senkom"></i> <span>KPI</span></a>
                 </li>
-                <li class="dropdownmenu">
-                    <a class="collapsed" data-toggle="collapse"
-                       href="#" data-href="#kemiskinan"
-                       data-link="#"><i
-                                class="fa icon-statistik"></i>
-                        <span data-menus="Kemiskinan">Dashboard</span>
-                        <span class="caret"></span>
-                    </a>
-                    <div id="kemiskinan" class="collapse">
-                        <ul id="yw5" class="nav nav-pills nav-stacked">
+                <li class="dropdownmenu"><a class="collapsed" data-toggle="collapse"
+                                            href="<?php echo base_url()?>#dashboard" data-href="#dashboard"
+                                            data-link="#"><i class="fa icon-user"></i> <span>Dashboard</span>
+                        <span class="caret"></span></a>
+                    <div id="dashboard" class="collapse">
+                        <ul id="yw10" class="nav nav-pills nav-stacked">
                             <li>
-                                <a href="<?php echo base_url();?>dasboard">Dashboard 1</a>
-                            </li>
+                                <a href="<?php echo base_url();?>dashboard">Transaksi</a></li>
                             <li>
-                                <a href="<?php echo base_url();?>report">Dashboard 2</a>
-                            </li>
+                                <a href="<?php echo base_url();?>dashboard/transaksi">#2</a></li>
                         </ul>
                     </div>
                 </li>
