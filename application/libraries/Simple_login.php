@@ -10,12 +10,15 @@ class Simple_login {
 	public function login($username, $password) {
 		$query = $this->CI->db->get_where('users',array('username'=>$username,'password' => $password));
 		if($query->num_rows() == 1) {
-			$row 	= $this->CI->db->query('SELECT id_user FROM users where username = "'.$username.'"');
-			$admin 	= $row->row();
-			$id 	= $admin->id_user;
+			$row 	= $this->CI->db->query('SELECT employees.npp, employees.nama, role FROM users 
+                                            INNER JOIN employees ON users.id_employees = employees.id_employees
+                                            WHERE  username = "'.$username.'"');
+			$admin 	= $row->row();;
 			$this->CI->session->set_userdata('username', $username);
 			$this->CI->session->set_userdata('id_login', uniqid(rand()));
-			$this->CI->session->set_userdata('id', $id);
+			$this->CI->session->set_userdata('npp', $admin->npp);
+			$this->CI->session->set_userdata('nama', $admin->nama);
+			$this->CI->session->set_userdata('role', $admin->role);
 			redirect(base_url('home'));
 		}else{
 			$this->CI->session->set_flashdata('sukses','Oops... Username/password salah');
