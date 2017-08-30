@@ -28,7 +28,7 @@ class KPIs_model extends CI_Model {
             'target_2' => $this->input->post('target_2')
         );
 
-        return $this->db->insert('kpis', $data);
+        return $this->db->insert('Kpis', $data);
     }
     public function set_pullsgardu()
     {

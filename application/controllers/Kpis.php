@@ -6,7 +6,7 @@ class KPIs extends CI_Controller {
     public function __construct()
     {
         parent::__construct();
-        $this->load->model('kpis_model');
+        //$this->load->model('KPIs_model');
         $this->load->helper('url_helper');
         $this->CI =& get_instance();
         header("Access-Control-Allow-Origin: *");
@@ -50,12 +50,12 @@ class KPIs extends CI_Controller {
                 $data['master_kpis'][$iMaster]['perspektif'] =  $row->perspektif;
                 $iMaster++;
             }
-            $this->template->load('wrapper', 'contents' , 'KPIs/create', $data);
+            $this->template->load('wrapper', 'contents' , 'kpis/create', $data);
         }
         else
         {
             $this->kpis_model->set_kpi();
-            redirect('KPIs/index/');
+            redirect('kpis/index/');
         }
     }
 }
