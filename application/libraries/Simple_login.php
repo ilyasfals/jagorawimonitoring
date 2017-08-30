@@ -13,7 +13,7 @@ class Simple_login {
 			$row 	= $this->CI->db->query('SELECT employees.npp, employees.nama, role FROM users 
                                             INNER JOIN employees ON users.id_employees = employees.id_employees
                                             WHERE  username = "'.$username.'"');
-			$admin 	= $row->row();;
+			$admin 	= $row->row();
 			$this->CI->session->set_userdata('username', $username);
 			$this->CI->session->set_userdata('id_login', uniqid(rand()));
 			$this->CI->session->set_userdata('npp', $admin->npp);

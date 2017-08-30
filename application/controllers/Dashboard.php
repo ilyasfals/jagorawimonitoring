@@ -62,9 +62,7 @@ class Dashboard extends CI_Controller {
     }
 
     function json(){
-       $sql = $this->db->query(
-           "select npp,nama from employees limit 1"
-       )->result();
+       $sql = $this->db->query("select npp,nama from employees limit 1")->result();
         echo json_encode($sql);
     }
 }

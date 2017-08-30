@@ -50,12 +50,12 @@
                     </li>
                 '; }?>
 
-                <?php if (in_array($_SESSION['role'], array('SDM'), true)){ echo '
+                <?php if (in_array($_SESSION['role'], array('SDM', 'TCM'), true)){ ?>
                         <li>
                             <a href="<?php echo base_url();?>pulls"><i class="fa icon-highway"></i> <span>Pull Toll</span></a>
                         </li>
-                ';}?>
-                <?php if (in_array($_SESSION['role'], array('SDM', 'TM', 'TCM', 'FINANCE'), true)){ echo '
+                <?php } ?>
+                <?php if (in_array($_SESSION['role'], array('SDM', 'TM', 'TCM', 'FINANCE'), true)){ ?>
                     <li class="dropdownmenu">
                         <a class="collapsed" data-toggle="collapse"
                             href="<?php echo base_url()?>#kpi" data-href="#kpi"
@@ -66,7 +66,7 @@
                         <div id="kpi" class="collapse">
                             <ul id="yw6" class="nav nav-pills nav-stacked">
                                 <li>
-                                    <a href="<?php echo base_url();?>report">Laporan 1</a>
+                                    <a href="<?php echo base_url();?>kpis">Indikator</a>
                                 </li>
                                 <li>
                                     <a href="<?php echo base_url();?>report/">Laporan 2</a>
@@ -77,7 +77,7 @@
                             </ul>
                         </div>
                     </li>
-                ';}?>
+                <?php } ?>
                 <li class="dropdownmenu">
                     <a class="collapsed" data-toggle="collapse"
                         href="<?php echo base_url()?>#dashboard" data-href="#dashboard"
@@ -113,7 +113,7 @@
                         </ul>
                     </div>
                 </li>
-                <?php if (in_array($_SESSION['role'], array('ADMIN'), true)){ echo '
+                <?php if (in_array($_SESSION['role'], array('ADMIN'), true)){ ?>
                     <li class="dropdownmenu">
                         <a class="collapsed" data-toggle="collapse"
                             href="<?php echo base_url()?>#pengguna" data-href="#pengguna"
@@ -128,9 +128,9 @@
                             </ul>
                         </div>
                     </li>
-                ';}?>
+                <?php } ?>
 
-                <?php if (in_array($_SESSION['role'], array('ADMIN'), true)){ echo '
+                <?php if (in_array($_SESSION['role'], array('ADMIN'), true)){ ?>
                     <li class="dropdownmenu"><a class="collapsed" data-toggle="collapse"
                                                 href="<?php echo base_url()?>#pengaturan" data-href="#pengaturan"
                                                 data-link="#"><i class="fa icon-setting"></i> <span>Pengaturan</span>
@@ -150,7 +150,7 @@
                             </ul>
                         </div>
                     </li>
-                 ';}?>
+                 <?php } ?>
             </ul>
             <div class="copyright">
                 <p><strong>Versi: 1.0</strong></p>
