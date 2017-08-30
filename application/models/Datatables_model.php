@@ -71,8 +71,6 @@ class Datatables_model extends CI_Model {
         $option['recordsTotal']    = $rowCount;
         $option['recordsFiltered'] = $rowCount;
         $option['data']            = array();
-        var_dump($columnd);
-        var_dump($list->result());
         foreach ($list->result() as $row) {
             /**
              * custom gunakan
