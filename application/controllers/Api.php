@@ -289,6 +289,7 @@ class Api extends CI_Controller
         }
         return;
     }
+<<<<<<< HEAD
 
 
     function fetch_departement(){
@@ -385,5 +386,74 @@ class Api extends CI_Controller
             "data"                    =>     $data
         );
         echo json_encode($output);
+=======
+    public function kpis($id_kpis=NULL)
+    {
+        /** AJAX Handle */
+        if (
+            isset($_SERVER['HTTP_X_REQUESTED_WITH']) &&
+            !empty($_SERVER['HTTP_X_REQUESTED_WITH']) &&
+            strtolower($_SERVER['HTTP_X_REQUESTED_WITH']) == 'xmlhttprequest'
+        ) {
+            if($id_kpis==NULL) {
+
+                $this->load->model('Datatables_model');
+
+                /**
+                 * Mengambil Parameter dan Perubahan nilai dari setiap
+                 * aktifitas pada table
+                 */
+                $datatables = $_POST;
+                $datatables['table'] = 'kpis';
+                $datatables['id-table'] = 'id_kpis';
+                /**
+                 * Kolom yang ditampilkan
+                 */
+                $datatables['col-display'] = array(
+                    'id_kpis',
+                    'tahun',
+                    'id_master_kpis',
+                    'target_1',
+                    'realisasi_1'
+                );
+                /**
+                 * menggunakan table join
+                 */
+                //            $datatables['join']    = 'INNER JOIN position ON position = id_position';
+
+                $this->Datatables_model->Datatables($datatables);
+            }
+            else{
+                $this->load->model('Datatables_model');
+
+                /**
+                 * Mengambil Parameter dan Perubahan nilai dari setiap
+                 * aktifitas pada table
+                 */
+                $datatables = $_POST;
+                $datatables['table'] = 'pulls_gardu';
+                $datatables['id-table'] = 'id_pulls_gardu';
+                $datatables['init-where'] = 'id_pulls = '.$id_kpis;
+                /**
+                 * Kolom yang ditampilkan
+                 */
+                $datatables['col-display'] = array(
+                    'id_pulls_gardu',
+                    'id_gardus',
+                    'real_petugas',
+                    'pemasukan',
+
+                );
+                /**
+                 * menggunakan table join
+                 */
+                //            $datatables['join']    = 'INNER JOIN position ON position = id_position';
+
+                $this->Datatables_model->Datatables($datatables);
+            }
+
+        }
+        return;
+>>>>>>> 44833766d607af2bea0add6d49b78980fe0d7af7
     }
 }

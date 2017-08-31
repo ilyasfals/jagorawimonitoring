@@ -12,7 +12,7 @@
                     </a></li>
                 <li class="user-profile dropdown">
                     <a class="dropdown-toggle" data-toggle="dropdown"
-                       href="#">admin <span
+                       href="#"><?php echo $_SESSION['username'];?> <span
                                 class="caret"></span></a>
                     <ul id="yw3" class="dropdown-menu">
                         <li>
@@ -42,36 +42,64 @@
                     <a href="<?php echo base_url();?>"><i class="fa icon-home"></i> <span
                                 data-menus="Beranda">Beranda</span></a>
                 </li>
-                <li>
-                    <a href="<?php echo base_url();?>employees"><i class="fa icon-penduduk"></i>
-                        <span data-menus="Kependudukan">Pegawai</span></a>
-                </li>
-                <li>
-                    <a href="<?php echo base_url();?>pulls"><i class="fa icon-highway"></i> <span>Pull Toll</span></a>
-                </li>
-                <li>
-                    <a href="<?php echo base_url();?>senkoms"><i class="fa icon-senkom"></i> <span>KPI</span></a>
-                </li>
-                <li class="dropdownmenu"><a class="collapsed" data-toggle="collapse"
-                                            href="<?php echo base_url()?>#dashboard" data-href="#dashboard"
-                                            data-link="#"><i class="fa icon-user"></i> <span>Dashboard</span>
-                        <span class="caret"></span></a>
-                    <div id="dashboard" class="collapse">
-                        <ul id="yw10" class="nav nav-pills nav-stacked">
-                            <li>
-                                <a href="<?php echo base_url();?>dashboard">Transaksi</a></li>
-                            <li>
-                                <a href="<?php echo base_url();?>dashboard/transaksi">#2</a></li>
-                        </ul>
-                    </div>
+
+                <?php if (in_array($_SESSION['role'], array('SDM'), true)){ echo '
+                    <li>
+                        <a href="<?php echo base_url();?>employees"><i class="fa icon-penduduk"></i>
+                            <span data-menus="Kependudukan">Pegawai</span></a>
+                    </li>
+                '; }?>
+
+                <?php if (in_array($_SESSION['role'], array('SDM', 'TCM'), true)){ ?>
+                        <li>
+                            <a href="<?php echo base_url();?>pulls"><i class="fa icon-highway"></i> <span>Pull Toll</span></a>
+                        </li>
+                <?php } ?>
+                <?php if (in_array($_SESSION['role'], array('SDM', 'TM', 'TCM', 'FINANCE'), true)){ ?>
+                    <li class="dropdownmenu">
+                        <a class="collapsed" data-toggle="collapse"
+                            href="<?php echo base_url()?>#kpi" data-href="#kpi"
+                            data-link="#">
+                            <i class="fa icon-kpi"></i> <span>KPI</span>
+                            <span class="caret"></span>
+                        </a>
+                        <div id="kpi" class="collapse">
+                            <ul id="yw6" class="nav nav-pills nav-stacked">
+                                <li>
+                                    <a href="<?php echo base_url();?>kpis">Indikator</a>
+                                </li>
+                                <li>
+                                    <a href="<?php echo base_url();?>report/">Laporan 2</a>
+                                </li>
+                                <li>
+                                    <a href="<?php echo base_url();?>report">Laporan 3</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </li>
+                <?php } ?>
+                <li class="dropdownmenu">
+                    <a class="collapsed" data-toggle="collapse"
+                        href="<?php echo base_url()?>#dashboard" data-href="#dashboard"
+                        data-link="#"><i class="fa icon-user"></i> <span>Dashboard</span>
+                        <span class="caret"></span>
+                    </a>
+                        <div id="dashboard" class="collapse">
+                            <ul id="yw10" class="nav nav-pills nav-stacked">
+                                <li>
+                                    <a href="<?php echo base_url();?>dashboard">Transaksi</a></li>
+                                <li>
+                                    <a href="<?php echo base_url();?>dashboard/transaksi">#2</a></li>
+                            </ul>
+                        </div>
                 </li>
                 <li class="dropdownmenu">
                     <a class="collapsed" data-toggle="collapse"
-                       href="#" data-href="#pertanahan"
+                       href="<?php echo base_url()?>#report" data-href="#report"
                        data-link="#"><i class="fa icon-pustaka-alt"></i> <span
-                                data-menus="Pertanahan">Laporan</span> <span class="caret"></span>
+                                data-menus="Report">Laporan</span> <span class="caret"></span>
                     </a>
-                    <div id="pertanahan" class="collapse">
+                    <div id="report" class="collapse">
                         <ul id="yw6" class="nav nav-pills nav-stacked">
                             <li>
                                 <a href="<?php echo base_url();?>report">Laporan 1</a>
@@ -85,40 +113,44 @@
                         </ul>
                     </div>
                 </li>
-                <li class="dropdownmenu"><a class="collapsed" data-toggle="collapse"
-                                            href="<?php echo base_url()?>#pengguna" data-href="#pengguna"
-                                            data-link="#"><i class="fa icon-user"></i> <span>Pengguna</span>
+                <?php if (in_array($_SESSION['role'], array('ADMIN'), true)){ ?>
+                    <li class="dropdownmenu">
+                        <a class="collapsed" data-toggle="collapse"
+                            href="<?php echo base_url()?>#pengguna" data-href="#pengguna"
+                            data-link="#"><i class="fa icon-user"></i> <span>Pengguna</span>
                         <span class="caret"></span></a>
-                    <div id="pengguna" class="collapse">
-                        <ul id="yw10" class="nav nav-pills nav-stacked">
-                            <li>
-                                <a href="<?php echo base_url();?>user">Pengguna</a></li>
-                            <li>
-                                <a href="<?php echo base_url();?>user/privilege">Hak Akses</a></li>
-                        </ul>
-                    </div>
-                </li>
-                <!--<li><a href="<?php /*echo base_url();*/?>datamaster"><i
-                                class="fa icon-setting"></i> <span>Pengaturan</span></a></li>-->
-                <li class="dropdownmenu"><a class="collapsed" data-toggle="collapse"
-                                            href="<?php echo base_url()?>#pengaturan" data-href="#pengaturan"
-                                            data-link="#"><i class="fa icon-setting"></i> <span>Pengaturan</span>
+                        <div id="pengguna" class="collapse">
+                            <ul id="yw10" class="nav nav-pills nav-stacked">
+                                <li>
+                                    <a href="<?php echo base_url();?>user">Pengguna</a></li>
+                                <li>
+                                    <a href="<?php echo base_url();?>user/privilege">Hak Akses</a></li>
+                            </ul>
+                        </div>
+                    </li>
+                <?php } ?>
+
+                <?php if (in_array($_SESSION['role'], array('ADMIN'), true)){ ?>
+                    <li class="dropdownmenu"><a class="collapsed" data-toggle="collapse"
+                                                href="<?php echo base_url()?>#pengaturan" data-href="#pengaturan"
+                                                data-link="#"><i class="fa icon-setting"></i> <span>Pengaturan</span>
                         <span class="caret"></span></a>
-                    <div id="pengaturan" class="collapse">
-                        <ul id="yw10" class="nav nav-pills nav-stacked">
-                            <li>
-                                <a href="<?php echo base_url();?>pengaturan/departement">Departement / Bagian</a></li>
-                            <li>
-                                <a href="<?php echo base_url();?>pengaturan/seksi">Seksi / Sub Bagian</a></li>
-                            <li>
-                                <a href="<?php echo base_url();?>pengaturan/jabatan">Jabatan</a></li>
-                            <li>
-                                <a href="<?php echo base_url();?>pengaturan/posisi">Posisi</a></li>
-                            <li>
-                                <a href="<?php echo base_url();?>pengaturan/role">Role</a></li>
-                        </ul>
-                    </div>
-                </li>
+                        <div id="pengaturan" class="collapse">
+                            <ul id="yw10" class="nav nav-pills nav-stacked">
+                                <li>
+                                    <a href="<?php echo base_url();?>pengaturan/departement">Departement / Bagian</a></li>
+                                <li>
+                                    <a href="<?php echo base_url();?>pengaturan/seksi">Seksi / Sub Bagian</a></li>
+                                <li>
+                                    <a href="<?php echo base_url();?>pengaturan/jabatan">Jabatan</a></li>
+                                <li>
+                                    <a href="<?php echo base_url();?>pengaturan/posisi">Posisi</a></li>
+                                <li>
+                                    <a href="<?php echo base_url();?>pengaturan/role">Role</a></li>
+                            </ul>
+                        </div>
+                    </li>
+                 <?php } ?>
             </ul>
             <div class="copyright">
                 <p><strong>Versi: 1.0</strong></p>

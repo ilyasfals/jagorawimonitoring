@@ -169,11 +169,11 @@
         $js_array = json_encode($transaksi['target_transaksi_kumulatif']);
         echo "var bulan_target_kumulatif = ". $js_array . ";\n";
 
-        var iKumulatif;
-        for (iKumulatif=0; i < bulan_nilai_kumulatif.length; iKumulatif++) {
-            var selisih_kumulatif[iKumulatif] = bulan_nilai_kumulatif[iKumulatif] - bulan_target_kumulatif[iKumulatif];
-        }
-        var selisih_kumulatif[0]=['Target-Realisasi'];
+//        var iKumulatif;
+//        for (iKumulatif=0; i < bulan_nilai_kumulatif.length; iKumulatif++) {
+//            var selisih_kumulatif[iKumulatif] = bulan_nilai_kumulatif[iKumulatif] - bulan_target_kumulatif[iKumulatif];
+//        }
+        //var selisih_kumulatif[0]=['Target-Realisasi'];
 
 
         $js_array_bulan = json_encode($transaksi['bulan_nama']);

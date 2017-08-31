@@ -724,6 +724,7 @@ textarea:focus, select:focus, option:focus {
 .sidebar .nav-pills > li > a > i.icon-highway:before{ background: url(../images/icon-web/highway.png) no-repeat center top;}
 .sidebar .nav-pills > li > a > i.icon-pustaka-alt:before{ background: url(../images/icon-web/bookmark.png) no-repeat center top;}
 .sidebar .nav-pills > li > a > i.icon-smsmk:before{ background: url(../img/mail.png) no-repeat center top;}
+.sidebar .nav-pills > li > a > i.icon-kpi:before{ background: url(../images/icon-web/kpi.png) no-repeat center top;}
 
 .sidebar .nav-pills > li.dropdownmenu .nav-stacked > li > a:before{
     font-family: 'FontAwesome';
