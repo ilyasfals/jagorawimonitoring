@@ -1,12 +1,12 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class KPIs extends CI_Controller {
+class Kpis extends CI_Controller {
 
     public function __construct()
     {
         parent::__construct();
-        //$this->load->model('KPIs_model');
+        $this->load->model('Kpis_model');
         $this->load->helper('url_helper');
         $this->CI =& get_instance();
         header("Access-Control-Allow-Origin: *");
@@ -32,7 +32,31 @@ class KPIs extends CI_Controller {
         $this->form_validation->set_rules('id_master_kpis', 'Indikator', 'required');
         $this->form_validation->set_rules('target_1', 'Target 1', 'required');
         $this->form_validation->set_rules('target_2', 'Target 2', 'required');
+        $this->form_validation->set_rules('target_3', 'Target 3', 'required');
+        $this->form_validation->set_rules('target_4', 'Target 4', 'required');
+        $this->form_validation->set_rules('target_5', 'Target 5', 'required');
+        $this->form_validation->set_rules('target_6', 'Target 6', 'required');
+        $this->form_validation->set_rules('target_7', 'Target 7', 'required');
+        $this->form_validation->set_rules('target_8', 'Target 8', 'required');
+        $this->form_validation->set_rules('target_9', 'Target 9', 'required');
+        $this->form_validation->set_rules('target_10', 'Target 10', 'required');
+        $this->form_validation->set_rules('target_11', 'Target 11', 'required');
+        $this->form_validation->set_rules('target_12', 'Target 12', 'required');
 
+        $this->form_validation->set_rules('realisasi_1', 'Realisasi 1', 'required');
+        $this->form_validation->set_rules('realisasi_2', 'Realisasi 2', 'required');
+        $this->form_validation->set_rules('realisasi_3', 'Realisasi 3', 'required');
+        $this->form_validation->set_rules('realisasi_4', 'Realisasi 4', 'required');
+        $this->form_validation->set_rules('realisasi_5', 'Realisasi 5', 'required');
+        $this->form_validation->set_rules('realisasi_6', 'Realisasi 6', 'required');
+        $this->form_validation->set_rules('realisasi_7', 'Realisasi 7', 'required');
+        $this->form_validation->set_rules('realisasi_8', 'Realisasi 8', 'required');
+        $this->form_validation->set_rules('realisasi_9', 'Realisasi 9', 'required');
+        $this->form_validation->set_rules('realisasi_10', 'Realisasi 10', 'required');
+        $this->form_validation->set_rules('realisasi_11', 'Realisasi 11', 'required');
+        $this->form_validation->set_rules('realisasi_12', 'Realisasi 12', 'required');
+
+        $this->form_validation->set_message('required', '{field} harus diisi');
 
         if ($this->form_validation->run() === FALSE)
         {
@@ -54,7 +78,7 @@ class KPIs extends CI_Controller {
         }
         else
         {
-            $this->kpis_model->set_kpi();
+            $this->Kpis_model->set_kpi();
             redirect('kpis/index/');
         }
     }
