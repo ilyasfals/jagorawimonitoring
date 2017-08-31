@@ -66,7 +66,9 @@ class Api extends CI_Controller
              */
             $datatables['col-display'] = array(
                 'kode',
-                'nama'
+                'nama',
+                'deskripsi',
+                'id'
             );
             /**
              * menggunakan table join
@@ -100,7 +102,9 @@ class Api extends CI_Controller
              */
             $datatables['col-display'] = array(
                 'kode',
-                'nama'
+                'nama',
+                'deskripsi',
+                'id'
             );
             /**
              * menggunakan table join
@@ -134,7 +138,9 @@ class Api extends CI_Controller
              */
             $datatables['col-display'] = array(
                 'kode',
-                'nama'
+                'nama',
+                'deskripsi',
+                'id'
             );
             /**
              * menggunakan table join
@@ -168,7 +174,9 @@ class Api extends CI_Controller
              */
             $datatables['col-display'] = array(
                 'kode',
-                'nama'
+                'nama',
+                'deskripsi',
+                'id'
             );
             /**
              * menggunakan table join
@@ -280,5 +288,102 @@ class Api extends CI_Controller
 
         }
         return;
+    }
+
+
+    function fetch_departement(){
+        $this->load->model("Cruddept_model");
+        $fetch_data = $this->Cruddept_model->make_datatables();
+        $data = array();
+        foreach($fetch_data as $row)
+        {
+            $sub_array = array();
+            $sub_array[] = $row->kode;;
+            $sub_array[] = $row->nama;
+            $sub_array[] = $row->deskripsi;
+//            $sub_array[] = '<button type="button" name="update" id="'.$row->id.'" class="btn btn-warning btn-xs update">Update</button>';
+            $sub_array[] = '<a href="updatedepartement/'.$row->id.'"  class="btn btn-warning btn-xs update">Update</a>';
+            $sub_array[] = '<a href="deletedepartement/'.$row->id.'" class="btn btn-danger btn-xs delete">Delete</a>';
+            $data[] = $sub_array;
+        }
+        $output = array(
+            "draw"                    =>     intval($_POST["draw"]),
+            "recordsTotal"          =>      $this->Cruddept_model->get_all_data(),
+            "recordsFiltered"     =>     $this->Cruddept_model->get_filtered_data(),
+            "data"                    =>     $data
+        );
+        echo json_encode($output);
+    }
+
+    function fetch_seksi(){
+        $this->load->model("Crudseksi_model");
+        $fetch_data = $this->Crudseksi_model->make_datatables();
+        $data = array();
+        foreach($fetch_data as $row)
+        {
+            $sub_array = array();
+            $sub_array[] = $row->kode;;
+            $sub_array[] = $row->nama;
+            $sub_array[] = $row->deskripsi;
+//            $sub_array[] = '<button type="button" name="update" id="'.$row->id.'" class="btn btn-warning btn-xs update">Update</button>';
+            $sub_array[] = '<a href="updateseksi/'.$row->id.'"  class="btn btn-warning btn-xs update">Update</a>';
+            $sub_array[] = '<a href="deleteseksi/'.$row->id.'" class="btn btn-danger btn-xs delete">Delete</a>';
+            $data[] = $sub_array;
+        }
+        $output = array(
+            "draw"                    =>     intval($_POST["draw"]),
+            "recordsTotal"          =>      $this->Crudseksi_model->get_all_data(),
+            "recordsFiltered"     =>     $this->Crudseksi_model->get_filtered_data(),
+            "data"                    =>     $data
+        );
+        echo json_encode($output);
+    }
+
+    function fetch_jabatan(){
+        $this->load->model("Crudjabatan_model");
+        $fetch_data = $this->Crudjabatan_model->make_datatables();
+        $data = array();
+        foreach($fetch_data as $row)
+        {
+            $sub_array = array();
+            $sub_array[] = $row->kode;;
+            $sub_array[] = $row->nama;
+            $sub_array[] = $row->deskripsi;
+//            $sub_array[] = '<button type="button" name="update" id="'.$row->id.'" class="btn btn-warning btn-xs update">Update</button>';
+            $sub_array[] = '<a href="updatejabatan/'.$row->id.'"  class="btn btn-warning btn-xs update">Update</a>';
+            $sub_array[] = '<a href="deletejabatan/'.$row->id.'" class="btn btn-danger btn-xs delete">Delete</a>';
+            $data[] = $sub_array;
+        }
+        $output = array(
+            "draw"                    =>     intval($_POST["draw"]),
+            "recordsTotal"          =>      $this->Crudjabatan_model->get_all_data(),
+            "recordsFiltered"     =>     $this->Crudjabatan_model->get_filtered_data(),
+            "data"                    =>     $data
+        );
+        echo json_encode($output);
+    }
+
+    function fetch_posisi(){
+        $this->load->model("Crudposisi_model");
+        $fetch_data = $this->Crudposisi_model->make_datatables();
+        $data = array();
+        foreach($fetch_data as $row)
+        {
+            $sub_array = array();
+            $sub_array[] = $row->kode;;
+            $sub_array[] = $row->nama;
+            $sub_array[] = $row->deskripsi;
+//            $sub_array[] = '<button type="button" name="update" id="'.$row->id.'" class="btn btn-warning btn-xs update">Update</button>';
+            $sub_array[] = '<a href="updateposisi/'.$row->id.'"  class="btn btn-warning btn-xs update">Update</a>';
+            $sub_array[] = '<a href="deleteposisi/'.$row->id.'" class="btn btn-danger btn-xs delete">Delete</a>';
+            $data[] = $sub_array;
+        }
+        $output = array(
+            "draw"                    =>     intval($_POST["draw"]),
+            "recordsTotal"          =>      $this->Crudposisi_model->get_all_data(),
+            "recordsFiltered"     =>     $this->Crudposisi_model->get_filtered_data(),
+            "data"                    =>     $data
+        );
+        echo json_encode($output);
     }
 }

@@ -27,6 +27,143 @@ class Pengaturan extends CI_Controller {
         $this->template->load('wrapper', 'contents' , 'pengaturan/departement', $data);
     }
 
+    public function createDepartement()
+    {
+        $this->load->helper('form');
+        $this->load->library('form_validation');
+        $data['title'] = 'Tambah Departement';
+        $this->load->model('departement_model');
+        $data['departement'] = $this->departement_model->get_department();
+        $id=$this->uri->segment(3);
+        $data['id'] = $id;
+        $this->form_validation->set_rules('kode', 'kode', 'required');
+        $this->form_validation->set_rules('nama', 'nama', 'required');
+        $this->form_validation->set_rules('deskripsi', 'deskripsi', 'required');
+
+        if ($this->form_validation->run() === FALSE)
+        {
+            $this->template->load('wrapper', 'contents' , 'pengaturan/createdepartement', $data);
+        }
+        else {
+            if($this->input->post('id')>0){
+                $this->departement_model->update_departement();
+            }
+            else{
+                $this->departement_model->set_departement();
+            }
+            redirect('pengaturan/departement/');
+        }
+    }
+
+    public function deleteDepartement($id){
+        $this->db->where('id', $id);
+        $this->db->delete('departement');
+        redirect('pengaturan/departement/');
+    }
+
+    public function createSeksi()
+    {
+        $this->load->helper('form');
+        $this->load->library('form_validation');
+        $data['title'] = 'Tambah Seksi';
+        $this->load->model('seksi_model');
+        $data['seksi'] = $this->seksi_model->get_seksi();
+        $id=$this->uri->segment(3);
+        $data['id'] = $id;
+        $this->form_validation->set_rules('kode', 'kode', 'required');
+        $this->form_validation->set_rules('nama', 'nama', 'required');
+        $this->form_validation->set_rules('deskripsi', 'deskripsi', 'required');
+
+        if ($this->form_validation->run() === FALSE)
+        {
+            $this->template->load('wrapper', 'contents' , 'pengaturan/createseksi', $data);
+        }
+        else {
+            if($this->input->post('id')>0){
+                $this->seksi_model->update_seksi();
+            }
+            else{
+                $this->seksi_model->set_seksi();
+            }
+            redirect('pengaturan/seksi/');
+        }
+    }
+
+    public function deleteSeksi($id){
+        $this->db->where('id', $id);
+        $this->db->delete('seksi');
+        redirect('pengaturan/seksi/');
+    }
+
+    public function createJabatan()
+    {
+        $this->load->helper('form');
+        $this->load->library('form_validation');
+        $data['title'] = 'Tambah Jabatan';
+        $this->load->model('jabatan_model');
+        $data['jabatan'] = $this->jabatan_model->get_jabatan();
+        $id=$this->uri->segment(3);
+        $data['id'] = $id;
+        $this->form_validation->set_rules('kode', 'kode', 'required');
+        $this->form_validation->set_rules('nama', 'nama', 'required');
+        $this->form_validation->set_rules('deskripsi', 'deskripsi', 'required');
+
+        if ($this->form_validation->run() === FALSE)
+        {
+            $this->template->load('wrapper', 'contents' , 'pengaturan/createjabatan', $data);
+        }
+        else {
+            if($this->input->post('id')>0){
+                $this->jabatan_model->update_jabatan();
+            }
+            else{
+                $this->jabatan_model->set_jabatan();
+            }
+            redirect('pengaturan/jabatan/');
+        }
+    }
+
+
+    public function deleteJabatan($id){
+        $this->db->where('id', $id);
+        $this->db->delete('jabatan');
+        redirect('pengaturan/jabatan/');
+    }
+
+    public function createPosisi()
+    {
+        $this->load->helper('form');
+        $this->load->library('form_validation');
+        $data['title'] = 'Tambah Posisi';
+        $this->load->model('posisi_model');
+        $data['posisi'] = $this->posisi_model->get_posisi();
+        $id=$this->uri->segment(3);
+        $data['id'] = $id;
+        $this->form_validation->set_rules('kode', 'kode', 'required');
+        $this->form_validation->set_rules('nama', 'nama', 'required');
+        $this->form_validation->set_rules('deskripsi', 'deskripsi', 'required');
+
+        if ($this->form_validation->run() === FALSE)
+        {
+            $this->template->load('wrapper', 'contents' , 'pengaturan/createposisi', $data);
+        }
+        else {
+            if($this->input->post('id')>0){
+                $this->posisi_model->update_posisi();
+            }
+            else{
+                $this->posisi_model->set_posisi();
+            }
+            redirect('pengaturan/posisi/');
+         }
+    }
+
+    public function deletePosisi($id){
+        $this->db->where('id', $id);
+        $this->db->delete('posisi');
+        redirect('pengaturan/posisi/');
+    }
+
     public function seksi()
     {
         $data['title'] = 'Daftar Seksi';
@@ -57,5 +194,11 @@ class Pengaturan extends CI_Controller {
 
         $this->load->library('parser');
         $this->template->load('wrapper', 'contents' , 'pengaturan/role', $data);
+    }
+
+    function listDepartement()
+    {
+        $departement = $this->model->departement_model->get_list(); //array of members
+        $this->load->view('createdepartement', $departement); // load members in view
     }
 }
