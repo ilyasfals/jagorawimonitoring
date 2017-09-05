@@ -45,7 +45,7 @@
 
                 <?php if (in_array($_SESSION['role'], array('SDM'), true)){ echo '
                     <li>
-                        <a href="<?php echo base_url();?>employees"><i class="fa icon-penduduk"></i>
+                        <a href=" '.base_url().'/employees"><i class="fa icon-penduduk"></i>
                             <span data-menus="Kependudukan">Pegawai</span></a>
                     </li>
                 '; }?>
