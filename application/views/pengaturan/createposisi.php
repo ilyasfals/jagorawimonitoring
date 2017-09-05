@@ -18,31 +18,55 @@
         ?>
         <fieldset>
             <legend>Posisi</legend>
-
             <div class="form-group">
                 <label class="col-sm-2 control-label" for="textinput">Kode</label>
                 <div class="col-sm-2">
+                    <?php if($id!="0")
+                    {
+                        foreach($posisi as $m):
+                            echo '<input type="text" id="kode" name="kode" value="'.$m["kode"].'">';
+                        endforeach;
+                    }
+                    else{
+                        echo '<input type="text" id="kode" name="kode" >';
+                    }
+                    ?>
                     <?php
                     echo '<input type="hidden" id="id" name="id" value="'.$id.'">';
                     ?>
-                    <input type="text" id="kode" name="kode" >
                 </div>
 
             </div>
-
             <div class="form-group">
                 <label class="col-sm-2 control-label" for="textinput">Nama</label>
                 <div class="col-sm-2">
-                    <input type="text" id="nama" name="nama" >
+                    <?php if($id!="0")
+                    {
+                        foreach($posisi as $m):
+                            echo '<input type="text" id="nama" name="nama" value="'.$m["nama"].'">';
+                        endforeach;
+                    }
+                    else{
+                        echo '<input type="text" id="nama" name="nama" >';
+                    }
+                    ?>
                 </div>
             </div>
             <div class="form-group">
                 <label class="col-sm-2 control-label" for="textinput">Deskripsi</label>
                 <div class="col-sm-2">
-                    <input type="text" id="deskripsi" name="deskripsi" >
+                    <?php if($id!="0")
+                    {
+                        foreach($posisi as $m):
+                            echo '<input type="text" id="deskripsi" name="deskripsi" value="'.$m["deskripsi"].'">';
+                        endforeach;
+                    }
+                    else{
+                        echo '<input type="text" id="deskripsi" name="deskripsi" >';
+                    }
+                    ?>
                 </div>
             </div>
-
             <button type="submit" class="btn btn-next col-sm-offset-2">Simpan</button>
         </fieldset>
         </form>

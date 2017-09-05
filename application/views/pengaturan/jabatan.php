@@ -9,7 +9,7 @@
         <h1 class="page-header">
             Jabatan <small><?php echo $title; ?></small>
         </h1>
-        <a href="<?php echo base_url('pengaturan/createjabatan');?>" class="btn btn-default" role="button">
+        <a href="<?php echo base_url('pengaturan/createjabatan/0');?>" class="btn btn-default" role="button">
             <span class="glyphicon glyphicon-plus" aria-hidden="true"> Tambah</span>
         </a>
     </div>

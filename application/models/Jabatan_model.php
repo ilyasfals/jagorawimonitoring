@@ -28,7 +28,7 @@ class Jabatan_model extends CI_Model {
     public function get_jabatanID($id)
     {
         $query = $this->db->get_where('jabatan', array('id' => $id));
-        return $query->row_array();
+        return $query->result_array();
     }
 
     public function set_jabatan()
@@ -65,5 +65,10 @@ class Jabatan_model extends CI_Model {
         return $this->db->where('jabatan', $id)+
         $this->db->delete('jabatan');
 
+    }
+
+    function get_list() {
+        // query in database
+        return $query = $this->db->get('jabatan'); //table name members
     }
 }

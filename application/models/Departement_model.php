@@ -28,7 +28,7 @@ class Departement_model extends CI_Model {
     public function get_departmentID($id)
     {
         $query = $this->db->get_where('departement', array('id' => $id));
-        return $query->row_array();
+        return $query->result_array();
     }
 
     public function set_departement()

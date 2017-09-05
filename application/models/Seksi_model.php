@@ -28,7 +28,7 @@ class Seksi_model extends CI_Model {
     public function get_seksiID($id)
     {
         $query = $this->db->get_where('seksi', array('id' => $id));
-        return $query->row_array();
+        return $query->result_array();
     }
 
     public function set_seksi()
@@ -65,5 +65,10 @@ class Seksi_model extends CI_Model {
         return $this->db->where('id', $id)+
         $this->db->delete('seksi');
 
+    }
+
+    function get_list() {
+        // query in database
+        return $query = $this->db->get('seksi'); //table name members
     }
 }

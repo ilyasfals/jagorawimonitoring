@@ -31,10 +31,19 @@ class Pengaturan extends CI_Controller {
     {
         $this->load->helper('form');
         $this->load->library('form_validation');
-        $data['title'] = 'Tambah Departement';
-        $this->load->model('departement_model');
-        $data['departement'] = $this->departement_model->get_department();
         $id=$this->uri->segment(3);
+        if($this->uri->segment(3)=="0"){
+            $data['title'] = 'Tambah Departement';
+            $this->load->model('departement_model');
+            $data['departement'] = $this->departement_model->get_department();
+        }
+        else{
+            $data['title'] = 'Ubah Departement';
+            $this->load->model('departement_model');
+            $data['departement'] = $this->departement_model->get_departmentID($id);
+
+        }
+
         $data['id'] = $id;
         $this->form_validation->set_rules('kode', 'kode', 'required');
         $this->form_validation->set_rules('nama', 'nama', 'required');
@@ -65,10 +74,18 @@ class Pengaturan extends CI_Controller {
     {
         $this->load->helper('form');
         $this->load->library('form_validation');
-        $data['title'] = 'Tambah Seksi';
-        $this->load->model('seksi_model');
-        $data['seksi'] = $this->seksi_model->get_seksi();
         $id=$this->uri->segment(3);
+        if($this->uri->segment(3)=="0"){
+            $data['title'] = 'Tambah Seksi';
+            $this->load->model('seksi_model');
+            $data['seksi'] = $this->seksi_model->get_seksi();
+        }
+        else{
+            $data['title'] = 'Ubah seksi';
+            $this->load->model('seksi_model');
+            $data['seksi'] = $this->seksi_model->get_seksiID($id);
+
+        }
         $data['id'] = $id;
         $this->form_validation->set_rules('kode', 'kode', 'required');
         $this->form_validation->set_rules('nama', 'nama', 'required');
@@ -99,10 +116,19 @@ class Pengaturan extends CI_Controller {
     {
         $this->load->helper('form');
         $this->load->library('form_validation');
-        $data['title'] = 'Tambah Jabatan';
-        $this->load->model('jabatan_model');
-        $data['jabatan'] = $this->jabatan_model->get_jabatan();
         $id=$this->uri->segment(3);
+        if($this->uri->segment(3)=="0"){
+            $data['title'] = 'Tambah Jabatan';
+            $this->load->model('jabatan_model');
+            $data['jabatan'] = $this->jabatan_model->get_jabatan();
+        }
+        else{
+            $data['title'] = 'Ubah Jabatan';
+            $this->load->model('jabatan_model');
+            $data['jabatan'] = $this->jabatan_model->get_jabatanID($id);
+
+        }
+
         $data['id'] = $id;
         $this->form_validation->set_rules('kode', 'kode', 'required');
         $this->form_validation->set_rules('nama', 'nama', 'required');
@@ -134,10 +160,18 @@ class Pengaturan extends CI_Controller {
     {
         $this->load->helper('form');
         $this->load->library('form_validation');
-        $data['title'] = 'Tambah Posisi';
-        $this->load->model('posisi_model');
-        $data['posisi'] = $this->posisi_model->get_posisi();
         $id=$this->uri->segment(3);
+        if($this->uri->segment(3)=="0"){
+            $data['title'] = 'Tambah Posisi';
+            $this->load->model('posisi_model');
+            $data['posisi'] = $this->posisi_model->get_posisi();
+        }
+        else{
+            $data['title'] = 'Ubah posisi';
+            $this->load->model('posisi_model');
+            $data['posisi'] = $this->posisi_model->get_posisiID($id);
+
+        }
         $data['id'] = $id;
         $this->form_validation->set_rules('kode', 'kode', 'required');
         $this->form_validation->set_rules('nama', 'nama', 'required');
@@ -200,5 +234,23 @@ class Pengaturan extends CI_Controller {
     {
         $departement = $this->model->departement_model->get_list(); //array of members
         $this->load->view('createdepartement', $departement); // load members in view
+    }
+
+    function listJabatan()
+    {
+        $jabatan = $this->model->jabatan_model->get_list(); //array of members
+        $this->load->view('createjabatan', $jabatan); // load members in view
+    }
+
+    function listSeksi()
+    {
+        $seksi = $this->model->seksi_model->get_list(); //array of members
+        $this->load->view('createseksi', $seksi); // load members in view
+    }
+
+    function listPosisi()
+    {
+        $posisi = $this->model->posisi_model->get_list(); //array of members
+        $this->load->view('createseksi', $posisi); // load members in view
     }
 }

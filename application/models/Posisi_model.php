@@ -28,7 +28,7 @@ class Posisi_model extends CI_Model {
     public function get_posisiID($id)
     {
         $query = $this->db->get_where('posisi', array('id' => $id));
-        return $query->row_array();
+        return $query->result_array();
     }
 
     public function set_posisi()
@@ -66,4 +66,9 @@ class Posisi_model extends CI_Model {
         $this->db->delete('posisi');
 
     }
+    function get_list() {
+        // query in database
+        return $query = $this->db->get('posisi'); //table name members
+    }
+
 }

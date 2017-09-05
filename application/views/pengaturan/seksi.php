@@ -9,7 +9,7 @@
         <h1 class="page-header">
             Seksi <small><?php echo $title; ?></small>
         </h1>
-        <a href="<?php echo base_url('pengaturan/createseksi');?>" class="btn btn-default" role="button">
+        <a href="<?php echo base_url('pengaturan/createseksi/0');?>" class="btn btn-default" role="button">
             <span class="glyphicon glyphicon-plus" aria-hidden="true"> Tambah</span>
         </a>
     </div>
