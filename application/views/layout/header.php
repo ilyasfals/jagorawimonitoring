@@ -89,7 +89,7 @@
                                 <li>
                                     <a href="<?php echo base_url();?>dashboard">Transaksi</a></li>
                                 <li>
-                                    <a href="<?php echo base_url();?>dashboard/transaksi">#2</a></li>
+                                    <a href="<?php echo base_url();?>dashboard/kpi">KPI</a></li>
                             </ul>
                         </div>
                 </li>

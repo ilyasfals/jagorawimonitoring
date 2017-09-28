@@ -5,7 +5,6 @@ class Dashboard extends CI_Controller {
     public function __construct()
     {
         parent::__construct();
-        $this->load->model('transaksis_model');
         $this->load->helper('url_helper');
         header("Access-Control-Allow-Origin: *");
     }
@@ -17,6 +16,7 @@ class Dashboard extends CI_Controller {
 
         //Dapatkan data jumlah dan nilai transaksis
         $year = 0;
+        $this->load->model('transaksis_model');
         $data['transaksi'] = $this->transaksis_model->get_rekap_transaksi_year($year);
 
 
@@ -24,41 +24,21 @@ class Dashboard extends CI_Controller {
         $this->template->load('wrapper', 'contents' , 'dashboard/index', $data);
     }
 
-    public function view($slug = NULL)
+    public function kpi()
     {
-        $data['employees_item'] = $this->news_model->get_news($slug);
+        $data['title'] = 'Dashboard';
+        $data['subtitle'] = 'Key Performance Indikator';
 
-        if (empty($data['employees_item']))
-        {
-                show_404();
-        }
+        //Dapatkan data jumlah dan nilai transaksis
+        $year = 0;
+        $this->load->model('kpis_model');
+        $data['kpi'] = $this->kpis_model->get_last_month_rekap_year($year);
+        $now = new \DateTime('now');
+        $data['current_month'] = (int) $now->format('m');
 
-        $data['title'] = $data['employees_item']['title'];
 
-        $this->load->view('templates/header', $data);
-        $this->load->view('news/view', $data);
-        $this->load->view('templates/footer');
-    }
-    public function create()
-    {
-        $this->load->helper('form');
-        $this->load->library('form_validation');
-
-        $data['title'] = 'Formulir pegawai';
-
-        $this->form_validation->set_rules('npp', 'NPP', 'required');
-        $this->form_validation->set_rules('nama', 'Nama', 'required');
-
-        if ($this->form_validation->run() === FALSE)
-        {
-            $this->template->load('wrapper', 'contents' , 'employees/create', $data);
-
-        }
-        else
-        {
-            $this->news_model->set_news();
-            $this->load->view('news/success');
-        }
+        $this->load->library('parser');
+        $this->template->load('wrapper', 'contents' , 'dashboard/kpi', $data);
     }
 
     function json(){
