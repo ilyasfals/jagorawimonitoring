@@ -15,7 +15,7 @@
 </div>
 <div class="row">
     <div class="col-lg-12">
-        <a href="<?php echo base_url('KPIs/create');?>" class="btn btn-default" role="button">
+        <a href="<?php echo base_url('kpis/create');?>" class="btn btn-default" role="button">
             <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>Data KPI
         </a>
     </div>
@@ -74,7 +74,7 @@
                     "sWidth" : "10%",
                     "mRender": function(data, oObj, row)
                     {
-                        return "<a href='<?php echo base_url('KPIs/view'); ?>/"+ row[0] + "'>"+data+"</a>";
+                        return "<a href='<?php echo base_url('kpis/view'); ?>/"+ row[0] + "'>"+data+"</a>";
                     }
                 },
 

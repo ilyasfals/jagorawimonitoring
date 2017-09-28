@@ -25,7 +25,7 @@
     <div class="col-md-12">
         <div class="col-md-12">
             <div class="grid-content">
-                <form role="form" action="<?php echo base_url('KPIs/create');?>" class="form-horizontal" method="post">
+                <form role="form" action="<?php echo base_url('kpis/create');?>" class="form-horizontal" method="post">
                     <div class="form-group">
                         <label class="col-sm-2 control-label" for="textinput">Tahun</label>
                         <div class="col-sm-2">

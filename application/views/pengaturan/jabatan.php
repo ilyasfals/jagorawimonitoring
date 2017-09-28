@@ -7,9 +7,9 @@
 <div class="row">
     <div class="col-lg-12">
         <h1 class="page-header">
-            Departement <small><?php echo $title; ?></small>
+            Jabatan <small><?php echo $title; ?></small>
         </h1>
-        <a href="<?php echo base_url('employees/create');?>" class="btn btn-default" role="button">
+        <a href="<?php echo base_url('pengaturan/createjabatan/0');?>" class="btn btn-default" role="button">
             <span class="glyphicon glyphicon-plus" aria-hidden="true"> Tambah</span>
         </a>
     </div>
@@ -20,6 +20,8 @@
             <tr>
                 <th>Kode</th>
                 <th>Nama</th>
+                <th>Keterangan</th>
+                <th>Action</th>
 
             </tr>
             </thead>
@@ -27,6 +29,9 @@
             <tr>
                 <th>Kode</th>
                 <th>Nama</th>
+                <th>Keterangan</th>
+                <!-- <th>Keterangan</th>
+                 <th>Action</th>-->
 
             </tr>
             </tfoot>
@@ -49,6 +54,20 @@
         // DataTable
         // No. 2
         var table = $('#datatableId').DataTable({
+            "aoColumns" : [
+                { "sWidth": "3%",  "bSortable": false },
+                { "sWidth": "50%" },
+                { "sWidth": "35%" },
+                {
+                    "sWidth" : "10%",
+                    "mRender": function(data, oObj, row)
+                    {
+                        return " &nbsp&nbsp&nbsp <a href='<?php echo base_url('pengaturan/createjabatan'); ?>/"+ row[3] + "' class='fa fa-pencil-square-o'> </a>"+" &nbsp <a href='<?php echo base_url('pengaturan/deletejabatan'); ?>/"+ row[3] + "' class='fa fa-trash-o'></a>";
+                    }
+                },
+
+
+            ],
             "processing": true,
             "serverSide": true,
             "ajax": {
