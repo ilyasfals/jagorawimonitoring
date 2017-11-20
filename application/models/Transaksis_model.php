@@ -46,6 +46,19 @@ class Transaksis_model extends CI_Model {
                 $iRekap++;
             }
 
+
+
+            //LOOP Sebanyak 12 dikurang jumlah bulan yang ada data
+            $jumlahBulan = sizeof($transaksi['bulan_index']);
+            for ($bulanTambahan = sizeof($transaksi['bulan_index'])+1; $bulanTambahan <= 12; $bulanTambahan++) {
+                array_push($transaksi['bulan_index'], $bulanTambahan);
+                array_push($transaksi['bulan_jumlah'], 0);
+                array_push($transaksi['bulan_nilai'], 0);
+                array_push($transaksi['bulan_nilai_kumulatif'], $transaksi['bulan_nilai_kumulatif'][$jumlahBulan]);
+            }
+            //die();
+
+
             //Rekap Bulanan Per Golongan
             $transaksi['bulan_jumlah_gol1'] = array("Gol-1");
             $transaksi['bulan_jumlah_gol2'] = array("Gol-2");
@@ -80,15 +93,13 @@ class Transaksis_model extends CI_Model {
                 $transaksi['total_nilai'][$row->gol-1] =  (int)$transaksi['total_nilai'] + (int)$row->nilai;
             }
 
-//            var_dump($transaksi);
-
-
             $sql = 'select target_1, target_2, target_3, target_4, target_5, target_6, target_7, target_8, target_9, target_10, target_11, target_12 from kpi_transaksi';
             $list = $this->db->query($sql);
 
             $transaksi['target_transaksi'] = array("Target Transaksi");
             $transaksi['target_transaksi_kumulatif'] = array("Target Transaksi Kumulatif");
             $transaksi['delta_transaksi'] = array("Realisasi-Target");
+
 
             for ($x = 1; $x <= 12; $x++) {
                 array_push($transaksi['target_transaksi'], 0);
@@ -113,9 +124,18 @@ class Transaksis_model extends CI_Model {
                 $transaksi['target_transaksi'][12] = (int)$row->target_12;
             }
             for ($x = 1; $x <= 12; $x++) {
-                $transaksi['delta_transaksi'][$x] = $transaksi['bulan_nilai'][$x-1]-$transaksi['target_transaksi'][$x];
+                $transaksi['delta_transaksi'][$x] = $transaksi['bulan_nilai'][$x]-$transaksi['target_transaksi'][$x];
                 $transaksi['target_transaksi_kumulatif'][$x] = $transaksi['target_transaksi_kumulatif'][$x-1]+$transaksi['target_transaksi'][$x];
             }
+
+            $sql = 'select max(tgl_trx) as last from pcds_tbltrx_open'; //FORMAT 2017-09-28
+            $list = $this->db->query($sql);
+            foreach ($list->result() as $row) {
+                $transaksi['last_date_trx'] = $row->last;
+            }
+
+           // die();
+
 //            var_dump($transaksi['bulan_nilai_kumulatif']);
 
 //            die();

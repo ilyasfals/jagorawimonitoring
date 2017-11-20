@@ -54,7 +54,6 @@ class Posisi_model extends CI_Model {
             'nama' => $this->input->post('nama'),
             'deskripsi' => $this->input->post('deskripsi'),
         );
-        var_dump($data);
         return $this->db->where('id', $this->input->post('id'))+
         $this->db->update('posisi', $data);
 

@@ -40,7 +40,6 @@ class Seksi_model extends CI_Model {
             'nama' => $this->input->post('nama'),
             'deskripsi' => $this->input->post('deskripsi'),
         );
-        var_dump($data);
 
         return $this->db->insert('seksi', $data);
     }

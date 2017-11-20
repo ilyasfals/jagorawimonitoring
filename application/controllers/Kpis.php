@@ -54,6 +54,9 @@ class KPIs extends CI_Controller {
         }
         else
         {
+            if($this->kpis_model->get_kpi_by_tahun_and_master($this->input->post('tahun'), $this->input->post('id_master_kpis')) !=null){
+                $this->kpis_model->update_kpi();
+            }
             $this->kpis_model->set_kpi();
             redirect('kpis/index/');
         }

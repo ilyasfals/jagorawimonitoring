@@ -4,6 +4,7 @@
 <!-- Bootstrap -->
 <script src="<?php echo base_url('assets/js/c3.min.js');?>"></script>
 <script src="<?php echo base_url('assets/js/d3.v3.min.js');?>"></script>
+<script src="<?php echo base_url('assets/js/accounting.min.js');?>"></script>
 
 <link href="<?php echo base_url('assets/css/c3.min.css');?>" rel="stylesheet" />
 <link href="<?php echo base_url('assets/css/jquery.dataTables.min.css');?>" rel="stylesheet" />
@@ -18,19 +19,19 @@
         <div class="col-md-4">
             <div class="grid-content">
                 <h4>Jumlah</h4>
-                    <br/> <span class="big-font"> <?php echo $transaksi['jumlah'];?> </span>
+                    <br/> <span class="big-font" id="totalJumlahTransaksi"> <?php echo $transaksi['jumlah'];?> </span>
             </div>
         </div>
         <div class="col-md-6">
             <div class="grid-content">
                 <h4>Nilai</h4>
-                <br/> <span class="big-font"> Rp. <?php echo $transaksi['nilai'];?> </span>
+                <br/> <span class="big-font" id="totalNilaiTransaksi"><?php echo $transaksi['nilai'];?> </span>
             </div>
         </div>
         <div class="col-md-2">
             <div class="grid-content">
-                <h4></h4>
-                <br/> <span class="big-font"></span>
+                <h4>Last Trx</h4>
+                <br/> <span class="medium-font"><?php echo $transaksi['last_date_trx'];?></span>
             </div>
         </div>
     </div>
@@ -92,6 +93,28 @@
 <script src="<?php echo base_url('assets/js/jquery.dataTables.min.js');?>"></script>
 <script>
     $(document).ready(function() {
+        var totalNilaiTransaksi = $("#totalNilaiTransaksi").text();
+        function nilaiString() {
+            if(totalNilaiTransaksi < 1000){
+
+            }else if(totalNilaiTransaksi < 1000000){
+            }else if(totalNilaiTransaksi < 1000000000){
+            }else if(totalNilaiTransaksi < 1000000000000){
+                var totalNilaiTransaksiString = accounting.formatMoney(totalNilaiTransaksi/1000000000, "Rp.", 2, ".", ",") +" M";
+                $("#totalNilaiTransaksi").text(totalNilaiTransaksiString);
+            }else if(totalNilaiTransaksi < 1000000000000000){
+            }else{
+            }
+
+        }
+        nilaiString();
+        var totalJumlahTransaksi = $("#totalJumlahTransaksi").text();
+        function jumlahString() {
+            var totalJumlahTransaksiString = accounting.formatNumber(totalJumlahTransaksi, 0, ".", ",");
+            $("#totalJumlahTransaksi").text(totalJumlahTransaksiString);
+        }
+        jumlahString();
+
 
         <?php
             $js_array = json_encode($transaksi['bulan_nilai_gol1']);
