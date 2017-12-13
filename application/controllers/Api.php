@@ -9,6 +9,41 @@
 class Api extends CI_Controller
 {
 
+    public function news()
+    {
+        /** AJAX Handle */
+        if (
+            isset($_SERVER['HTTP_X_REQUESTED_WITH']) &&
+            !empty($_SERVER['HTTP_X_REQUESTED_WITH']) &&
+            strtolower($_SERVER['HTTP_X_REQUESTED_WITH']) == 'xmlhttprequest'
+        ) {
+
+            $this->load->model('Datatables_model');
+
+            /**
+             * Mengambil Parameter dan Perubahan nilai dari setiap
+             * aktifitas pada table
+             */
+            $datatables = $_POST;
+            $datatables['table'] = 'news';
+            $datatables['id-table'] = 'id';
+            /**
+             * Kolom yang ditampilkan
+             */
+            $datatables['col-display'] = array(
+                'id',
+                'title',
+                'subtitle'
+            );
+            /**
+             * menggunakan table join
+             */
+            //            $datatables['join']    = 'INNER JOIN position ON position = id_position';
+            $this->Datatables_model->Datatables($datatables);
+        }
+        return;
+    }
+
     public function employees()
     {
         /** AJAX Handle */

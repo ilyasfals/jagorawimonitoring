@@ -12,7 +12,7 @@ class Comcens extends CI_Controller {
     public function index()
     {
         $data['employees'] = $this->employees_model->get_employees();
-        $data['title'] = 'Daftar Pegawai';
+        $data['title'] = 'Dashboard Monitoring KPI';
 
         $this->load->library('parser');
         $this->template->load('default_layout', 'contents' , 'employees/index', $data);

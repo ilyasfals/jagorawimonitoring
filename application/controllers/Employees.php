@@ -12,7 +12,7 @@ class Employees extends CI_Controller {
 
     public function index()
     {
-        $data['title'] = 'Daftar Pegawai';
+        $data['title'] = 'Dashboard Monitoring KPI';
 
         $this->load->library('parser');
         $this->template->load('wrapper', 'contents' , 'employees/index', $data);

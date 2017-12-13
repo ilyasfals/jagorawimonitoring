@@ -14,7 +14,7 @@ class KPIs extends CI_Controller {
 
     public function index()
     {
-        $data['title'] = 'Pull Toll';
+        $data['title'] = 'Dashboard Monitoring KPI';
         $data['subtitle'] = 'Daftar Transaksi';
 
         $this->load->library('parser');

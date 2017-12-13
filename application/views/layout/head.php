@@ -1,6 +1,7 @@
 <?php
 // Proteksi halaman
 $this->simple_login->cek_login();
+$this->initial_session->cek_tahun();
 ?>
 
 <!doctype html>
@@ -8,7 +9,9 @@ $this->simple_login->cek_login();
 <head>
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
     <meta charset="utf-8" />
-    <title>JMJ-<?php echo $title;?></title>
+    <link rel="icon" href="<?php echo base_url();?>assets/images/jm-icon.png" type="image/gif" sizes="16x16">
+
+    <title><?php echo $title;?></title>
 
     <meta name="description" content="overview &amp; stats" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />

@@ -11,11 +11,11 @@ class Dashboard extends CI_Controller {
 
     public function index()
     {
-        $data['title'] = 'Dashboard';
+        $data['title'] = 'Dashboard Monitoring KPI';
         $data['subtitle'] = 'Transaksi';
 
         //Dapatkan data jumlah dan nilai transaksis
-        $year = 0;
+        $year = $_SESSION['tahun'];
         $this->load->model('transaksis_model');
         $data['transaksi'] = $this->transaksis_model->get_rekap_transaksi_year($year);
 
@@ -26,11 +26,11 @@ class Dashboard extends CI_Controller {
 
     public function kpi()
     {
-        $data['title'] = 'Dashboard';
+        $data['title'] = 'Dashboard Monitoring KPI';
         $data['subtitle'] = 'Key Performance Indikator';
 
         //Dapatkan data jumlah dan nilai transaksis
-        $year = 0;
+        $year = $_SESSION['tahun'];
         $this->load->model('kpis_model');
         $data['kpi'] = $this->kpis_model->get_last_month_rekap_year($year);
         $now = new \DateTime('now');

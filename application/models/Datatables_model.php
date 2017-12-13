@@ -63,6 +63,7 @@ class Datatables_model extends CI_Model {
         $length = $dt['length'];
         $sql .= " LIMIT {$start}, {$length}";
 
+
         $list = $this->db->query($sql);
         /**
          * convert to json

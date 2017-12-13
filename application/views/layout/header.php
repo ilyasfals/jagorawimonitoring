@@ -1,15 +1,26 @@
 <nav class="navtop navbar navbar-default navbar-fixed-top">
     <div class="container-fluid">
-        <div class="navbar-header"><a href="https://demo4.mitradesa.id/#" class="navbar-brand"><img
+        <div class="navbar-header">
+            <a href="https://demo4.mitradesa.id/#" class="navbar-brand"><img
                         src="<?php echo base_url();?>assets/images/jm-icon.png" class="logo">
                 <small>Jasa Marga Jagorawi Monitoring System</small>
             </a><span class="btn btn-success btn-rounded collapse-sidebar"></span></div>
-        <div class="collapse navbar-collapse" id="yii_booster_collapse_yw1"><span id="mobile-search"></span>
+        <div class="collapse navbar-collapse" id="yii_booster_collapse_yw1">
             <ul class="pull-right nav navbar-nav" id="yw2">
-                <li id="notifikasi">
-                    <a title="Pemberitahuan" href="#"><i
-                                class="fa fa-bell-o"></i>
-                    </a></li>
+                <li class="user-profile dropdown">
+                    <a class="dropdown-toggle" data-toggle="dropdown"
+                       href="#"><?php echo $_SESSION['tahun'];?> <span
+                                class="caret"></span></a>
+                    <ul id="yw3" class="dropdown-menu">
+                        <li><a tabindex="-1" href="<?php echo base_url() ?>sessionmanagements/settahun/2017">2017</a></li>
+                        <li><a tabindex="-1" href="<?php echo base_url() ?>sessionmanagements/settahun/2018">2018</a></li>
+                        <li><a tabindex="-1" href="<?php echo base_url() ?>sessionmanagements/settahun/2019">2019</a></li>
+                        <li><a tabindex="-1" href="<?php echo base_url() ?>sessionmanagements/settahun/2020">2020</a></li>
+                        <li><a tabindex="-1" href="<?php echo base_url() ?>sessionmanagements/settahun/2021">2021</a></li>
+                        <li><a tabindex="-1" href="<?php echo base_url() ?>sessionmanagements/settahun/2022">2022</a></li>
+                    </ul>
+                </li>
+
                 <li class="user-profile dropdown">
                     <a class="dropdown-toggle" data-toggle="dropdown"
                        href="#"><?php echo $_SESSION['username'];?> <span
@@ -25,7 +36,8 @@
                 <li>
                     <a style="color:red;" title="Keluar" href="<?php echo base_url('login/logout') ?>"><i
                                 class="fa fa-power-off"></i>
-                    </a></li>
+                    </a>
+                </li>
             </ul>
         </div>
     </div>
@@ -43,14 +55,14 @@
                                 data-menus="Beranda">Beranda</span></a>
                 </li>
 
-                <?php if (in_array($_SESSION['role'], array('SDM'), true)){ echo '
+                <?php if (in_array($_SESSION['role'], array('DISABLED'), true)){ echo '
                     <li>
                         <a href=" '.base_url().'/employees"><i class="fa icon-penduduk"></i>
                             <span data-menus="Kependudukan">Pegawai</span></a>
                     </li>
                 '; }?>
 
-                <?php if (in_array($_SESSION['role'], array('SDM', 'TCM'), true)){ ?>
+                <?php if (in_array($_SESSION['role'], array('DISABLED'), true)){ ?>
                         <li>
                             <a href="<?php echo base_url();?>pulls"><i class="fa icon-highway"></i> <span>Pull Toll</span></a>
                         </li>
@@ -67,12 +79,6 @@
                             <ul id="yw6" class="nav nav-pills nav-stacked">
                                 <li>
                                     <a href="<?php echo base_url();?>kpis">Indikator</a>
-                                </li>
-                                <li>
-                                    <a href="<?php echo base_url();?>report/">Laporan 2</a>
-                                </li>
-                                <li>
-                                    <a href="<?php echo base_url();?>report">Laporan 3</a>
                                 </li>
                             </ul>
                         </div>
@@ -103,12 +109,6 @@
                         <ul id="yw6" class="nav nav-pills nav-stacked">
                             <li>
                                 <a href="<?php echo base_url();?>report">Laporan 1</a>
-                            </li>
-                            <li>
-                                <a href="<?php echo base_url();?>report/">Laporan 2</a>
-                            </li>
-                            <li>
-                                <a href="<?php echo base_url();?>report">Laporan 3</a>
                             </li>
                         </ul>
                     </div>
