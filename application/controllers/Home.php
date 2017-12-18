@@ -24,9 +24,6 @@ class Home extends CI_Controller {
 
         if ( ! $this->upload->do_upload('banner')){
             $error = array('error' => $this->upload->display_errors());
-
-            var_dump($error);die();
-
             $this->template->load('wrapper', 'contents' , 'home/createnews', $data);
         }
         else{

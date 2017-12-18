@@ -15,8 +15,6 @@ class News_model extends CI_Model {
             'subtitle' => $this->input->post('subtitle'),
             'content' => $this->input->post('content')
         );
-        var_dump($data);
-
         return $this->db->insert('news', $data);
     }
 

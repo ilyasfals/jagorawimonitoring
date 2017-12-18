@@ -33,7 +33,7 @@ class Dashboard extends CI_Controller {
         $year = $_SESSION['tahun'];
         $this->load->model('kpis_model');
         $data['kpi'] = $this->kpis_model->get_last_month_rekap_year($year);
-        $now = new \DateTime('now');
+        $now = new DateTime('now');
         $data['current_month'] = (int) $now->format('m');
 
 
