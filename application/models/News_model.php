@@ -18,6 +18,18 @@ class News_model extends CI_Model {
         return $this->db->insert('news', $data);
     }
 
+    public function update_news()
+    {
+        $id= $this->input->post('id');
+
+        $data = array(
+            'title' => $this->input->post('title'),
+            'subtitle' => $this->input->post('subtitle'),
+            'content' => $this->input->post('content')
+        );
+        return $this->db->where('id', $id)+$this->db->update('news',$data);
+    }
+
     public function get_news($id = FALSE){
         if ($id === FALSE) {
             $query = $this->db->get('news');
@@ -26,5 +38,16 @@ class News_model extends CI_Model {
 
         $query = $this->db->get_where('news', array('id' => $id));
         return $query->row_array();
+    }
+
+
+    public function getListNews($id){
+        $query = $this->db->get_where('news', array('id' => $id));
+        return $query->row_array();
+    }
+
+    public function delete_news($id){
+        $this->db->where('id', $id);
+        $this->db->delete('news');
     }
 }

@@ -33,7 +33,8 @@ class Api extends CI_Controller
             $datatables['col-display'] = array(
                 'id',
                 'title',
-                'subtitle'
+                'subtitle',
+                'is_active'
             );
             /**
              * menggunakan table join

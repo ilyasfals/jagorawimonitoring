@@ -13,7 +13,8 @@ class Home extends CI_Controller {
         $this->load->library('form_validation');
         $id=$this->uri->segment(3);
         $data['title'] = 'Formulir Berita';
-
+        $this->load->model('news_model');
+        $data['list_news'] = $this->news_model->getListNews($id);
         $config['upload_path']          = 'assets/uploads/';
         $config['allowed_types']        = 'gif|jpg|png';
         $config['max_size']             = 100;
@@ -57,7 +58,16 @@ class Home extends CI_Controller {
             redirect('home/index/');
         }
     }
-	
+
+
+    public function deleteNews(){
+        $id=$this->uri->segment(3);
+        $this->load->model('news_model');
+        $this->news_model->delete_news($id);
+        redirect('home/index/');
+
+    }
+
 	// Fungsi lain
 	
 }
