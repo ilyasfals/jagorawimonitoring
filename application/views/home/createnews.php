@@ -19,41 +19,96 @@
 <div class="row">
     <div class="col-md-10">
         <?php
-            echo  '<form role="form" action="'.base_url("home/createnews").'" class="form-horizontal" method="post" enctype="multipart/form-data">';
+        $news_id = $this->uri->segment(3, 0);
+            echo  '<form role="form" action="'.base_url("home/createnews/$news_id").'" class="form-horizontal" method="post" enctype="multipart/form-data">';
         ?>
-        <fieldset>
-            <div class="form-group">
-                <label class="col-sm-2 control-label" for="textinput">Judul</label>
-                <div class="col-sm-3">
-                    <input class="form-control" type="text" id="title" name="title">
+        <?php
+            if($this->uri->segment(3, 0)>0){
+
+
+        ?>
+
+                <fieldset>
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label" for="textinput">Judul</label>
+                        <div class="col-sm-3">
+                            <input class="form-control" type="text" id="title" name="title">
+                            <input class="form-control" type="hidden" id="id" name="id" value="<?php $news_id = $this->uri->segment(3, 0); echo $news_id?>">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label" for="textinput">Sub Judul</label>
+                        <div class="col-sm-6">
+                            <input class="form-control" type="text" id="subtitle" name="subtitle">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label" for="textinput">Isi</label>
+                        <div class="col-sm-10">
+                            <textarea id="summernote" name="content">Silakan ganti dengan isi berita..</textarea>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label" for="textinput">Aktif?</label>
+                        <div class="col-sm-1">
+                            <input class="form-control" type="checkbox" name="is_active" />
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label" for="textinput">Banner</label>
+                        <div class="col-sm-8">
+                            <input class="form-control" type="file" name="banner" />
+                        </div>
+                    </div>
+                    <button type="submit" class="btn btn-next col-sm-offset-2">Simpan</button>
+                </fieldset>
+
+        <?php
+
+            }
+
+        else{
+        ?>
+
+            <fieldset>
+                <div class="form-group">
+                    <label class="col-sm-2 control-label" for="textinput">Judul</label>
+                    <div class="col-sm-3">
+                        <input class="form-control" type="text" id="title" name="title">
+                        <input class="form-control" type="hidden" id="id" name="id" value="<?php $news_id = $this->uri->segment(3, 0); echo $news_id?>">
+                    </div>
                 </div>
-            </div>
-            <div class="form-group">
-                <label class="col-sm-2 control-label" for="textinput">Sub Judul</label>
-                <div class="col-sm-6">
-                    <input class="form-control" type="text" id="subtitle" name="subtitle">
+                <div class="form-group">
+                    <label class="col-sm-2 control-label" for="textinput">Sub Judul</label>
+                    <div class="col-sm-6">
+                        <input class="form-control" type="text" id="subtitle" name="subtitle">
+                    </div>
                 </div>
-            </div>
-            <div class="form-group">
-                <label class="col-sm-2 control-label" for="textinput">Isi</label>
-                <div class="col-sm-10">
-                    <textarea id="summernote" name="content">Silakan ganti dengan isi berita..</textarea>
+                <div class="form-group">
+                    <label class="col-sm-2 control-label" for="textinput">Isi</label>
+                    <div class="col-sm-10">
+                        <textarea id="summernote" name="content">Silakan ganti dengan isi berita..</textarea>
+                    </div>
                 </div>
-            </div>
-            <div class="form-group">
-                <label class="col-sm-2 control-label" for="textinput">Aktif?</label>
-                <div class="col-sm-1">
-                    <input class="form-control" type="checkbox" name="is_active" />
+                <div class="form-group">
+                    <label class="col-sm-2 control-label" for="textinput">Aktif?</label>
+                    <div class="col-sm-1">
+                        <input class="form-control" type="checkbox" name="is_active" />
+                    </div>
                 </div>
-            </div>
-            <div class="form-group">
-                <label class="col-sm-2 control-label" for="textinput">Banner</label>
-                <div class="col-sm-8">
-                    <input class="form-control" type="file" name="banner" />
+                <div class="form-group">
+                    <label class="col-sm-2 control-label" for="textinput">Banner</label>
+                    <div class="col-sm-8">
+                        <input class="form-control" type="file" name="banner" />
+                    </div>
                 </div>
-            </div>
-            <button type="submit" class="btn btn-next col-sm-offset-2">Simpan</button>
-        </fieldset>
+                <button type="submit" class="btn btn-next col-sm-offset-2">Simpan</button>
+            </fieldset>
+
+
+            <?php
+        }
+        ?>
         </form>
     </div>
 </div>

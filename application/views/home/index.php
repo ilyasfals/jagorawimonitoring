@@ -61,7 +61,8 @@
                     <th>#</th>
                     <th>Judul</th>
                     <th>Sub Judul</th>
-                    <th></th>
+                    <th>Aktif</th>
+                    <th>Aksi</th>
                 </tr>
             </thead>
             <tfoot>
@@ -69,7 +70,8 @@
                     <th>#</th>
                     <th>Judul</th>
                     <th>Sub Judul</th>
-                    <th></th>
+                    <th>Aktif</th>
+                    <th>Aksi</th>
                 </tr>
             </tfoot>
         </table>
@@ -102,11 +104,13 @@
                     "sWidth" : "30%",
                     "sName": "gerbang",
                 },
+                { "sWidth": "5%" },
                 {
-                    "sWidth" : "10%",
+                    "sWidth" : "5%",
                     "mRender": function(data, oObj, row)
                     {
-                        return "<a href='<?php echo base_url('pulls/view'); ?>/"+ row[0] + "'>"+data+"</a>";
+                        return "<a href='<?php echo base_url('home/createnews'); ?>/"+ row[0] + "' title='Ubah'> <span class='fa fa-pencil-square-o' style='font-size:medium;'></span></a>&nbsp;" +
+                            "<a href='<?php echo base_url('home/deleteNews'); ?>/"+ row[0] + "' title='Hapus'> <span class='fa fa-trash-o' style='font-size:medium;'></span></a>";
                     }
                 },
 
