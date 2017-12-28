@@ -16,6 +16,11 @@ class KPIs extends CI_Controller {
     {
         $data['title'] = 'Dashboard Monitoring KPI';
         $data['subtitle'] = 'Daftar Transaksi';
+        $data['tahun'] = $_SESSION['tahun'];
+
+        $data['master_kpis'] = $this->kpis_model->get_master_kpis();
+
+//        var_dump($data['master_kpis']);die();
 
         $this->load->library('parser');
         $this->template->load('wrapper', 'contents' , 'kpis/index', $data);

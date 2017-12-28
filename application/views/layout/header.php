@@ -12,12 +12,12 @@
                        href="#"><?php echo $_SESSION['tahun'];?> <span
                                 class="caret"></span></a>
                     <ul id="yw3" class="dropdown-menu">
-                        <li><a tabindex="-1" href="<?php echo base_url() ?>sessionmanagements/settahun/2017">2017</a></li>
-                        <li><a tabindex="-1" href="<?php echo base_url() ?>sessionmanagements/settahun/2018">2018</a></li>
-                        <li><a tabindex="-1" href="<?php echo base_url() ?>sessionmanagements/settahun/2019">2019</a></li>
-                        <li><a tabindex="-1" href="<?php echo base_url() ?>sessionmanagements/settahun/2020">2020</a></li>
-                        <li><a tabindex="-1" href="<?php echo base_url() ?>sessionmanagements/settahun/2021">2021</a></li>
-                        <li><a tabindex="-1" href="<?php echo base_url() ?>sessionmanagements/settahun/2022">2022</a></li>
+                        <li><a tabindex="-1" href="<?php echo base_url() ?>SessionManagements/setTahun/2017">2017</a></li>
+                        <li><a tabindex="-1" href="<?php echo base_url() ?>SessionManagements/setTahun/2018">2018</a></li>
+                        <li><a tabindex="-1" href="<?php echo base_url() ?>SessionManagements/setTahun/2019">2019</a></li>
+                        <li><a tabindex="-1" href="<?php echo base_url() ?>SessionManagements/setTahun/2020">2020</a></li>
+                        <li><a tabindex="-1" href="<?php echo base_url() ?>SessionManagements/setTahun/2021">2021</a></li>
+                        <li><a tabindex="-1" href="<?php echo base_url() ?>SessionManagements/setTahun/2022">2022</a></li>
                     </ul>
                 </li>
 
