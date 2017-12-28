@@ -6,6 +6,8 @@ class Home extends CI_Controller {
 	// Index login
 	public function index() {
         $data['title'] = 'Dashboard Monitoring KPI';
+        $this->load->model('news_model');
+        $data['list_banner'] = $this->news_model->getListBanner();
         $this->template->load('wrapper', 'contents' , 'home/index', $data);
     }
     public function createNews() {

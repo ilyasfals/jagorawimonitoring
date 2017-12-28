@@ -13,7 +13,8 @@ class News_model extends CI_Model {
         $data = array(
             'title' => $this->input->post('title'),
             'subtitle' => $this->input->post('subtitle'),
-            'content' => $this->input->post('content')
+            'content' => $this->input->post('content'),
+            'is_active' => $this->input->post('is_active')
         );
         return $this->db->insert('news', $data);
     }
@@ -25,7 +26,8 @@ class News_model extends CI_Model {
         $data = array(
             'title' => $this->input->post('title'),
             'subtitle' => $this->input->post('subtitle'),
-            'content' => $this->input->post('content')
+            'content' => $this->input->post('content'),
+            'is_active' => $this->input->post('is_active')
         );
         return $this->db->where('id', $id)+$this->db->update('news',$data);
     }
@@ -44,6 +46,11 @@ class News_model extends CI_Model {
     public function getListNews($id){
         $query = $this->db->get_where('news', array('id' => $id));
         return $query->row_array();
+    }
+
+    public function getListBanner(){
+        $query = $this->db->get_where('news', array('is_active' => 1));
+        return $query->result_array();
     }
 
     public function delete_news($id){
