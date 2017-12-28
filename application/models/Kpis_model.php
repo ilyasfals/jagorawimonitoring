@@ -84,8 +84,6 @@ class Kpis_model extends CI_Model {
         $kpi['row_kpis'] = array();
 
 
-
-
         $list = $this->db->query($sql);
         foreach ($list->result() as $row) {
             $kpi['data_kpis'] = array();
@@ -159,8 +157,23 @@ class Kpis_model extends CI_Model {
         return $kpi;
 
     }
+    public function get_master_kpis(){
+        $sql = 'select pic, perspektif, area, deskripsi from master_kpis';
+        $kpi['row_master_kpis'] = array();
+        $list = $this->db->query($sql);
+        foreach ($list->result() as $row) {
+            $kpi['data_master_kpis'] = array();
+            array_push($kpi['data_master_kpis'], $row->pic);
+            array_push($kpi['data_master_kpis'], $row->perspektif);
+            array_push($kpi['data_master_kpis'], $row->area);
+            array_push($kpi['data_master_kpis'], $row->deskripsi);
+
+            array_push($kpi['row_master_kpis'], $kpi['data_master_kpis']);
+        }
+        return $kpi['row_master_kpis'];
+
+    }
     public function parseStringMoneyToDouble($stringMoney){
-        //var_dump($stringMoney); die();
         return str_replace(",",".", str_replace(".","", $stringMoney));
     }
 }
