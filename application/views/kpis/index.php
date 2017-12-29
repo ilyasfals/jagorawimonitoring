@@ -19,22 +19,29 @@
             <thead>
             <tr>
                 <th>#</th>
-                <th>Tahun</th>
-                <th>KPI</th>
-                <th>Rata-rata</th>
+                <th>Perspektif</th>
+                <th>Area</th>
+                <th>Deskripsi</th>
                 <th>Action</th>
             </tr>
             </thead>
             <tbody>
-                <?php foreach ($master_kpis as $master_kpi):?>
+                <?php
+                $i = 1;
+                foreach ($master_kpis as $master_kpi):?>
                 <tr>
-                    <th><?php echo '1 ' ?></th>
-                    <th><?php echo $master_kpi[1] ?></th>
-                    <th></th>
-                    <th></th>
-                    <th></th>
+                    <td><?php echo $i ?></td>
+                    <td><?php echo $master_kpi[1] ?></td>
+                    <td><?php echo $master_kpi[2] ?></td>
+                    <td><?php echo $master_kpi[3] ?></td>
+                    <td><?php if ( $master_kpi[0] === $_SESSION['role']) { ?>
+                        <a href="<?php echo base_url();?>kpis/edit/<?php echo $tahun.'/'.$master_kpi[4] ?>"><span class="fa fa-edit"></span></a>
+                        <?php } ?>
+                    </td>
                 </tr>
-                <?php endforeach; ?>
+                <?php
+                    $i++;
+                endforeach; ?>
             </tbody>
         </table>
     </div>

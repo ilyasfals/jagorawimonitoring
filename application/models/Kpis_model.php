@@ -54,6 +54,40 @@ class Kpis_model extends CI_Model {
         return $this->db->insert('kpis', $data);
     }
 
+    public function update_kpi(){
+        $this->load->helper('url');
+
+        $data = array(
+            'tahun' => $this->input->post('tahun'),
+            'id_master_kpis' => $this->input->post('id_master_kpis'),
+            'target_1' => $this->parseStringMoneyToDouble($this->input->post('target_1')),
+            'target_2' => $this->parseStringMoneyToDouble($this->input->post('target_2')),
+            'target_3' => $this->parseStringMoneyToDouble($this->input->post('target_3')),
+            'target_4' => $this->parseStringMoneyToDouble($this->input->post('target_4')),
+            'target_5' => $this->parseStringMoneyToDouble($this->input->post('target_5')),
+            'target_6' => $this->parseStringMoneyToDouble($this->input->post('target_6')),
+            'target_7' => $this->parseStringMoneyToDouble($this->input->post('target_7')),
+            'target_8' => $this->parseStringMoneyToDouble($this->input->post('target_8')),
+            'target_9' => $this->parseStringMoneyToDouble($this->input->post('target_9')),
+            'target_10' => $this->parseStringMoneyToDouble($this->input->post('target_10')),
+            'target_11' => $this->parseStringMoneyToDouble($this->input->post('target_11')),
+            'target_12' => $this->parseStringMoneyToDouble($this->input->post('target_12')),
+            'realisasi_1' => $this->parseStringMoneyToDouble($this->input->post('realisasi_1')),
+            'realisasi_2' => $this->parseStringMoneyToDouble($this->input->post('realisasi_2')),
+            'realisasi_3' => $this->parseStringMoneyToDouble($this->input->post('realisasi_3')),
+            'realisasi_4' => $this->parseStringMoneyToDouble($this->input->post('realisasi_4')),
+            'realisasi_5' => $this->parseStringMoneyToDouble($this->input->post('realisasi_5')),
+            'realisasi_6' => $this->parseStringMoneyToDouble($this->input->post('realisasi_6')),
+            'realisasi_7' => $this->parseStringMoneyToDouble($this->input->post('realisasi_7')),
+            'realisasi_8' => $this->parseStringMoneyToDouble($this->input->post('realisasi_8')),
+            'realisasi_9' => $this->parseStringMoneyToDouble($this->input->post('realisasi_9')),
+            'realisasi_10' => $this->parseStringMoneyToDouble($this->input->post('realisasi_10')),
+            'realisasi_11' => $this->parseStringMoneyToDouble($this->input->post('realisasi_11')),
+            'realisasi_12' => $this->parseStringMoneyToDouble($this->input->post('realisasi_12')),
+        );
+        return $this->db->where('id_kpis', $this->input->post('id_kpis'))+$this->db->update('kpis',$data);
+    }
+
     /**
      * @param int $year
      * @return mixed
@@ -152,13 +186,11 @@ class Kpis_model extends CI_Model {
             }
             $kpi['jenis_kpis'][$x] =  $kpi['row_kpis'][$x][4];
         }
-//            var_dump( $kpi['jenis_kpis']);
-//            die();
         return $kpi;
 
     }
     public function get_master_kpis(){
-        $sql = 'select pic, perspektif, area, deskripsi from master_kpis';
+        $sql = 'select pic, perspektif, area, deskripsi, id_master_kpis from master_kpis';
         $kpi['row_master_kpis'] = array();
         $list = $this->db->query($sql);
         foreach ($list->result() as $row) {
@@ -167,11 +199,21 @@ class Kpis_model extends CI_Model {
             array_push($kpi['data_master_kpis'], $row->perspektif);
             array_push($kpi['data_master_kpis'], $row->area);
             array_push($kpi['data_master_kpis'], $row->deskripsi);
+            array_push($kpi['data_master_kpis'], $row->id_master_kpis);
 
             array_push($kpi['row_master_kpis'], $kpi['data_master_kpis']);
         }
         return $kpi['row_master_kpis'];
 
+    }
+
+    public function get_kpi_by_tahun_and_master($tahun, $id_master_kpis){
+
+        $query = $this->db->get_where('kpis', array('tahun' => $tahun, 'id_master_kpis' => $id_master_kpis));
+        return $query->row_array();
+
+
+       // return null;
     }
     public function parseStringMoneyToDouble($stringMoney){
         return str_replace(",",".", str_replace(".","", $stringMoney));
