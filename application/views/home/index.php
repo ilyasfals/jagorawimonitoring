@@ -12,11 +12,13 @@
                 <li data-target="#my-slider" data-slide-to="1"></li>
             </ol>
 
+           <!-- --><?php /*print_r($list_banner)*/?>
             <!-- Wrapper for slides -->
-            <div class="carousel-inner" role="listbox">
+
+           <!-- <div class="carousel-inner" role="listbox">
                 <div class="item active">
                     <a href="http://www.google.com">
-                        <img src="<?php echo base_url('assets/images/banner/jagorawi1.jpg');?>" width="100%">
+                        <img src="<?php /*echo base_url('assets/images/banner/jagorawi1.jpg');*/?>" width="100%">
                     </a>
                     <div class="carousel-caption">
                         <a href="http://www.google.com" style="color:white;">
@@ -26,13 +28,46 @@
                 </div>
                 <div class="item">
                     <a href="http://www.google.com">
-                        <img src="<?php echo base_url('assets/images/banner/jagorawi1.jpg');?>" width="100%">
+                        <img src="<?php /*echo base_url('assets/images/banner/jagorawi1.jpg');*/?>" width="100%">
                     </a>
                     <div class="carousel-caption">
                         <h1 href="/Internet">Kedua</h1>
                     </div>
                 </div>
+            </div>-->
+
+
+            <div class="carousel-inner" role="listbox">
+                <?php $i = 1; foreach($list_banner as $bannerShow): ?>
+                    <?php if($i==1){ ?>
+                    <div class="item active">
+                        <a href="http://www.google.com">
+                            <img src="<?php echo base_url('assets/images/banner/'.$bannerShow["banner"].'');?>" width="100%">
+                        </a>
+                        <div class="carousel-caption">
+                            <a href="http://www.google.com" style="color:white;">
+                                <h1 href="/Internet"><?php echo $bannerShow["title"]?></h1>
+                            </a>
+                        </div>
+                    </div>
+                        <?php }else{ ?>
+                        <?php }?>
+                    <div class="item ">
+                        <a href="http://www.google.com">
+                            <img src="<?php echo base_url('assets/images/banner/'.$bannerShow["banner"].'');?>" width="100%">
+                        </a>
+                        <div class="carousel-caption">
+                            <a href="http://www.google.com" style="color:white;">
+                                <h1 href="/Internet"><?php echo $bannerShow["title"]?></h1>
+                            </a>
+                        </div>
+                    </div>
+
+                    <?php $i++; endforeach?>
+
             </div>
+
+
             <!-- Controls or next and prev buttons -->
             <a class="left carousel-control" href="#my-slider" role="button" data-slide="prev">
                 <span class="glyphicon glyphicon-chevron-left"></span>
