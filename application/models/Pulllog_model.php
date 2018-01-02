@@ -21,7 +21,23 @@ class Pulllog_model extends CI_Model {
         //$now = DateTime::createFromFormat('U.u', microtime(true));
         $data = array(
             'time' => date("Y-m-d H:i:s"),
-            'status' => true
+            'status' => true,
+            'tipe' => 1
+        );
+
+
+        return $this->db->insert('pull_log', $data);
+    }
+
+    public function set_pull_log_rekap()
+    {
+        $this->load->helper('url');
+
+        //$now = DateTime::createFromFormat('U.u', microtime(true));
+        $data = array(
+            'time' => date("Y-m-d H:i:s"),
+            'status' => true,
+            'tipe' => 2
         );
 
 

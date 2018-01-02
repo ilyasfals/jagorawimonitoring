@@ -92,8 +92,8 @@
                     </a>
                         <div id="dashboard" class="collapse">
                             <ul id="yw10" class="nav nav-pills nav-stacked">
-                                <li>
-                                    <a href="<?php echo base_url();?>dashboard">Transaksi</a></li>
+                                <li><a href="<?php echo base_url();?>dashboard/cutoff">Transaksi (CO3H)</a></li>
+                                <li><a href="<?php echo base_url();?>dashboard">Transaksi (RT)</a></li>
                                 <li>
                                     <a href="<?php echo base_url();?>dashboard/kpi">KPI</a></li>
                             </ul>

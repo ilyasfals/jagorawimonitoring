@@ -64,7 +64,7 @@ class CI_DB_odbc_driver extends CI_DB {
 	 *
 	 * @var	string
 	 */
-	public $schema = 'public';
+	public $schema = 'publicctr';
 
 	// --------------------------------------------------------------------
 

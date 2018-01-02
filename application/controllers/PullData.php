@@ -43,7 +43,7 @@ class PullData extends CI_Controller {
 
 
         var_dump($sqlInsert);
-//        die();
+
         $DB1->query($sqlInsert);
 
 

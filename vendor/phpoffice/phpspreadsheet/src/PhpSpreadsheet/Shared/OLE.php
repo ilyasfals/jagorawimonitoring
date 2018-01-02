@@ -107,7 +107,7 @@ class OLE
     /**
      * Reads an OLE container from the contents of the file given.
      *
-     * @acces public
+     * @acces publicctr
      *
      * @param string $file
      *

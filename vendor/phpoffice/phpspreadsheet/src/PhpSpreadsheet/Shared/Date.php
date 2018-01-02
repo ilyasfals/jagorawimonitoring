@@ -19,7 +19,7 @@ class Date
      * Names of the months of the year, indexed by shortname
      * Planned usage for locale settings
      *
-     * @public
+     * @publicctr
      * @var string[]
      */
     public static $monthNames = [
@@ -38,7 +38,7 @@ class Date
     ];
 
     /*
-     * @public
+     * @publicctr
      * @var string[]
      */
     public static $numberSuffixes = [

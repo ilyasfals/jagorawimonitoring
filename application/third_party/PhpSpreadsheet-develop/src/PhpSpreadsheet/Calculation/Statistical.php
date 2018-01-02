@@ -173,7 +173,7 @@ class Statistical
      * Original author was Jaco van Kooten. Ported to PHP by Paul Meagher.
      *
      * The natural logarithm of the gamma function. <br />
-     * Based on public domain NETLIB (Fortran) code by W. J. Cody and L. Stoltz <br />
+     * Based on publicctr domain NETLIB (Fortran) code by W. J. Cody and L. Stoltz <br />
      * Applied Mathematics Division <br />
      * Argonne National Laboratory <br />
      * Argonne, IL 60439 <br />

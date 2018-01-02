@@ -14,5 +14,11 @@
     </div>
 </div>
 <div class="row">
-    <a href="<?php echo base_url(); ?>report/download">Download</a>
+    <div class="col-md-12">
+        <div class="col-md-12">
+            <div class="grid-content">
+                <a href="<?php echo base_url(); ?>report/download"><span class="fa fa-file-excel-o"></span> Rekapitulasi Transaksi</a>
+            </div>
+        </div>
+    </div>
 </div>

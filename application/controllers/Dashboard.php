@@ -24,6 +24,21 @@ class Dashboard extends CI_Controller {
         $this->template->load('wrapper', 'contents' , 'dashboard/index', $data);
     }
 
+    public function cutoff()
+    {
+        $data['title'] = 'Dashboard Monitoring KPI';
+        $data['subtitle'] = 'Transaksi';
+
+        //Dapatkan data jumlah dan nilai transaksis
+        $year = $_SESSION['tahun'];
+        $this->load->model('rekaptransaksis_model');
+        $data['transaksi'] = $this->rekaptransaksis_model->get_rekap_transaksi_year($year);
+
+
+        $this->load->library('parser');
+        $this->template->load('wrapper', 'contents' , 'dashboard/index', $data);
+    }
+
     public function kpi()
     {
         $data['title'] = 'Dashboard Monitoring KPI';
