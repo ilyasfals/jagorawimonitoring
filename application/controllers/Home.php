@@ -17,7 +17,7 @@ class Home extends CI_Controller {
         $data['title'] = 'Formulir Berita';
         $this->load->model('news_model');
         $data['list_news'] = $this->news_model->getListNews($id);
-        $config['upload_path']          = 'assets/uploads/';
+        $config['upload_path']          = 'assets/images/banner';
         $config['allowed_types']        = 'gif|jpg|png';
         $config['max_size']             = 100;
         $config['max_width']            = 1024;
@@ -25,13 +25,7 @@ class Home extends CI_Controller {
 
         $this->load->library('upload', $config);
 
-        if ( ! $this->upload->do_upload('banner')){
-            $error = array('error' => $this->upload->display_errors());
-            $this->template->load('wrapper', 'contents' , 'home/createnews', $data);
-        }
-        else{
-            $data = array('upload_data' => $this->upload->data());
-        }
+
 
         if($this->uri->segment(3)=="0"){
             $this->load->model('news_model');
@@ -52,12 +46,48 @@ class Home extends CI_Controller {
         }
         else {
             if($this->input->post('id')>0){
-                $this->news_model->update_news();
+                if ( ! $this->upload->do_upload('banner')){
+                    $error = array('error' => $this->upload->display_errors());
+                    $this->template->load('wrapper', 'contents' , 'home/createnews', $data);
+                }
+                else{
+
+                    //$data = array('upload_data' => $this->upload->data());
+                    $file_data = $this->upload->data();
+                    $file_name =   $file_data['file_name'];
+                    $data = array(
+                        'title' => $this->input->post('title'),
+                        'subtitle' => $this->input->post('subtitle'),
+                        'content' => $this->input->post('content'),
+                        'banner' => $file_name,
+                        'is_active' => $this->input->post('is_active')
+                    );
+                }
+                print_r($data);
+                //$this->news_model->update_news($data);
             }
             else{
-                $this->news_model->create_news();
+                if ( ! $this->upload->do_upload('banner')){
+                    $error = array('error' => $this->upload->display_errors());
+                    $this->template->load('wrapper', 'contents' , 'home/createnews', $data);
+                }
+                else{
+
+                    //$data = array('upload_data' => $this->upload->data());
+                    $file_data = $this->upload->data();
+                    $file_name =   $file_data['file_name'];
+                    $data = array(
+                        'title' => $this->input->post('title'),
+                        'subtitle' => $this->input->post('subtitle'),
+                        'content' => $this->input->post('content'),
+                        'banner' => $file_name,
+                        'is_active' => $this->input->post('is_active')
+                    );
+                }
+                //print_r($this->upload->data());
+                $this->news_model->create_news($data);
             }
-            redirect('home/index/');
+            //redirect('home/index/');
         }
     }
 
