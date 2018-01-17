@@ -6,29 +6,15 @@ class News_model extends CI_Model {
             $this->load->database();
     }
 
-    public function create_news()
+    public function create_news($data)
     {
         $this->load->helper('url');
-
-        $data = array(
-            'title' => $this->input->post('title'),
-            'subtitle' => $this->input->post('subtitle'),
-            'content' => $this->input->post('content'),
-            'is_active' => $this->input->post('is_active')
-        );
         return $this->db->insert('news', $data);
     }
 
-    public function update_news()
+    public function update_news($data)
     {
         $id= $this->input->post('id');
-
-        $data = array(
-            'title' => $this->input->post('title'),
-            'subtitle' => $this->input->post('subtitle'),
-            'content' => $this->input->post('content'),
-            'is_active' => $this->input->post('is_active')
-        );
         return $this->db->where('id', $id)+$this->db->update('news',$data);
     }
 
