@@ -63,7 +63,7 @@ class Home extends CI_Controller {
                         'is_active' => $this->input->post('is_active')
                     );
                 }
-                print_r($data);
+                //print_r($data);
                 //$this->news_model->update_news($data);
             }
             else{
@@ -87,7 +87,7 @@ class Home extends CI_Controller {
                 //print_r($this->upload->data());
                 $this->news_model->create_news($data);
             }
-            //redirect('home/index/');
+            redirect('home/index/');
         }
     }
 
