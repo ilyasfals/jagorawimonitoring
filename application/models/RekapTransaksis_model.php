@@ -35,9 +35,9 @@ class RekapTransaksis_model extends CI_Model {
             $list = $this->db->query($sql);
             $transaksi['bulan_nama'] = array();
             $transaksi['bulan_index'] = array();
-            $transaksi['bulan_jumlah'] = array("Jumlah Transaksi");
-            $transaksi['bulan_nilai'] = array("Nilai Transaksi");
-            $transaksi['bulan_nilai_kumulatif'] = array("Realisasi Transaksi Kumulatif");
+            $transaksi['bulan_jumlah'] = array();
+            $transaksi['bulan_nilai'] = array();
+            $transaksi['bulan_nilai_kumulatif'] = array();
 
 
             $iRekap = 0;
@@ -45,7 +45,10 @@ class RekapTransaksis_model extends CI_Model {
                 array_push($transaksi['bulan_index'], $row->bulan);
                 array_push($transaksi['bulan_jumlah'], $row->jumlah);
                 array_push($transaksi['bulan_nilai'], $row->nilai);
-                array_push($transaksi['bulan_nilai_kumulatif'], $transaksi['bulan_nilai_kumulatif'][$iRekap] + $transaksi['bulan_nilai'][$iRekap+1]);
+                if($iRekap==0)
+                    array_push($transaksi['bulan_nilai_kumulatif'], $transaksi['bulan_nilai'][$iRekap]);
+                else
+                    array_push($transaksi['bulan_nilai_kumulatif'], $transaksi['bulan_nilai_kumulatif'][$iRekap-1] + $transaksi['bulan_nilai'][$iRekap]);
                 $iRekap++;
             }
 
@@ -53,34 +56,34 @@ class RekapTransaksis_model extends CI_Model {
 
             //LOOP Sebanyak 12 dikurang jumlah bulan yang ada data
             $jumlahBulan = sizeof($transaksi['bulan_index']);
-            for ($bulanTambahan = sizeof($transaksi['bulan_index'])+1; $bulanTambahan <= 12; $bulanTambahan++) {
+            for ($bulanTambahan = $jumlahBulan; $bulanTambahan < 12; $bulanTambahan++) {
                 array_push($transaksi['bulan_index'], $bulanTambahan);
                 array_push($transaksi['bulan_jumlah'], 0);
                 array_push($transaksi['bulan_nilai'], 0);
-                array_push($transaksi['bulan_nilai_kumulatif'], $transaksi['bulan_nilai_kumulatif'][$jumlahBulan]);
+                array_push($transaksi['bulan_nilai_kumulatif'], $transaksi['bulan_nilai_kumulatif'][$jumlahBulan-1]);
             }
             //die();
 
 
             //Rekap Bulanan Per Golongan
-            $transaksi['bulan_jumlah_gol1'] = array("Gol-1");
-            $transaksi['bulan_jumlah_gol2'] = array("Gol-2");
-            $transaksi['bulan_jumlah_gol3'] = array("Gol-3");
-            $transaksi['bulan_jumlah_gol4'] = array("Gol-4");
-            $transaksi['bulan_jumlah_gol5'] = array("Gol-5");
+            $transaksi['bulan_jumlah_gol1'] = array();
+            $transaksi['bulan_jumlah_gol2'] = array();
+            $transaksi['bulan_jumlah_gol3'] = array();
+            $transaksi['bulan_jumlah_gol4'] = array();
+            $transaksi['bulan_jumlah_gol5'] = array();
 
-            $transaksi['bulan_nilai_gol1'] = array("Gol-1");
-            $transaksi['bulan_nilai_gol2'] = array("Gol-2");
-            $transaksi['bulan_nilai_gol3'] = array("Gol-3");
-            $transaksi['bulan_nilai_gol4'] = array("Gol-4");
-            $transaksi['bulan_nilai_gol5'] = array("Gol-5");
+            $transaksi['bulan_nilai_gol1'] = array();
+            $transaksi['bulan_nilai_gol2'] = array();
+            $transaksi['bulan_nilai_gol3'] = array();
+            $transaksi['bulan_nilai_gol4'] = array();
+            $transaksi['bulan_nilai_gol5'] = array();
 
             $transaksi['total_jumlah'] = array();
             $transaksi['total_nilai'] = array();
 
 
             for ($goli = 1; $goli <= 5; $goli++) {
-                for ($x = 1; $x <= 12; $x++) {
+                for ($x = 0; $x < 12; $x++) {
                     array_push($transaksi['bulan_jumlah_gol'.$goli], 0);
                     array_push($transaksi['bulan_nilai_gol'.$goli], 0);
                 }
@@ -93,8 +96,9 @@ class RekapTransaksis_model extends CI_Model {
                     group by bulan,golongan order by bulan,gol';
             $list = $this->db->query($sql);
             foreach ($list->result() as $row) {
-                $transaksi['bulan_nilai_gol'.$row->gol][$row->bulan] =  (int)$row->nilai;
-                $transaksi['bulan_jumlah_gol'.$row->gol][$row->bulan] =  (int)$row->jumlah;
+                $indexBulan = $row->bulan-1;
+                $transaksi['bulan_nilai_gol'.$row->gol][$indexBulan] =  (int)$row->nilai;
+                $transaksi['bulan_jumlah_gol'.$row->gol][$indexBulan] =  (int)$row->jumlah;
                 $transaksi['total_jumlah'][$row->gol-1] =  (int)$transaksi['total_jumlah'] + (int)$row->jumlah;
                 $transaksi['total_nilai'][$row->gol-1] =  (int)$transaksi['total_nilai'] + (int)$row->nilai;
             }
@@ -102,9 +106,9 @@ class RekapTransaksis_model extends CI_Model {
             $sql = 'select target_1, target_2, target_3, target_4, target_5, target_6, target_7, target_8, target_9, target_10, target_11, target_12 from kpi_transaksi where tahun ='.$year;
             $list = $this->db->query($sql);
 
-            $transaksi['target_transaksi'] = array("Target Transaksi");
-            $transaksi['target_transaksi_kumulatif'] = array("Target Transaksi Kumulatif");
-            $transaksi['delta_transaksi'] = array("Realisasi-Target");
+            $transaksi['target_transaksi'] = array();
+            $transaksi['target_transaksi_kumulatif'] = array();
+            $transaksi['delta_transaksi'] = array();
 
 
             for ($x = 1; $x <= 12; $x++) {
@@ -116,22 +120,25 @@ class RekapTransaksis_model extends CI_Model {
 
 
             foreach ($list->result() as $row) {
-                $transaksi['target_transaksi'][1] = (int)$row->target_1;
-                $transaksi['target_transaksi'][2] = (int)$row->target_2;
-                $transaksi['target_transaksi'][3] = (int)$row->target_3;
-                $transaksi['target_transaksi'][4] = (int)$row->target_4;
-                $transaksi['target_transaksi'][5] = (int)$row->target_5;
-                $transaksi['target_transaksi'][6] = (int)$row->target_6;
-                $transaksi['target_transaksi'][7] = (int)$row->target_7;
-                $transaksi['target_transaksi'][8] = (int)$row->target_8;
-                $transaksi['target_transaksi'][9] = (int)$row->target_9;
-                $transaksi['target_transaksi'][10] = (int)$row->target_10;
-                $transaksi['target_transaksi'][11] = (int)$row->target_11;
-                $transaksi['target_transaksi'][12] = (int)$row->target_12;
+                $transaksi['target_transaksi'][0] = (int)$row->target_1;
+                $transaksi['target_transaksi'][1] = (int)$row->target_2;
+                $transaksi['target_transaksi'][2] = (int)$row->target_3;
+                $transaksi['target_transaksi'][3] = (int)$row->target_4;
+                $transaksi['target_transaksi'][4] = (int)$row->target_5;
+                $transaksi['target_transaksi'][5] = (int)$row->target_6;
+                $transaksi['target_transaksi'][6] = (int)$row->target_7;
+                $transaksi['target_transaksi'][7] = (int)$row->target_8;
+                $transaksi['target_transaksi'][8] = (int)$row->target_9;
+                $transaksi['target_transaksi'][9] = (int)$row->target_10;
+                $transaksi['target_transaksi'][10] = (int)$row->target_11;
+                $transaksi['target_transaksi'][11] = (int)$row->target_12;
             }
-            for ($x = 1; $x <= 12; $x++) {
+            for ($x = 0; $x < 12; $x++) {
                 $transaksi['delta_transaksi'][$x] = $transaksi['bulan_nilai'][$x]-$transaksi['target_transaksi'][$x];
-                $transaksi['target_transaksi_kumulatif'][$x] = $transaksi['target_transaksi_kumulatif'][$x-1]+$transaksi['target_transaksi'][$x];
+                if($x==0)
+                    $transaksi['target_transaksi_kumulatif'][$x] = $transaksi['target_transaksi'][$x];
+                else
+                    $transaksi['target_transaksi_kumulatif'][$x] = $transaksi['target_transaksi_kumulatif'][$x-1]+$transaksi['target_transaksi'][$x];
             }
 
             $sql = 'select max(time) as last from pull_log where tipe = 2'; //FORMAT 2017-09-28

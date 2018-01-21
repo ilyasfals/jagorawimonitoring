@@ -6,7 +6,7 @@ $this->initial_session->cek_tahun();
 <html>
 <head>
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
-    <meta http-equiv="refresh" content="10" >
+    <meta http-equiv="refresh" content="60" >
     <meta charset="utf-8" />
     <link rel="icon" href="<?php echo base_url();?>assets/images/jm-icon.png" type="image/gif" sizes="16x16">
 

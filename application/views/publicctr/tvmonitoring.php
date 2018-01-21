@@ -20,96 +20,78 @@
         -ms-user-select: none;
     }
 </style>
+<div style="position: absolute; top: 0; right: 0; bottom: 0; left: 0;">
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="col-md-12">
+                <h1 class="page-header">
+                    <?php echo $title ?>
+                </h1>
+            </div>
+        </div>
+        <div class="col-md-12">
+            <div class="col-md-4">
+                <div class="grid-content"><br/>
+                    <span class="big-font" id="totalJumlahTransaksi"> <?php echo $transaksi['jumlah'];?> </span> Transaksi
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="grid-content"><br/>
+                    <span class="big-font" id="totalNilaiTransaksi"><?php echo $transaksi['nilai'];?> </span>
+                </div>
+            </div>
+            <div class="col-md-2">
+                <div class="grid-content">
+                   <span class="medium-font"><?php echo $transaksi['last_date_trx'];?></span>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <div class="col-md-6">
+                <div class="grid-content">
+                    <div style="width: 100%">
+                        <canvas id="monthly_bar_chartjs"></canvas>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="grid-content">
+                    <div style="width: 100%">
+                        <canvas id="monthly_bar2_chartjs"></canvas>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <div class="col-md-4">
+                <div class="grid-content">
+                    <div style="width: 100%">
+                        <canvas id="spline_nilai_kumulatif_chartjs"></canvas>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="grid-content">
+                    <div style="width: 100%">
+                        <canvas id="yearly_pie_chartjs"></canvas>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="grid-content">
 
-<div class="row">
-    <div class="col-lg-12">
-        <h1 class="page-header">
-            <?php echo $title ?> <small><?php echo $subtitle; ?> adfadfaf</small>
-        </h1>
-    </div>
-    <div class="col-md-12">
-        <div class="col-md-4">
-            <div class="grid-content">
-                <h4>Jumlah</h4>
-                    <br/> <span class="big-font" id="totalJumlahTransaksi"> <?php echo $transaksi['jumlah'];?> </span>
-            </div>
-        </div>
-        <div class="col-md-6">
-            <div class="grid-content">
-                <h4>Nilai</h4>
-                <br/> <span class="big-font" id="totalNilaiTransaksi"><?php echo $transaksi['nilai'];?> </span>
-            </div>
-        </div>
-        <div class="col-md-2">
-            <div class="grid-content">
-                <h4>Last Trx</h4>
-                <br/> <span class="medium-font"><?php echo $transaksi['last_date_trx'];?></span>
-            </div>
-        </div>
-    </div>
-</div>
-<div class="row">
-    <div class="col-md-12">
-        <div class="col-md-12">
-            <div class="grid-content">
-                <h5>Transaksi Bulanan</h5>
-                <h4>Nilai (Rp.)</h4>
-                <div style="width: 100%">
-                    <canvas id="monthly_bar_chartjs"></canvas>
+                    <div style="width: 100%">
+                        <canvas id="yearly_pie2_chartjs"></canvas>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
 </div>
-<div class="row">
-    <div class="col-md-12">
-        <div class="col-md-12">
-            <div class="grid-content">
-                <h5>Transaksi Bulanan</h5>
-                <h4>Kumulatif (Rp.)</h4>
-                <div style="width: 100%">
-                    <canvas id="spline_nilai_kumulatif_chartjs"></canvas>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-<div class="row">
-    <div class="col-md-12">
-        <div class="col-md-12">
-            <div class="grid-content">
-                <h5>Transaksi Bulanan</h5>
-                <h4>Jumlah</h4>
-                <div style="width: 100%">
-                    <canvas id="monthly_bar2_chartjs"></canvas>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-<div class="row">
-    <div class="col-md-12">
-        <div class="col-md-6">
-            <div class="grid-content">
-                <h5>Transaksi Tahunan</h5>
-                <h4>Nilai (Rp.)</h4>
-                <div style="width: 100%">
-                    <canvas id="yearly_pie_chartjs"></canvas>
-                </div>
-            </div>
-        </div>
-        <div class="col-md-6">
-            <div class="grid-content">
-                <h5>Transaksi Tahunan</h5>
-                <h4>Jumlah</h4>
-                <div style="width: 100%">
-                    <canvas id="yearly_pie2_chartjs"></canvas>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-<br/>
 
 
 <script src="<?php echo base_url('assets/js/jquery.dataTables.min.js');?>"></script>
@@ -419,7 +401,7 @@
             stack: 'Stack 0',
             data:  bulan_nilai_gol5,
         },{
-            label: 'Realisasi-Target',
+            label: 'Silva',
             backgroundColor: window.chartColors.grey,
             stack: 'Stack 1',
             data:  delta_transaksi,
@@ -530,7 +512,6 @@
                         display: true,
                         scaleLabel: {
                             display: true,
-                            labelString: 'Bulan'
                         }
                     }],
                     yAxes: [{
@@ -610,7 +591,7 @@
             options: {
                 title:{
                     display:true,
-                    text:"Transaksi Rupiah - Bulanan"
+                    text:"Transaksi Kendaraan - Bulanan"
                 },
                 tooltips: {
                     mode: 'index',
