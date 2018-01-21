@@ -45,6 +45,42 @@ class Api extends CI_Controller
         return;
     }
 
+    public function users()
+    {
+        /** AJAX Handle */
+        if (
+            isset($_SERVER['HTTP_X_REQUESTED_WITH']) &&
+            !empty($_SERVER['HTTP_X_REQUESTED_WITH']) &&
+            strtolower($_SERVER['HTTP_X_REQUESTED_WITH']) == 'xmlhttprequest'
+        ) {
+
+            $this->load->model('Datatables_model');
+
+            /**
+             * Mengambil Parameter dan Perubahan nilai dari setiap
+             * aktifitas pada table
+             */
+            $datatables = $_POST;
+            $datatables['table'] = 'users';
+            $datatables['id-table'] = 'id_user';
+            /**
+             * Kolom yang ditampilkan
+             */
+            $datatables['col-display'] = array(
+                'id_user',
+                'username',
+                'password',
+                'role'
+            );
+            /**
+             * menggunakan table join
+             */
+            //            $datatables['join']    = 'INNER JOIN position ON position = id_position';
+            $this->Datatables_model->Datatables($datatables);
+        }
+        return;
+    }
+
     public function employees()
     {
         /** AJAX Handle */

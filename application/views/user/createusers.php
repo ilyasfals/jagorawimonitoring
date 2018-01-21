@@ -20,7 +20,7 @@
     <div class="col-md-10">
         <?php
         $news_id = $this->uri->segment(3, 0);
-            echo  '<form role="form" action="'.base_url("home/createnews/$news_id").'" class="form-horizontal" method="post" enctype="multipart/form-data">';
+            echo  '<form role="form" action="'.base_url("user/createusers/$news_id").'" class="form-horizontal" method="post" enctype="multipart/form-data">';
 
 
         ?>
@@ -34,42 +34,22 @@
 
                 <fieldset>
                     <div class="form-group">
-                        <label class="col-sm-2 control-label" for="textinput">Judul</label>
+                        <label class="col-sm-2 control-label" for="textinput">Username</label>
                         <div class="col-sm-3">
                             <input class="form-control" type="text" id="title" name="title" value="<?php echo $myArray[1]?>">
                             <input class="form-control" type="hidden" id="id" name="id" value="<?php $news_id = $this->uri->segment(3, 0); echo $news_id?>">
                         </div>
                     </div>
                     <div class="form-group">
-                        <label class="col-sm-2 control-label" for="textinput">Sub Judul</label>
+                        <label class="col-sm-2 control-label" for="textinput">Password</label>
                         <div class="col-sm-6">
                             <input class="form-control" type="text" id="subtitle" name="subtitle" value="<?php echo $myArray[2]?>">
                         </div>
                     </div>
                     <div class="form-group">
-                        <label class="col-sm-2 control-label" for="textinput">Isi</label>
+                        <label class="col-sm-2 control-label" for="textinput">Role</label>
                         <div class="col-sm-10">
                             <textarea id="summernote" name="content" ><?php echo $myArray[3]?></textarea>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label class="col-sm-2 control-label" for="textinput">Aktif?</label>
-                        <div class="col-sm-1">
-                            <?php if($myArray[5]>0){ ?>
-                                <input class="form-control" type="checkbox" name="is_active" value="1" checked/>
-                            <?php }
-                                else{
-                            ?>
-
-                                <input class="form-control" type="checkbox" name="is_active" value="1"/>
-                            <?php }?>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label class="col-sm-2 control-label" for="textinput">Banner</label>
-                        <div class="col-sm-8">
-                            <input class="form-control" type="file" name="banner"/>
-                            <label><?php echo $myArray[4]?></label>
                         </div>
                     </div>
                     <button type="submit" class="btn btn-next col-sm-offset-2">Simpan</button>
@@ -84,34 +64,21 @@
 
             <fieldset>
                 <div class="form-group">
-                    <label class="col-sm-2 control-label" for="textinput">Judul</label>
+                    <label class="col-sm-2 control-label" for="textinput">Username</label>
                     <div class="col-sm-3">
-                        <input class="form-control" type="text" id="title" name="title">
-                        <input class="form-control" type="hidden" id="id" name="id" value="<?php $news_id = $this->uri->segment(3, 0); echo $news_id?>">
+                        <input class="form-control" type="text" id="username" name="username" >
                     </div>
                 </div>
                 <div class="form-group">
-                    <label class="col-sm-2 control-label" for="textinput">Sub Judul</label>
+                    <label class="col-sm-2 control-label" for="textinput">Password</label>
                     <div class="col-sm-6">
-                        <input class="form-control" type="text" id="subtitle" name="subtitle">
+                        <input class="form-control" type="password" id="password" name="password" >
                     </div>
                 </div>
                 <div class="form-group">
-                    <label class="col-sm-2 control-label" for="textinput">Isi</label>
+                    <label class="col-sm-2 control-label" for="textinput">Role</label>
                     <div class="col-sm-10">
-                        <textarea id="summernote" name="content">Silakan ganti dengan isi berita..</textarea>
-                    </div>
-                </div>
-                <div class="form-group">
-                    <label class="col-sm-2 control-label" for="textinput">Aktif?</label>
-                    <div class="col-sm-1">
-                        <input class="form-control" type="checkbox" name="is_active" value="1"/>
-                    </div>
-                </div>
-                <div class="form-group">
-                    <label class="col-sm-2 control-label" for="textinput">Banner</label>
-                    <div class="col-sm-8">
-                        <input class="form-control" type="file" name="banner" />
+                        <input class="form-control" type="text" id="role" name="role" >
                     </div>
                 </div>
                 <button type="submit" class="btn btn-next col-sm-offset-2">Simpan</button>

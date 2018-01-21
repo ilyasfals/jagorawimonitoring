@@ -35,57 +35,14 @@
                     </div>
                 </div>
             </div>-->
-
-
-            <div class="carousel-inner" role="listbox">
-                <?php $i = 1; foreach($list_banner as $bannerShow): ?>
-                    <?php if($i==1){ ?>
-                    <div class="item active">
-                        <a href="http://www.google.com">
-                            <img src="<?php echo base_url('assets/images/banner/'.$bannerShow["banner"].'');?>" width="100%">
-                        </a>
-                        <div class="carousel-caption">
-                            <a href="http://www.google.com" style="color:white;">
-                                <h1 href="/Internet"><?php echo $bannerShow["title"]?></h1>
-                            </a>
-                        </div>
-                    </div>
-                        <?php }else{ ?>
-                        <?php }?>
-                    <div class="item ">
-                        <a href="http://www.google.com">
-                            <img src="<?php echo base_url('assets/images/banner/'.$bannerShow["banner"].'');?>" width="100%">
-                        </a>
-                        <div class="carousel-caption">
-                            <a href="http://www.google.com" style="color:white;">
-                                <h1 href="/Internet"><?php echo $bannerShow["title"]?></h1>
-                            </a>
-                        </div>
-                    </div>
-
-                    <?php $i++; endforeach?>
-
-            </div>
-
-
-            <!-- Controls or next and prev buttons -->
-            <a class="left carousel-control" href="#my-slider" role="button" data-slide="prev">
-                <span class="glyphicon glyphicon-chevron-left"></span>
-                <span class="sr-only">Previous</span>
-            </a>
-            <a class="right carousel-control" href="#my-slider" role="button" data-slide="next">
-                <span class="glyphicon glyphicon-chevron-right"></span>
-                <span class="sr-only">Next</span>
-            </a>
-        </div>
     </div>
 </div>
 <br/>
 <br/>
-<h3>Semua Berita</h3>
-<?php if (in_array($_SESSION['role'], array('TCM'), true)){ ?>
-    <a href="<?php echo base_url('home/createnews') ?>" class="btn btn-default" role="button">
-        <span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Berita
+<h3>Semua Pengguna</h3>
+<?php if (in_array($_SESSION['role'], array('ADMIN'), true)){ ?>
+    <a href="<?php echo base_url('user/createusers') ?>" class="btn btn-default" role="button">
+        <span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Pengguna
     </a>
 <?php } ?>
 <div class="row">
@@ -94,18 +51,18 @@
             <thead>
                 <tr>
                     <th>#</th>
-                    <th>Judul</th>
-                    <th>Sub Judul</th>
-                    <th>Aktif</th>
+                    <th>Username</th>
+                    <th>Password</th>
+                    <th>Role</th>
                     <th>Aksi</th>
                 </tr>
             </thead>
             <tfoot>
                 <tr>
                     <th>#</th>
-                    <th>Judul</th>
-                    <th>Sub Judul</th>
-                    <th>Aktif</th>
+                    <th>Username</th>
+                    <th>Password</th>
+                    <th>Role</th>
                     <th>Aksi</th>
                 </tr>
             </tfoot>
@@ -144,8 +101,8 @@
                     "sWidth" : "5%",
                     "mRender": function(data, oObj, row)
                     {
-                        return "<a href='<?php echo base_url('home/createnews'); ?>/"+ row[0] + "' title='Ubah'> <span class='fa fa-pencil-square-o' style='font-size:medium;'></span></a>&nbsp;" +
-                            "<a href='<?php echo base_url('home/deleteNews'); ?>/"+ row[0] + "' title='Hapus'> <span class='fa fa-trash-o' style='font-size:medium;'></span></a>";
+                        return "<a href='<?php echo base_url('home/createusers'); ?>/"+ row[0] + "' title='Ubah'> <span class='fa fa-pencil-square-o' style='font-size:medium;'></span></a>&nbsp;" +
+                            "<a href='<?php echo base_url('home/deleteUsers'); ?>/"+ row[0] + "' title='Hapus'> <span class='fa fa-trash-o' style='font-size:medium;'></span></a>";
                     }
                 },
 
@@ -153,7 +110,7 @@
             "processing": true,
             "serverSide": true,
             "ajax": {
-                "url": "<?php echo base_url('api/news');?>",
+                "url": "<?php echo base_url('api/users');?>",
                 "type": "POST"
             }
         });
