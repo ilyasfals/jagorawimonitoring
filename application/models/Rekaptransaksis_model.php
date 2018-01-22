@@ -1,5 +1,5 @@
 <?php
-class RekapTransaksis_model extends CI_Model {
+class Rekaptransaksis_model extends CI_Model {
 
     public function __construct()
     {

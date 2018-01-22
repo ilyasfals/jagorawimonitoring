@@ -95,4 +95,61 @@ class Pulls extends CI_Controller {
         $this->load->library('parser');
         $this->template->load('wrapper', 'contents' , 'pulls/checklist', $data);
     }
+
+    public function normalisasi(){
+        $data['title'] = 'Pull Toll';
+        $data['subtitle'] = 'Normalisasi';
+
+        $year = $_SESSION['tahun'];
+        $data['tahun'] =  $year;
+
+
+        $this->load->model('transaksis_model');
+        $data['transaksiList'] = $this->transaksis_model->getTransaksiNormalisasi($year)['row_rekap_transaksi'];
+
+        $this->load->library('parser');
+        $this->template->load('wrapper', 'contents' , 'pulls/normalisasi', $data);
+    }
+    public function editNormalisasi($tahun, $bulan){
+        $this->load->helper('form');
+        $this->load->library('form_validation');
+        $this->load->model('normalisasis_model');
+
+        $data['title'] = 'Key Performance Indicator';
+        $data['subtitle'] = 'Formulir';
+        $data['tahun'] = $tahun;
+        $data['bulan'] = $bulan;
+
+
+        $data['normalisasis'] = $this->normalisasis_model->getDataByMonth($tahun, $bulan);
+        var_dump($data['normalisasis']); die();
+
+        $this->form_validation->set_rules('tahun', 'Tahun', 'required');
+        $this->form_validation->set_rules('bulan', 'Indikator', 'required');
+        $this->form_validation->set_rules('lalin_1', 'Volume Lalu Lintas Golongan 1', 'required');
+        $this->form_validation->set_rules('lalin_2', 'Volume Lalu Lintas Golongan 2', 'required');
+        $this->form_validation->set_rules('lalin_3', 'Volume Lalu Lintas Golongan 3', 'required');
+        $this->form_validation->set_rules('lalin_4', 'Volume Lalu Lintas Golongan 4', 'required');
+        $this->form_validation->set_rules('lalin_5', 'Volume Lalu Lintas Golongan 5', 'required');
+
+        $this->form_validation->set_rules('pendapatan_1', 'Pendapatan Golongan 1', 'required');
+        $this->form_validation->set_rules('pendapatan_2', 'Pendapatan Golongan 2', 'required');
+        $this->form_validation->set_rules('pendapatan_3', 'Pendapatan Golongan 3', 'required');
+        $this->form_validation->set_rules('pendapatan_4', 'Pendapatan Golongan 4', 'required');
+        $this->form_validation->set_rules('pendapatan_5', 'Pendapatan Golongan 5', 'required');
+
+        $normalisasi = $this->normalisasis_model->getDataByMonth($tahun, $bulan);
+
+        if ($this->form_validation->run() === FALSE){
+            if( $normalisasi == null){
+                $normalisasi = $this->normalisasis_model->getDataByMonth($tahun, $bulan);
+
+            }
+            $data['normalisasis'] = $normalisasi;
+            $this->template->load('wrapper', 'contents' , 'pulls/editNormalisasi', $data);
+        }else{
+            $data['normalisasis'] = $this->normalisasis_model->update_normalisasi();
+            $this->template->load('wrapper', 'contents' , 'pulls/editNormalisasi', $data);
+        }
+    }
 }

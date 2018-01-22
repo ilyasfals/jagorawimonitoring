@@ -84,6 +84,23 @@
                         </div>
                     </li>
                 <?php } ?>
+                <?php if (in_array($_SESSION['role'], array('TCM'), true)){ ?>
+                    <li class="dropdownmenu">
+                        <a class="collapsed" data-toggle="collapse"
+                           href="<?php echo base_url()?>#transaksi" data-href="#transaksi"
+                           data-link="#">
+                            <i class="fa icon-kpi"></i> <span>Transaksi</span>
+                            <span class="caret"></span>
+                        </a>
+                        <div id="transaksi" class="collapse">
+                            <ul id="yw6" class="nav nav-pills nav-stacked">
+                                <li>
+                                    <a href="<?php echo base_url();?>pulls/normalisasi">Normalisasi</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </li>
+                <?php } ?>
                 <li class="dropdownmenu">
                     <a class="collapsed" data-toggle="collapse"
                         href="<?php echo base_url()?>#dashboard" data-href="#dashboard"
