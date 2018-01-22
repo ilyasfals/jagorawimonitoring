@@ -278,6 +278,39 @@ class Transaksis_model extends CI_Model {
 
     }
 
+    public function getTransaksiNormalisasi($year = 0){
+
+        $transaksi['row_rekap_transaksi'] = array();
+
+
+        for ($x = 0; $x < 12; $x++) {
+            $rekap_bulan =  array();
+            array_push($rekap_bulan, $this->getNameMonthFromNumberIna($x+1));
+            array_push($rekap_bulan, 0);
+            array_push($rekap_bulan, 0);
+            array_push($transaksi['row_rekap_transaksi'], $rekap_bulan);
+        }
+
+        $sql = 'select EXTRACT(year FROM tgl_trx) as tahun, EXTRACT(month FROM tgl_trx) as bulan,
+                sum(tarif) as nilai, count(id) as jumlah 
+                from pcds_tbltrx_open 
+                where EXTRACT(year FROM tgl_trx) = '.$year.'
+                group by tahun, bulan
+                order by tahun, bulan';
+
+        $list = $this->db->query($sql);
+
+        $x = 0;
+        foreach ($list->result() as $row) {
+            $transaksi['row_rekap_transaksi'][$row->bulan-1][0] = $this->getNameMonthFromNumberIna($row->bulan);
+            $transaksi['row_rekap_transaksi'][$row->bulan-1][1] = $row->nilai;
+            $transaksi['row_rekap_transaksi'][$row->bulan-1][2] = $row->jumlah;
+            $x++;
+        }
+
+        return $transaksi;
+    }
+
     public function getNameMonthFromNumberIna($number = 0){
         if($number >=1 && $number <=12){
             switch ($number) {

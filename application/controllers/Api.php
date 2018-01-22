@@ -431,4 +431,42 @@ class Api extends CI_Controller
         return;
     }
 
+    public function normalisasi()
+    {
+        /** AJAX Handle */
+        if (
+            isset($_SERVER['HTTP_X_REQUESTED_WITH']) &&
+            !empty($_SERVER['HTTP_X_REQUESTED_WITH']) &&
+            strtolower($_SERVER['HTTP_X_REQUESTED_WITH']) == 'xmlhttprequest'
+        ) {
+            $this->load->model('Datatables_model');
+
+            /**
+             * Mengambil Parameter dan Perubahan nilai dari setiap
+             * aktifitas pada table
+             */
+            $datatables = $_POST;
+            $datatables['table'] = 'pulls_gardu';
+            $datatables['id-table'] = 'id_pulls_gardu';
+            $datatables['init-where'] = 'id_pulls = '.$id_pulls;
+            /**
+             * Kolom yang ditampilkan
+             */
+            $datatables['col-display'] = array(
+                'id_pulls_gardu',
+                'id_gardus',
+                'real_petugas',
+                'pemasukan',
+
+            );
+            /**
+             * menggunakan table join
+             */
+            //$datatables['join']    = 'INNER JOIN position ON position = id_position';
+
+            $this->Datatables_model->Datatables($datatables);
+        }
+        return;
+    }
+
 }

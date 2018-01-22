@@ -84,9 +84,7 @@ class KPIs extends CI_Controller {
 
         $kpi = $this->kpis_model->get_kpi_by_tahun_and_master($tahun, $id_master_kpis);
 
-        if ($this->form_validation->run() === FALSE)
-        {
-
+        if ($this->form_validation->run() === FALSE){
             if( $kpi == null){
                 $kpiGenerate = array(
                     'tahun' => $tahun,
