@@ -101,8 +101,8 @@
                     "sWidth" : "5%",
                     "mRender": function(data, oObj, row)
                     {
-                        return "<a href='<?php echo base_url('home/createusers'); ?>/"+ row[0] + "' title='Ubah'> <span class='fa fa-pencil-square-o' style='font-size:medium;'></span></a>&nbsp;" +
-                            "<a href='<?php echo base_url('home/deleteUsers'); ?>/"+ row[0] + "' title='Hapus'> <span class='fa fa-trash-o' style='font-size:medium;'></span></a>";
+                        return "<a href='<?php echo base_url('user/createusers'); ?>/"+ row[0] + "' title='Ubah'> <span class='fa fa-pencil-square-o' style='font-size:medium;'></span></a>&nbsp;" +
+                            "<a href='<?php echo base_url('user/deleteUsers'); ?>/"+ row[0] + "' title='Hapus'> <span class='fa fa-trash-o' style='font-size:medium;'></span></a>";
                     }
                 },
 

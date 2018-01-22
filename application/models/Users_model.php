@@ -58,4 +58,11 @@ class Users_model extends CI_Model {
         $this->db->where('id_user', $id);
         $this->db->delete('users');
     }
+
+    function get_option() {
+        $this->db->select('*');
+        $this->db->from('role');
+        $query = $this->db->get();
+        return $query->result();
+    }
 }
