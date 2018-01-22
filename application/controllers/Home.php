@@ -53,7 +53,7 @@ class Home extends CI_Controller {
                 else{
 
                     //$data = array('upload_data' => $this->upload->data());
-                    $file_data = $this->upload->data();
+                   /* $file_data = $this->upload->data();
                     $file_name =   $file_data['file_name'];
                     $data = array(
                         'title' => $this->input->post('title'),
@@ -61,10 +61,10 @@ class Home extends CI_Controller {
                         'content' => $this->input->post('content'),
                         'banner' => $file_name,
                         'is_active' => $this->input->post('is_active')
-                    );
+                    );*/
                 }
-                print_r($data);
-                //$this->news_model->update_news($data);
+                //print_r($data);
+                $this->news_model->update_news();
             }
             else{
                 if ( ! $this->upload->do_upload('banner')){
@@ -74,7 +74,7 @@ class Home extends CI_Controller {
                 else{
 
                     //$data = array('upload_data' => $this->upload->data());
-                    $file_data = $this->upload->data();
+                   /* $file_data = $this->upload->data();
                     $file_name =   $file_data['file_name'];
                     $data = array(
                         'title' => $this->input->post('title'),
@@ -83,11 +83,12 @@ class Home extends CI_Controller {
                         'banner' => $file_name,
                         'is_active' => $this->input->post('is_active')
                     );
-                }
+                }*/
                 //print_r($this->upload->data());
-                $this->news_model->create_news($data);
+                }
+                $this->news_model->create_news();
             }
-            //redirect('home/index/');
+            redirect(base_url('home/index/'));
         }
     }
 
@@ -96,7 +97,7 @@ class Home extends CI_Controller {
         $id=$this->uri->segment(3);
         $this->load->model('news_model');
         $this->news_model->delete_news($id);
-        redirect('home/index/');
+        redirect(base_url('home/index/'));
 
     }
 }
