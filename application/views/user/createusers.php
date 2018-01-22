@@ -27,7 +27,7 @@
         <?php
             if($this->uri->segment(3, 0)>0){
                 $myArray = array();
-                foreach ($list_news as $item):
+                foreach ($list_user as $item):
                     array_push($myArray,$item);
                 endforeach;
         ?>
@@ -43,13 +43,17 @@
                     <div class="form-group">
                         <label class="col-sm-2 control-label" for="textinput">Password</label>
                         <div class="col-sm-6">
-                            <input class="form-control" type="text" id="subtitle" name="subtitle" value="<?php echo $myArray[2]?>">
+                            <input class="form-control" type="password" id="subtitle" name="subtitle" value="<?php echo $myArray[2]?>">
                         </div>
                     </div>
                     <div class="form-group">
-                        <label class="col-sm-2 control-label" for="textinput">Role</label>
-                        <div class="col-sm-10">
-                            <textarea id="summernote" name="content" ><?php echo $myArray[3]?></textarea>
+                        <label class="col-md-2 control-label"> Role</label>
+                        <div class="col-md-3">
+                            <select class="form-control" name="role">
+                                <option  value="">---Select Role---</option>
+                                <?php foreach($list_role as $row) { ?>
+                                    <option  <?php if($row->kode == $myArray[3]){ echo 'selected="selected"'; } ?> value="<?php echo $row->kode?>"><?php echo $row->kode?> </option><?php }?>
+                            </select>
                         </div>
                     </div>
                     <button type="submit" class="btn btn-next col-sm-offset-2">Simpan</button>
@@ -76,9 +80,14 @@
                     </div>
                 </div>
                 <div class="form-group">
-                    <label class="col-sm-2 control-label" for="textinput">Role</label>
-                    <div class="col-sm-10">
-                        <input class="form-control" type="text" id="role" name="role" >
+                    <label class="col-md-2 control-label"> Role</label>
+                    <div class="col-md-3">
+                        <select class="form-control" name="role">
+                            <option  value="">---Select Role---</option>
+                            <?php foreach($list_role as $row) { ?>
+                                <option value="<?php echo $row->kode;?>"><?php echo $row->kode;?></option>
+                            <?php } ?>
+                        </select>
                     </div>
                 </div>
                 <button type="submit" class="btn btn-next col-sm-offset-2">Simpan</button>

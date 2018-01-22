@@ -16,7 +16,8 @@ class user extends CI_Controller {
         $id=$this->uri->segment(3);
         $data['title'] = 'Formulir Berita';
         $this->load->model('users_model');
-        $data['list_users'] = $this->users_model->getListUsers($id);
+        $data['list_role'] = $this->users_model->get_option();
+        $data['list_user'] = $this->users_model->get_users($id);
         $config['upload_path']          = 'assets/images/banner';
         $config['allowed_types']        = 'gif|jpg|png';
         $config['max_size']             = 100;
