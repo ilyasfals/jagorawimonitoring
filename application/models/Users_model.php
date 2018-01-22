@@ -9,11 +9,10 @@ class Users_model extends CI_Model {
     public function create_users()
     {
         $this->load->helper('url');
-        $file_data = $this->upload->data();
-        $file_name =   $file_data['file_name'];
         $data = array(
             'username' => $this->input->post('username'),
             'password' => $this->input->post('password'),
+            'id_employees' => $this->input->post('id_pegawai'),
             'role' => $this->input->post('role')
         );
         return $this->db->insert('users', $data);
@@ -22,12 +21,11 @@ class Users_model extends CI_Model {
     public function update_users()
     {
         $this->load->helper('url');
-        $file_data = $this->upload->data();
-        $file_name =   $file_data['file_name'];
         $data = array(
-            'username' => $this->input->post('title'),
-            'password' => $this->input->post('subtitle'),
-            'role' => $this->input->post('content')
+            'username' => $this->input->post('username'),
+            'password' => $this->input->post('password'),
+            'id_employees' => $this->input->post('id_pegawai'),
+            'role' => $this->input->post('role')
         );
         $id= $this->input->post('id_user');
         return $this->db->where('id_user', $id)+$this->db->update('users',$data);

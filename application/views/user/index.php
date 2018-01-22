@@ -40,7 +40,7 @@
 <br/>
 <br/>
 <h3>Semua Pengguna</h3>
-<?php if (in_array($_SESSION['role'], array('ADMIN'), true)){ ?>
+<?php if (in_array($_SESSION['role'], array('ADMIN','TCM','ALL','HRGA'), true)){ ?>
     <a href="<?php echo base_url('user/createusers') ?>" class="btn btn-default" role="button">
         <span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Pengguna
     </a>
@@ -54,6 +54,7 @@
                     <th>Username</th>
                     <th>Password</th>
                     <th>Role</th>
+                    <th>Pegawai</th>
                     <th>Aksi</th>
                 </tr>
             </thead>
@@ -63,6 +64,7 @@
                     <th>Username</th>
                     <th>Password</th>
                     <th>Role</th>
+                    <th>Pegawai</th>
                     <th>Aksi</th>
                 </tr>
             </tfoot>
@@ -96,6 +98,7 @@
                     "sWidth" : "30%",
                     "sName": "gerbang",
                 },
+                { "sWidth": "5%" },
                 { "sWidth": "5%" },
                 {
                     "sWidth" : "5%",

@@ -70,7 +70,8 @@ class Api extends CI_Controller
                 'id_user',
                 'username',
                 'password',
-                'role'
+                'role',
+                'id_employees'
             );
             /**
              * menggunakan table join

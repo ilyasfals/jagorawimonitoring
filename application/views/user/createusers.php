@@ -36,14 +36,14 @@
                     <div class="form-group">
                         <label class="col-sm-2 control-label" for="textinput">Username</label>
                         <div class="col-sm-3">
-                            <input class="form-control" type="text" id="title" name="title" value="<?php echo $myArray[1]?>">
-                            <input class="form-control" type="hidden" id="id" name="id" value="<?php $news_id = $this->uri->segment(3, 0); echo $news_id?>">
+                            <input class="form-control" type="text" id="username" name="username" value="<?php echo $myArray[1]?>">
+                            <input class="form-control" type="hidden" id="id_user" name="id_user" value="<?php $news_id = $this->uri->segment(3, 0); echo $news_id?>">
                         </div>
                     </div>
                     <div class="form-group">
                         <label class="col-sm-2 control-label" for="textinput">Password</label>
                         <div class="col-sm-6">
-                            <input class="form-control" type="password" id="subtitle" name="subtitle" value="<?php echo $myArray[2]?>">
+                            <input class="form-control" type="password" id="password" name="password" value="<?php echo $myArray[2]?>">
                         </div>
                     </div>
                     <div class="form-group">
@@ -52,8 +52,14 @@
                             <select class="form-control" name="role">
                                 <option  value="">---Select Role---</option>
                                 <?php foreach($list_role as $row) { ?>
-                                    <option  <?php if($row->kode == $myArray[3]){ echo 'selected="selected"'; } ?> value="<?php echo $row->kode?>"><?php echo $row->kode?> </option><?php }?>
+                                    <option <?php if($row->kode == $myArray[3]){ echo 'selected="selected"'; } ?> value="<?php echo $row->kode ?>"><?php echo $row->kode?> </option>                                <?php } ?>
                             </select>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label" for="textinput">NPP</label>
+                        <div class="col-sm-3">
+                            <input class="form-control" type="text" id="id_pegawai" name="id_pegawai" value="<?php echo $myArray[4]?>">
                         </div>
                     </div>
                     <button type="submit" class="btn btn-next col-sm-offset-2">Simpan</button>
@@ -88,6 +94,12 @@
                                 <option value="<?php echo $row->kode;?>"><?php echo $row->kode;?></option>
                             <?php } ?>
                         </select>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-2 control-label" for="textinput">NPP</label>
+                    <div class="col-sm-3">
+                        <input class="form-control" type="text" id="id_pegawai" name="id_pegawai" >
                     </div>
                 </div>
                 <button type="submit" class="btn btn-next col-sm-offset-2">Simpan</button>

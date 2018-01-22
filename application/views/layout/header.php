@@ -55,19 +55,19 @@
                                 data-menus="Beranda">Beranda</span></a>
                 </li>
 
-                <?php if (in_array($_SESSION['role'], array('DISABLED'), true)){ echo '
+                <?php if (in_array($_SESSION['role'], array('DISABLED','TCM','ALL','HRGA'), true)){ echo '
                     <li>
                         <a href=" '.base_url().'/employees"><i class="fa icon-penduduk"></i>
                             <span data-menus="Kependudukan">Pegawai</span></a>
                     </li>
                 '; }?>
 
-                <?php if (in_array($_SESSION['role'], array('DISABLED'), true)){ ?>
+                <?php if (in_array($_SESSION['role'], array('DISABLED','TCM','ALL','HRGA'), true)){ ?>
                         <li>
                             <a href="<?php echo base_url();?>pulls"><i class="fa icon-highway"></i> <span>Pull Toll</span></a>
                         </li>
                 <?php } ?>
-                <?php if (in_array($_SESSION['role'], array('SDM', 'TM', 'TCM', 'FINANCE'), true)){ ?>
+                <?php if (in_array($_SESSION['role'], array('SDM', 'TM','TCM','ALL','HRGA', 'FINANCE'), true)){ ?>
                     <li class="dropdownmenu">
                         <a class="collapsed" data-toggle="collapse"
                             href="<?php echo base_url()?>#kpi" data-href="#kpi"
@@ -113,7 +113,7 @@
                         </ul>
                     </div>
                 </li>
-                <?php if (in_array($_SESSION['role'], array('ADMIN'), true)){ ?>
+                <?php if (in_array($_SESSION['role'], array('ADMIN','TCM','ALL','HRGA'), true)){ ?>
                     <li class="dropdownmenu">
                         <a class="collapsed" data-toggle="collapse"
                             href="<?php echo base_url()?>#pengguna" data-href="#pengguna"
@@ -130,7 +130,7 @@
                     </li>
                 <?php } ?>
 
-                <?php if (in_array($_SESSION['role'], array('ADMIN'), true)){ ?>
+                <?php if (in_array($_SESSION['role'], array('ADMIN','TCM','ALL','HRGA'), true)){ ?>
                     <li class="dropdownmenu"><a class="collapsed" data-toggle="collapse"
                                                 href="<?php echo base_url()?>#pengaturan" data-href="#pengaturan"
                                                 data-link="#"><i class="fa icon-setting"></i> <span>Pengaturan</span>

@@ -11,7 +11,7 @@ class Simple_login {
 		$query = $this->CI->db->get_where('users',array('username'=>$username,'password' => $password));
 		if($query->num_rows() == 1) {
 			$row 	= $this->CI->db->query('SELECT employees.npp, employees.nama, role FROM users 
-                                            INNER JOIN employees ON users.id_employees = employees.id_employees
+                                            INNER JOIN employees ON users.id_employees = employees.npp
                                             WHERE  username = "'.$username.'"');
 			$admin 	= $row->row();
 			$this->CI->session->set_userdata('username', $username);

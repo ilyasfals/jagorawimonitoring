@@ -40,13 +40,14 @@ class user extends CI_Controller {
         $this->form_validation->set_rules('username', 'username', 'required');
         $this->form_validation->set_rules('password', 'password', 'required');
         $this->form_validation->set_rules('role', 'role', 'required');
+        $this->form_validation->set_rules('id_pegawai', 'id_pegawai', 'required');
 
         if ($this->form_validation->run() === FALSE)
         {
             $this->template->load('wrapper', 'contents' , 'user/createusers', $data);
         }
         else {
-            if($this->input->post('id')>0){
+            if($this->input->post('id_user')>0){
                 if ( ! $this->upload->do_upload('banner')){
                     $error = array('error' => $this->upload->display_errors());
                     $this->template->load('wrapper', 'contents' , 'user/createusers', $data);
