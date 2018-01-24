@@ -10,8 +10,8 @@ class Normalisasis_model extends CI_Model {
      *
      */
     public function getDataByMonth($year, $month){
-        $query = $this->db->get_where('normalisasis', array('tahun' => $year, 'bulan' =>$month));
-        $query->row_array();
+        $query = $this->db->get_where('normalisasis', array('tahun' => $year, 'bulan' => $month));
+        return $query->row_array();
     }
 
     public function update_normalisasi(){
@@ -66,6 +66,25 @@ class Normalisasis_model extends CI_Model {
         );
         $id= $this->input->post('id');
         return $this->db->where('id', $id)+$this->db->update('news',$data);
+    }
+
+    public function getNormalisasiByYear($year = 0){
+        $sql = 'select bulan, (pendapatan_1+pendapatan_2+pendapatan_3+pendapatan_4+pendapatan_5) as pendapatan,
+            (lalin_1+lalin_2+lalin_3+lalin_4+lalin_5) as lalin
+            from normalisasis where tahun ='.$year;
+
+        $normalisasi['row_normalisasis'] = array();
+
+        $list = $this->db->query($sql);
+
+        foreach ($list->result() as $row) {
+            $normalisasi['data_normalisasis'] = array();
+            array_push($normalisasi['data_normalisasis'], $row->bulan);
+            array_push($normalisasi['data_normalisasis'], $row->pendapatan);
+            array_push($normalisasi['data_normalisasis'], $row->lalin);
+            array_push($normalisasi['row_normalisasis'], $normalisasi['data_normalisasis']);
+        }
+        return $normalisasi['row_normalisasis'];
     }
 
     /**

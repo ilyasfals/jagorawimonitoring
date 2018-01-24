@@ -36,9 +36,9 @@
                         <td><?php echo $i+1 ?></td>
                         <td><?php echo $transaksi[0] ?></td>
                         <td><?php echo $transaksi[1]; ?></td>
-                        <td><?php echo ""; ?></td>
+                        <td><?php echo $transaksi[3]; ?></td>
                         <td><?php echo $transaksi[2]; ?></td>
-                        <td><?php echo ""; ?></td>
+                        <td><?php echo $transaksi[4]; ?></td>
                         <td>
                             <?php
                                 if (isset($_SESSION['role'])){ ?>

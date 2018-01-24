@@ -288,6 +288,8 @@ class Transaksis_model extends CI_Model {
             array_push($rekap_bulan, $this->getNameMonthFromNumberIna($x+1));
             array_push($rekap_bulan, 0);
             array_push($rekap_bulan, 0);
+            array_push($rekap_bulan, 0);
+            array_push($rekap_bulan, 0);
             array_push($transaksi['row_rekap_transaksi'], $rekap_bulan);
         }
 
@@ -305,6 +307,8 @@ class Transaksis_model extends CI_Model {
             $transaksi['row_rekap_transaksi'][$row->bulan-1][0] = $this->getNameMonthFromNumberIna($row->bulan);
             $transaksi['row_rekap_transaksi'][$row->bulan-1][1] = $row->nilai;
             $transaksi['row_rekap_transaksi'][$row->bulan-1][2] = $row->jumlah;
+            $transaksi['row_rekap_transaksi'][$row->bulan-1][3] = 0;
+            $transaksi['row_rekap_transaksi'][$row->bulan-1][4] = 0;
             $x++;
         }
 

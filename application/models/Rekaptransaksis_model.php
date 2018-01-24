@@ -22,7 +22,12 @@ class Rekaptransaksis_model extends CI_Model {
         if($year == 0){
            return null;
         }else{
-            $sql = 'select sum(jumlah) as jumlah, sum(nilai) as nilai from rekap_transaksi where tahun = '.$year;
+            $sql = 'select sum(jumlah) as jumlah, sum(nilai) as nilai 
+                    from rekap_transaksi 
+                    where tahun = '.$year.'
+                     AND bulan not in(
+                        select bulan from normalisasis where tahun ='.$year.'
+                     )';
 
             $list = $this->db->query($sql);
             foreach ($list->result() as $row) {
@@ -30,15 +35,27 @@ class Rekaptransaksis_model extends CI_Model {
                 $transaksi['nilai'] = $row->nilai;
             }
 
-            //Rekap bulanan
-            $sql = 'select EXTRACT(month FROM tgl_trx) as bulan, sum(tarif) as nilai, count(id) as jumlah from pcds_tbltrx_open where EXTRACT(YEAR FROM tgl_trx) = '.$year.' group by bulan order by bulan';
-            $list = $this->db->query($sql);
             $transaksi['bulan_nama'] = array();
             $transaksi['bulan_index'] = array();
             $transaksi['bulan_jumlah'] = array();
             $transaksi['bulan_nilai'] = array();
             $transaksi['bulan_nilai_kumulatif'] = array();
 
+            //Rekap bulanan
+            $sql = 'select EXTRACT(month FROM tgl_trx) as bulan, sum(tarif) as nilai, count(id) as jumlah from pcds_tbltrx_open 
+                    where EXTRACT(YEAR FROM tgl_trx) = '.$year.' 
+                    AND EXTRACT(MONTH FROM tgl_trx) not in(
+                        select bulan
+                        from normalisasis where tahun ='.$year.'
+                        )
+                    group by bulan
+                    UNION
+                    select bulan, (pendapatan_1+pendapatan_2+pendapatan_3+pendapatan_4+pendapatan_5) as pendapatan,
+                    (lalin_1+lalin_2+lalin_3+lalin_4+lalin_5) as lalin
+                    from normalisasis where tahun ='.$year.'
+                    order by bulan';
+
+            $list = $this->db->query($sql);
 
             $iRekap = 0;
             foreach ($list->result() as $row) {
@@ -51,6 +68,8 @@ class Rekaptransaksis_model extends CI_Model {
                     array_push($transaksi['bulan_nilai_kumulatif'], $transaksi['bulan_nilai_kumulatif'][$iRekap-1] + $transaksi['bulan_nilai'][$iRekap]);
                 $iRekap++;
             }
+
+//            var_dump($transaksi); die();
 
 
 
@@ -91,9 +110,14 @@ class Rekaptransaksis_model extends CI_Model {
             }
 
             $sql = 'select bulan, golongan as gol, sum(nilai) as nilai, sum(jumlah) as jumlah
-                    from rekap_transaksi 
-                    where tahun= '.$year.'
-                    group by bulan,golongan order by bulan,gol';
+                from rekap_transaksi 
+                where tahun= '.$year.' AND 
+                bulan not in(
+                    select bulan
+                    from normalisasis where tahun ='.$year.'
+                )
+                group by bulan,golongan order by bulan,gol';
+
             $list = $this->db->query($sql);
             foreach ($list->result() as $row) {
                 $indexBulan = $row->bulan-1;
@@ -102,6 +126,41 @@ class Rekaptransaksis_model extends CI_Model {
                 $transaksi['total_jumlah'][$row->gol-1] =  (int)$transaksi['total_jumlah'] + (int)$row->jumlah;
                 $transaksi['total_nilai'][$row->gol-1] =  (int)$transaksi['total_nilai'] + (int)$row->nilai;
             }
+
+//            var_dump( $transaksi['total_jumlah']); die();
+
+            $sql = 'select bulan, lalin_1, lalin_2, lalin_3, lalin_4, lalin_5, 
+                    pendapatan_1, pendapatan_2, pendapatan_3, pendapatan_4, pendapatan_5 
+                    from normalisasis where tahun ='.$year;
+
+            $list = $this->db->query($sql);
+            foreach ($list->result() as $row) {
+                $indexBulan = $row->bulan-1;
+                $transaksi['bulan_nilai_gol1'][$indexBulan] =  (int)$row->pendapatan_1;
+                $transaksi['bulan_nilai_gol2'][$indexBulan] =  (int)$row->pendapatan_2;
+                $transaksi['bulan_nilai_gol3'][$indexBulan] =  (int)$row->pendapatan_3;
+                $transaksi['bulan_nilai_gol4'][$indexBulan] =  (int)$row->pendapatan_4;
+                $transaksi['bulan_nilai_gol5'][$indexBulan] =  (int)$row->pendapatan_5;
+
+                $transaksi['bulan_jumlah_gol1'][$indexBulan] =  (int)$row->lalin_1;
+                $transaksi['bulan_jumlah_gol2'][$indexBulan] =  (int)$row->lalin_2;
+                $transaksi['bulan_jumlah_gol3'][$indexBulan] =  (int)$row->lalin_3;
+                $transaksi['bulan_jumlah_gol4'][$indexBulan] =  (int)$row->lalin_4;
+                $transaksi['bulan_jumlah_gol5'][$indexBulan] =  (int)$row->lalin_5;
+
+                $transaksi['total_nilai'][0] =  (int)$transaksi['total_nilai'] + (int)$row->pendapatan_1;
+                $transaksi['total_nilai'][1] =  (int)$transaksi['total_nilai'] + (int)$row->pendapatan_2;
+                $transaksi['total_nilai'][2] =  (int)$transaksi['total_nilai'] + (int)$row->pendapatan_3;
+                $transaksi['total_nilai'][3] =  (int)$transaksi['total_nilai'] + (int)$row->pendapatan_4;
+                $transaksi['total_nilai'][4] =  (int)$transaksi['total_nilai'] + (int)$row->pendapatan_5;
+
+                $transaksi['total_jumlah'][0] =  (int)$transaksi['total_jumlah'] + (int)$row->lalin_1;
+                $transaksi['total_jumlah'][1] =  (int)$transaksi['total_jumlah'] + (int)$row->lalin_2;
+                $transaksi['total_jumlah'][2] =  (int)$transaksi['total_jumlah'] + (int)$row->lalin_3;
+                $transaksi['total_jumlah'][3] =  (int)$transaksi['total_jumlah'] + (int)$row->lalin_4;
+                $transaksi['total_jumlah'][4] =  (int)$transaksi['total_jumlah'] + (int)$row->lalin_5;
+            }
+
 
             $sql = 'select target_1, target_2, target_3, target_4, target_5, target_6, target_7, target_8, target_9, target_10, target_11, target_12 from kpi_transaksi where tahun ='.$year;
             $list = $this->db->query($sql);

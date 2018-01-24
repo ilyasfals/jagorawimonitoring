@@ -31,7 +31,7 @@ class Dashboard extends CI_Controller {
 
         //Dapatkan data jumlah dan nilai transaksis
         $year = $_SESSION['tahun'];
-        $this->load->model('Rekaptransaksis_model');
+        $this->load->model('rekaptransaksis_model');
         $data['transaksi'] = $this->rekaptransaksis_model->get_rekap_transaksi_year($year);
 
 

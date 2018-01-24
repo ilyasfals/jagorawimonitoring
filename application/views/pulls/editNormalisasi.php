@@ -57,31 +57,31 @@
                                     </tr>
                                     </thead>
                                     <tbody>
-                                        <?php if(isset($normalisasi)) { ?>
+                                        <?php if(isset($normalisasis)) { ?>
                                             <tr>
                                                 <th>1</th>
-                                                <th><input type="text" id="lalin_1" name="lalin_1" class="form-control" value="<?php echo $normalisasi['_1'] ?>"></th>
-                                                <th><input type="text" id="pendapatan_1" name="pendapatan_1" class="form-control" value="<?php echo $kpi['realisasi_1'] ?>"></th>
+                                                <th><input type="text" id="lalin_1" name="lalin_1" class="form-control" value="<?php echo $normalisasis['lalin_1']; ?>"></th>
+                                                <th><input type="text" id="pendapatan_1" name="pendapatan_1" class="form-control" value="<?php echo $normalisasis['pendapatan_1']; ?>"></th>
                                             </tr>
                                             <tr>
                                                 <th>2</th>
-                                                <th><input type="text" id="lalin_2" name="lalin_2" class="form-control" value="<?php echo $kpi['_1'] ?>"></th>
-                                                <th><input type="text" id="pendapatan_2" name="pendapatan_2" class="form-control" value="<?php echo $kpi['realisasi_1'] ?>"></th>
+                                                <th><input type="text" id="lalin_2" name="lalin_2" class="form-control" value="<?php echo $normalisasis['lalin_2']; ?>"></th>
+                                                <th><input type="text" id="pendapatan_2" name="pendapatan_2" class="form-control" value="<?php echo $normalisasis['pendapatan_2']; ?>"></th>
                                             </tr>
                                             <tr>
                                                 <th>3</th>
-                                                <th><input type="text" id="lalin_3" name="lalin_3" class="form-control" value="<?php echo $kpi['_1'] ?>"></th>
-                                                <th><input type="text" id="pendapatan_3" name="pendapatan_3" class="form-control" value="<?php echo $kpi['realisasi_1'] ?>"></th>
+                                                <th><input type="text" id="lalin_3" name="lalin_3" class="form-control" value="<?php echo $normalisasis['lalin_3']; ?>"></th>
+                                                <th><input type="text" id="pendapatan_3" name="pendapatan_3" class="form-control" value="<?php echo $normalisasis['pendapatan_3']; ?>"></th>
                                             </tr>
                                             <tr>
                                                 <th>4</th>
-                                                <th><input type="text" id="lalin_4" name="lalin_4" class="form-control" value="<?php echo $kpi['_1'] ?>"></th>
-                                                <th><input type="text" id="pendapatan_4" name="pendapatan_4" class="form-control" value="<?php echo $kpi['realisasi_1'] ?>"></th>
+                                                <th><input type="text" id="lalin_4" name="lalin_4" class="form-control" value="<?php echo $normalisasis['lalin_4']; ?>"></th>
+                                                <th><input type="text" id="pendapatan_4" name="pendapatan_4" class="form-control" value="<?php echo $normalisasis['pendapatan_4']; ?>"></th>
                                             </tr>
                                             <tr>
                                                 <th>5</th>
-                                                <th><input type="text" id="lalin_5" name="lalin_5" class="form-control" value="<?php echo $kpi['_1'] ?>"></th>
-                                                <th><input type="text" id="pendapatan_5" name="pendapatan_5" class="form-control" value="<?php echo $kpi['realisasi_1'] ?>"></th>
+                                                <th><input type="text" id="lalin_5" name="lalin_5" class="form-control" value="<?php echo $normalisasis['lalin_5']; ?>"></th>
+                                                <th><input type="text" id="pendapatan_5" name="pendapatan_5" class="form-control" value="<?php echo $normalisasis['pendapatan_5']; ?>"></th>
                                             </tr>
                                         <?php } else { ?>
                                             <tr>
@@ -118,7 +118,8 @@
                     <div class="form-group">
                         <label class="col-sm-2 control-label" for="textinput"></label>
                         <div class="col-sm-6">
-                            <input type="submit" value="Simpan" class="btn btn-default">
+                            <input type="submit" value="Simpan" class="btn btn-success">
+                            <input type="button" value="Batal" class="btn btn-danger" onclick="window.history.back();">
                         </div>
                     </div>
                     </fieldset>
@@ -127,13 +128,3 @@
         </div>
     </div>
 </div>
-
-<script>
-    $(document).ready(function() {
-        //CURRENCY
-        $(function() {
-            $(".currencyInput").maskMoney({prefix:'Rp. ', allowNegative: true, thousands:'.', decimal:',', affixesStay: false});
-        })
-
-    });
-</script>

@@ -105,8 +105,15 @@ class Pulls extends CI_Controller {
 
 
         $this->load->model('transaksis_model');
+        $this->load->model('normalisasis_model');
         $data['transaksiList'] = $this->transaksis_model->getTransaksiNormalisasi($year)['row_rekap_transaksi'];
+        $data['normalisasiList'] = $this->normalisasis_model->getNormalisasiByYear($year);
 
+        foreach ($data['normalisasiList'] as $normalisasi){
+            $data['transaksiList'][$normalisasi[0]-1][3]=$normalisasi[1];
+            $data['transaksiList'][$normalisasi[0]-1][4]=$normalisasi[2];
+
+        }
         $this->load->library('parser');
         $this->template->load('wrapper', 'contents' , 'pulls/normalisasi', $data);
     }
@@ -120,9 +127,7 @@ class Pulls extends CI_Controller {
         $data['tahun'] = $tahun;
         $data['bulan'] = $bulan;
 
-
         $data['normalisasis'] = $this->normalisasis_model->getDataByMonth($tahun, $bulan);
-        var_dump($data['normalisasis']); die();
 
         $this->form_validation->set_rules('tahun', 'Tahun', 'required');
         $this->form_validation->set_rules('bulan', 'Indikator', 'required');
@@ -139,7 +144,6 @@ class Pulls extends CI_Controller {
         $this->form_validation->set_rules('pendapatan_5', 'Pendapatan Golongan 5', 'required');
 
         $normalisasi = $this->normalisasis_model->getDataByMonth($tahun, $bulan);
-
         if ($this->form_validation->run() === FALSE){
             if( $normalisasi == null){
                 $normalisasi = $this->normalisasis_model->getDataByMonth($tahun, $bulan);
@@ -149,7 +153,7 @@ class Pulls extends CI_Controller {
             $this->template->load('wrapper', 'contents' , 'pulls/editNormalisasi', $data);
         }else{
             $data['normalisasis'] = $this->normalisasis_model->update_normalisasi();
-            $this->template->load('wrapper', 'contents' , 'pulls/editNormalisasi', $data);
+            redirect(base_url('pulls/normalisasi/'));
         }
     }
 }
