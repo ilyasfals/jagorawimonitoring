@@ -5,16 +5,24 @@ class user extends CI_Controller {
 	
 	// Index login
 	public function index() {
-        $data['title'] = 'Dashboard Monitoring KPI';
+        $data['title'] = 'Pengguna';
         $this->load->model('users_model');
         //$data['list_banner'] = $this->users_model->getListBanner();
         $this->template->load('wrapper', 'contents' , 'user/index', $data);
     }
+
+    public function profil() {
+        $data['title'] = 'Profil';
+        $this->load->model('users_model');
+        //$data['list_banner'] = $this->users_model->getListBanner();
+        $this->template->load('wrapper', 'contents' , 'user/profil', $data);
+    }
+
     public function createUsers() {
         $this->load->helper('form');
         $this->load->library('form_validation');
         $id=$this->uri->segment(3);
-        $data['title'] = 'Formulir Berita';
+        $data['title'] = 'Buat Pengguna';
         $this->load->model('users_model');
         $data['list_role'] = $this->users_model->get_option();
         $data['list_user'] = $this->users_model->get_users($id);
@@ -91,6 +99,55 @@ class user extends CI_Controller {
                 $this->users_model->create_users();
             }
             redirect(base_url('user/index/'));
+        }
+    }
+
+
+    public function ubahPassword() {
+        $this->load->helper('form');
+        $this->load->library('form_validation');
+        $id=$this->uri->segment(3);
+        $data['title'] = 'Ubah Password';
+        $this->load->model('users_model');
+        $data['list_role'] = $this->users_model->get_option();
+        $data['list_user'] = $this->users_model->get_users($id);
+        $data['errorMsg'] = '';
+
+        if($this->uri->segment(3)=="0"){
+            $this->load->model('users_model');
+            $data['users'] = $this->users_model->get_users();
+        }
+        else{
+            $this->load->model('users_model');
+            $data['users'] = $this->users_model->get_users($id);
+
+        }
+        $this->form_validation->set_rules('password', 'password', 'required');
+        $this->form_validation->set_rules('repassword', 'repassword', 'required');
+
+        if ($this->form_validation->run() === FALSE)
+        {
+            $this->template->load('wrapper', 'contents' , 'user/ubahpassword', $data);
+        }
+        else {
+            $password = $this->input->post('password');
+            $repassword = $this->input->post('repassword');
+            if ($password==null||$password=="")
+            {
+                $data['errorMsg'] = 'Maaf password tidak boleh kosong';
+                $this->template->load('wrapper', 'contents' , 'user/ubahpassword', $data);
+            }
+            else{
+                if ($password!=$repassword)
+                {
+                    $data['errorMsg'] = 'Maaf password yang anda masukan tidak sesuai';
+                    $this->template->load('wrapper', 'contents' , 'user/ubahpassword', $data);
+                }
+                else{
+                    $this->users_model->update_password();
+                    redirect(base_url('home'));
+                }
+            }
         }
     }
 
