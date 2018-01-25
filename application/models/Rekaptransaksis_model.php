@@ -42,14 +42,14 @@ class Rekaptransaksis_model extends CI_Model {
             $transaksi['bulan_nilai_kumulatif'] = array();
 
             //Rekap bulanan
-            $sql = 'select EXTRACT(month FROM tgl_trx) as bulan, sum(tarif) as nilai, count(id) as jumlah from pcds_tbltrx_open 
-                    where EXTRACT(YEAR FROM tgl_trx) = '.$year.' 
-                    AND EXTRACT(MONTH FROM tgl_trx) not in(
+            $sql = 'select bulan, nilai, jumlah from rekap_transaksi
+                    where tahun='.$year.'
+                    AND bulan not in(
                         select bulan
                         from normalisasis where tahun ='.$year.'
                         )
-                    group by bulan
-                    UNION
+                        group by bulan
+                    union
                     select bulan, (pendapatan_1+pendapatan_2+pendapatan_3+pendapatan_4+pendapatan_5) as pendapatan,
                     (lalin_1+lalin_2+lalin_3+lalin_4+lalin_5) as lalin
                     from normalisasis where tahun ='.$year.'
@@ -61,17 +61,16 @@ class Rekaptransaksis_model extends CI_Model {
             foreach ($list->result() as $row) {
                 array_push($transaksi['bulan_index'], $row->bulan);
                 array_push($transaksi['bulan_jumlah'], $row->jumlah);
-                array_push($transaksi['bulan_nilai'], $row->nilai);
-                if($iRekap==0)
+                array_push($transaksi['bulan_nilai'], intval($row->nilai));
+                if ($iRekap == 0) {
                     array_push($transaksi['bulan_nilai_kumulatif'], $transaksi['bulan_nilai'][$iRekap]);
+                }
                 else
                     array_push($transaksi['bulan_nilai_kumulatif'], $transaksi['bulan_nilai_kumulatif'][$iRekap-1] + $transaksi['bulan_nilai'][$iRekap]);
                 $iRekap++;
             }
 
-//            var_dump($transaksi); die();
-
-
+//            var_dump($transaksi['bulan_nilai_kumulatif']); die();
 
             //LOOP Sebanyak 12 dikurang jumlah bulan yang ada data
             $jumlahBulan = sizeof($transaksi['bulan_index']);
@@ -81,7 +80,7 @@ class Rekaptransaksis_model extends CI_Model {
                 array_push($transaksi['bulan_nilai'], 0);
                 array_push($transaksi['bulan_nilai_kumulatif'], $transaksi['bulan_nilai_kumulatif'][$jumlahBulan-1]);
             }
-            //die();
+
 
 
             //Rekap Bulanan Per Golongan
@@ -208,6 +207,41 @@ class Rekaptransaksis_model extends CI_Model {
 
             return $transaksi;
         }
+
+    }
+
+    public function getTransaksiNormalisasi($year){
+        $transaksi['row_rekap_transaksi'] = array();
+        for ($x = 0; $x < 12; $x++) {
+            $rekap_bulan =  array();
+            array_push($rekap_bulan, $this->getNameMonthFromNumberIna($x+1));
+            array_push($rekap_bulan, 0);
+            array_push($rekap_bulan, 0);
+            array_push($rekap_bulan, 0);
+            array_push($rekap_bulan, 0);
+            array_push($transaksi['row_rekap_transaksi'], $rekap_bulan);
+        }
+
+        $sql = 'select tahun, bulan,
+                sum(nilai) as nilai, sum(jumlah) as jumlah 
+                from rekap_transaksi
+                where tahun = '.$year.'
+                group by tahun, bulan
+                order by tahun, bulan';
+
+        $list = $this->db->query($sql);
+
+        $x = 0;
+        foreach ($list->result() as $row) {
+            $transaksi['row_rekap_transaksi'][$row->bulan-1][0] = $this->getNameMonthFromNumberIna($row->bulan);
+            $transaksi['row_rekap_transaksi'][$row->bulan-1][1] = $row->nilai;
+            $transaksi['row_rekap_transaksi'][$row->bulan-1][2] = $row->jumlah;
+            $transaksi['row_rekap_transaksi'][$row->bulan-1][3] = 0;
+            $transaksi['row_rekap_transaksi'][$row->bulan-1][4] = 0;
+            $x++;
+        }
+
+        return $transaksi;
 
     }
 

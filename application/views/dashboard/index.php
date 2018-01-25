@@ -30,13 +30,13 @@
     <div class="col-md-12">
         <div class="col-md-4">
             <div class="grid-content">
-                <h4>Jumlah</h4>
+                <h4>Total Volume Lalu Lintas(Lalin)</h4>
                     <br/> <span class="big-font" id="totalJumlahTransaksi"> <?php echo $transaksi['jumlah'];?> </span>
             </div>
         </div>
         <div class="col-md-6">
             <div class="grid-content">
-                <h4>Nilai</h4>
+                <h4>Total Pendapatan</h4>
                 <br/> <span class="big-font" id="totalNilaiTransaksi"><?php echo $transaksi['nilai'];?> </span>
             </div>
         </div>
@@ -52,7 +52,7 @@
     <div class="col-md-12">
         <div class="col-md-12">
             <div class="grid-content">
-                <h5>Transaksi Bulanan</h5>
+                <h5>Pendapatan Bulanan</h5>
                 <h4>Nilai (Rp.)</h4>
                 <div style="width: 100%">
                     <canvas id="monthly_bar_chartjs"></canvas>
@@ -65,7 +65,7 @@
     <div class="col-md-12">
         <div class="col-md-12">
             <div class="grid-content">
-                <h5>Transaksi Bulanan</h5>
+                <h5>Pendapatan Bulanan</h5>
                 <h4>Kumulatif (Rp.)</h4>
                 <div style="width: 100%">
                     <canvas id="spline_nilai_kumulatif_chartjs"></canvas>
@@ -78,8 +78,8 @@
     <div class="col-md-12">
         <div class="col-md-12">
             <div class="grid-content">
-                <h5>Transaksi Bulanan</h5>
-                <h4>Jumlah</h4>
+                <h5>Volume Lalu Lintas</h5>
+                <h4>Jumlah Kendaraan</h4>
                 <div style="width: 100%">
                     <canvas id="monthly_bar2_chartjs"></canvas>
                 </div>
@@ -91,8 +91,8 @@
     <div class="col-md-12">
         <div class="col-md-6">
             <div class="grid-content">
-                <h5>Transaksi Tahunan</h5>
-                <h4>Nilai (Rp.)</h4>
+                <h5>Sebaran Tahunan</h5>
+                <h4>Pendapatan (Rp.)</h4>
                 <div style="width: 100%">
                     <canvas id="yearly_pie_chartjs"></canvas>
                 </div>
@@ -100,11 +100,21 @@
         </div>
         <div class="col-md-6">
             <div class="grid-content">
-                <h5>Transaksi Tahunan</h5>
-                <h4>Jumlah</h4>
+                <h5>Sebaran Tahunan</h5>
+                <h4>Volume Lalu Lintas</h4>
                 <div style="width: 100%">
                     <canvas id="yearly_pie2_chartjs"></canvas>
                 </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-12">
+        <div class="col-md-12">
+            <div class="grid-content">
+                Keterangan: <br/>
+                - Volume lalu lintas dan pendapatan tol termasuk kartu tol perusahaan.
             </div>
         </div>
     </div>
@@ -288,7 +298,7 @@
             options: {
                 title:{
                     display:true,
-                    text:"Transaksi Rupiah - Bulanan"
+                    text:"Pendapatan Bulanan"
                 },
                 tooltips: {
                     mode: 'index',
@@ -310,7 +320,7 @@
                     yAxes: [{
                         scaleLabel: {
                             display: true,
-                            labelString: 'Transaksi'
+                            labelString: 'Pendapatan'
                         },
                         ticks: {
                             beginAtZero: true,
@@ -360,7 +370,7 @@
                         display: true,
                         scaleLabel: {
                             display: true,
-                            labelString: 'Transaksi'
+                            labelString: 'Pendapatan'
                         },
                         ticks: {
                             beginAtZero: true,
@@ -384,7 +394,7 @@
             options: {
                 title:{
                     display:true,
-                    text:"Transaksi Kendaraan - Bulanan"
+                    text:"Volume Lalu Lintas - Bulanan"
                 },
                 tooltips: {
                     mode: 'index',
@@ -403,7 +413,7 @@
                     }],
                     yAxes: [{
                         scaleLabel : {
-                            labelString: 'Transaksi'
+                            labelString: 'Volume Lalu Lintas'
                         },
                         ticks: {
                             beginAtZero: true,
@@ -534,7 +544,7 @@
                             // get the data label and data value to display
                             // convert the data value to local string so it uses a comma seperated number
                             var dataLabel = data.labels[tooltipItem.index];
-                            var value = ': Rp.' + data.datasets[tooltipItem.datasetIndex].data[tooltipItem.index].toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
+                            var value = ': ' + data.datasets[tooltipItem.datasetIndex].data[tooltipItem.index].toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
 
                             // make this isn't a multi-line label (e.g. [["label 1 - line 1, "line 2, ], [etc...]])
                             if (Chart.helpers.isArray(dataLabel)) {

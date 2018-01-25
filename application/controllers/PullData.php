@@ -23,7 +23,9 @@ class PullData extends CI_Controller {
         $delimiter = ";";
         $newline = "\r\n";
         $data  = $this->dbutil->csv_from_result($query, $delimiter, $newline);
-        if ( ! write_file('/tmp/data/file.csv', $data)){
+
+        $folder = "/tmp/data";
+        if ( ! write_file($folder.'/file.csv', $data)){
             echo 'Unable to write the file';
         }
         else{
@@ -33,7 +35,7 @@ class PullData extends CI_Controller {
         //END OFF GET DATA
 
         //INSERT DATA
-        $sqlInsert ='LOAD DATA INFILE \'/tmp/data/file.csv\'
+        $sqlInsert ='LOAD DATA INFILE \''.$folder.'/file.csv\'
             INTO TABLE pcds_tbltrx_open
             FIELDS TERMINATED BY \';\'
             OPTIONALLY ENCLOSED BY \'"\' 
@@ -53,6 +55,30 @@ class PullData extends CI_Controller {
         $this->load->model('pulllog_model');
         $this->pulllog_model->set_pull_log();
         $now = DateTime::createFromFormat('U.u', microtime(true));
+
+
+        $this->load->helper('file');
+        $DB1 = $this->load->database('default', TRUE);
+
+        //INSERT DATA
+        $sqlInsert ='REPLACE INTO rekap_transaksi (tahun, bulan, golongan, gerbang, gerbang_s, nilai, jumlah)
+                        select EXTRACT(year FROM tgl_trx) as tahun, EXTRACT(month FROM tgl_trx) as bulan, gol, 
+                        id_gerbang_trx, id_gerbang_trx,
+                        sum(tarif) as nilai, count(id) as jumlah 
+                        from pcds_tbltrx_open 
+                        group by tahun, bulan, gol, id_gerbang_trx
+                        order by tahun, bulan, gol, id_gerbang_trx';
+
+        var_dump($sqlInsert);
+
+        $DB1->query($sqlInsert);
+
+
+        $this->db = $this->load->database('default', TRUE);
+        $this->load->dbutil();
+
+        $this->load->model('pulllog_model');
+        $this->pulllog_model->set_pull_log_rekap();
         echo 'Tarik data pada :'.$now->format("m-d-Y H:i:s.u");
 
     }

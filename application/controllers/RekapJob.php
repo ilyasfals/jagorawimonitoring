@@ -28,7 +28,7 @@ class RekapJob extends CI_Controller {
         $this->load->model('pulllog_model');
         $this->pulllog_model->set_pull_log_rekap();
         $now = DateTime::createFromFormat('U.u', microtime(true));
-        echo 'Tarik data pada :'.$now->format("m-d-Y H:i:s.u");
+        return;
 
     }
 }

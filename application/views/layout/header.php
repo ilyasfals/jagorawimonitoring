@@ -55,23 +55,23 @@
                                 data-menus="Beranda">Beranda</span></a>
                 </li>
 
-                <?php if (in_array($_SESSION['role'], array('DISABLED','TCM','ALL','HRGA'), true)){ echo '
+                <?php if (in_array($_SESSION['role'], array('DISABLED'), true)){ echo '
                     <li>
                         <a href=" '.base_url().'/employees"><i class="fa icon-penduduk"></i>
                             <span data-menus="Kependudukan">Pegawai</span></a>
                     </li>
                 '; }?>
 
-                <?php if (in_array($_SESSION['role'], array('DISABLED','TCM','ALL','HRGA'), true)){ ?>
-                        <li>
-                            <a href="<?php echo base_url();?>pulls"><i class="fa icon-highway"></i> <span>Pull Toll</span></a>
-                        </li>
+                <?php if (in_array($_SESSION['role'], array('DISABLED'), true)){ ?>
+                    <li>
+                        <a href="<?php echo base_url();?>pulls"><i class="fa icon-highway"></i> <span>Pull Toll</span></a>
+                    </li>
                 <?php } ?>
-                <?php if (in_array($_SESSION['role'], array('SDM', 'TM','TCM','ALL','HRGA', 'FINANCE'), true)){ ?>
+                <?php if (in_array($_SESSION['role'], array('SDM', 'TM', 'TCM', 'FINANCE'), true)){ ?>
                     <li class="dropdownmenu">
                         <a class="collapsed" data-toggle="collapse"
-                            href="<?php echo base_url()?>#kpi" data-href="#kpi"
-                            data-link="#">
+                           href="<?php echo base_url()?>#kpi" data-href="#kpi"
+                           data-link="#">
                             <i class="fa icon-kpi"></i> <span>KPI</span>
                             <span class="caret"></span>
                         </a>
@@ -103,19 +103,20 @@
                 <?php } ?>
                 <li class="dropdownmenu">
                     <a class="collapsed" data-toggle="collapse"
-                        href="<?php echo base_url()?>#dashboard" data-href="#dashboard"
-                        data-link="#"><i class="fa icon-user"></i> <span>Dashboard</span>
+                       href="<?php echo base_url()?>#dashboard" data-href="#dashboard"
+                       data-link="#"><i class="fa icon-user"></i> <span>Dashboard</span>
                         <span class="caret"></span>
                     </a>
-                        <div id="dashboard" class="collapse">
-                            <ul id="yw10" class="nav nav-pills nav-stacked">
-                                <li><a href="<?php echo base_url();?>dashboard/cutoff">Transaksi (CO3H)</a></li>
-                                <li><a href="<?php echo base_url();?>dashboard">Transaksi (RT)</a></li>
-                                <li>
-                                    <a href="<?php echo base_url();?>dashboard/kpi">KPI</a></li>
-                            </ul>
-                        </div>
+                    <div id="dashboard" class="collapse">
+                        <ul id="yw10" class="nav nav-pills nav-stacked">
+                            <li><a href="<?php echo base_url();?>dashboard/cutoff">Transaksi</a></li>
+<!--                            <li><a href="--><?php //echo base_url();?><!--dashboard">Transaksi (RT)</a></li>-->
+                            <li>
+                                <a href="<?php echo base_url();?>dashboard/kpi">KPI</a></li>
+                        </ul>
+                    </div>
                 </li>
+                <?php if (in_array($_SESSION['role'], array('DISABLED'), true)){ ?>
                 <li class="dropdownmenu">
                     <a class="collapsed" data-toggle="collapse"
                        href="<?php echo base_url()?>#report" data-href="#report"
@@ -130,12 +131,13 @@
                         </ul>
                     </div>
                 </li>
-                <?php if (in_array($_SESSION['role'], array('ADMIN','TCM','ALL','HRGA'), true)){ ?>
+                <?php } ?>
+                <?php if (in_array($_SESSION['role'], array('ADMIN'), true)){ ?>
                     <li class="dropdownmenu">
                         <a class="collapsed" data-toggle="collapse"
-                            href="<?php echo base_url()?>#pengguna" data-href="#pengguna"
-                            data-link="#"><i class="fa icon-user"></i> <span>Pengguna</span>
-                        <span class="caret"></span></a>
+                           href="<?php echo base_url()?>#pengguna" data-href="#pengguna"
+                           data-link="#"><i class="fa icon-user"></i> <span>Pengguna</span>
+                            <span class="caret"></span></a>
                         <div id="pengguna" class="collapse">
                             <ul id="yw10" class="nav nav-pills nav-stacked">
                                 <li>
@@ -147,11 +149,11 @@
                     </li>
                 <?php } ?>
 
-                <?php if (in_array($_SESSION['role'], array('ADMIN','TCM','ALL','HRGA'), true)){ ?>
+                <?php if (in_array($_SESSION['role'], array('ADMIN'), true)){ ?>
                     <li class="dropdownmenu"><a class="collapsed" data-toggle="collapse"
                                                 href="<?php echo base_url()?>#pengaturan" data-href="#pengaturan"
                                                 data-link="#"><i class="fa icon-setting"></i> <span>Pengaturan</span>
-                        <span class="caret"></span></a>
+                            <span class="caret"></span></a>
                         <div id="pengaturan" class="collapse">
                             <ul id="yw10" class="nav nav-pills nav-stacked">
                                 <li>
@@ -167,7 +169,7 @@
                             </ul>
                         </div>
                     </li>
-                 <?php } ?>
+                <?php } ?>
             </ul>
             <div class="copyright">
                 <p><strong>Versi: 1.0</strong></p>
@@ -219,4 +221,3 @@
         </div>
     </div>
 </div>
-

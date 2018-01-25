@@ -16,8 +16,7 @@ class PublicCtr extends CI_Controller {
         //Dapatkan data jumlah dan nilai transaksis
         $year = $_SESSION['tahun'];
         $this->load->model('transaksis_model');
-        $data['transaksi'] = $this->transaksis_model->get_rekap_transaksi_year($year);
-
+        $data['transaksi'] = $this->rekaptransaksis_model->get_rekap_transaksi_year($year);
 
         $this->load->library('parser');
         $this->template->load('wrapperpublic', 'contents' , 'publicctr/tvmonitoring', $data);

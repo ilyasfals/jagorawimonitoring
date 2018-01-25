@@ -104,9 +104,9 @@ class Pulls extends CI_Controller {
         $data['tahun'] =  $year;
 
 
-        $this->load->model('transaksis_model');
+        $this->load->model('rekaptransaksis_model');
         $this->load->model('normalisasis_model');
-        $data['transaksiList'] = $this->transaksis_model->getTransaksiNormalisasi($year)['row_rekap_transaksi'];
+        $data['transaksiList'] = $this->rekaptransaksis_model->getTransaksiNormalisasi($year)['row_rekap_transaksi'];
         $data['normalisasiList'] = $this->normalisasis_model->getNormalisasiByYear($year);
 
         foreach ($data['normalisasiList'] as $normalisasi){
