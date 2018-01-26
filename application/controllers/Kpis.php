@@ -126,7 +126,7 @@ class KPIs extends CI_Controller {
         else
         {
             $this->kpis_model->update_kpi();
-            redirect('kpis/index/');
+            redirect(base_url('kpis/index/'));
         }
     }
 }

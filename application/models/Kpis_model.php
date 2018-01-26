@@ -190,17 +190,16 @@ class Kpis_model extends CI_Model {
 
     }
     public function get_master_kpis(){
-        $sql = 'select pic, perspektif, area, deskripsi, id_master_kpis from master_kpis';
+        $sql = 'select pic, indikator, metode_pengukuran, satuan, id_master_kpis from master_kpis';
         $kpi['row_master_kpis'] = array();
         $list = $this->db->query($sql);
         foreach ($list->result() as $row) {
             $kpi['data_master_kpis'] = array();
             array_push($kpi['data_master_kpis'], $row->pic);
-            array_push($kpi['data_master_kpis'], $row->perspektif);
-            array_push($kpi['data_master_kpis'], $row->area);
-            array_push($kpi['data_master_kpis'], $row->deskripsi);
+            array_push($kpi['data_master_kpis'], $row->indikator);
+            array_push($kpi['data_master_kpis'], $row->metode_pengukuran);
+            array_push($kpi['data_master_kpis'], $row->satuan);
             array_push($kpi['data_master_kpis'], $row->id_master_kpis);
-
             array_push($kpi['row_master_kpis'], $kpi['data_master_kpis']);
         }
         return $kpi['row_master_kpis'];
@@ -217,5 +216,35 @@ class Kpis_model extends CI_Model {
     }
     public function parseStringMoneyToDouble($stringMoney){
         return str_replace(",",".", str_replace(".","", $stringMoney));
+    }
+
+    public function getKPIResultByParam($year, $param){
+        $sql ='';
+        $sql;
+        if($param==0){
+           $sql="select ";
+        }else if($param <=12){
+            $sql='select master_kpis.id_master_kpis, master_kpis.indikator, master_kpis.metode_pengukuran
+                    , target_'.$param.' as target, realisasi_'.$param.' as realisasi, kategori 
+                from master_kpis
+                left join kpis on kpis.id_master_kpis=master_kpis.id_master_kpis
+                where tahun='.$year;
+        }else{
+            $data['parameter'] = 'Triwulan '.$param % 100;
+        }
+        $kpi['row_hasil_kpis'] = array();
+        $list = $this->db->query($sql);
+        foreach ($list->result_array() as $row) {
+            $kpi['data'] = array();
+            array_push($kpi['data'], $row['id_master_kpis']);
+            array_push($kpi['data'], $row['indikator']);
+            array_push($kpi['data'], $row['metode_pengukuran']);
+            array_push($kpi['data'], $row['target']);
+            array_push($kpi['data'], $row['realisasi']);
+            array_push($kpi['data'], $row['kategori']);
+            array_push($kpi['row_hasil_kpis'], $kpi['data']);
+        }
+        return $kpi['row_hasil_kpis'];
+
     }
 }

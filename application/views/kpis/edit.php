@@ -33,23 +33,23 @@
 
                     <fieldset>
                     <div class="form-group">
-                        <label class="col-sm-2 control-label" for="textinput">Perspektif</label>
+                        <label class="col-sm-2 control-label" for="textinput">Indikator</label>
                         <div class="col-sm-10">
-                            <input class="form-control" value="<?php echo $master_kpis['perspektif']; ?>" readonly>
+                            <input class="form-control" value="<?php echo $master_kpis['indikator']; ?>" readonly>
 
                         </div>
                     </div>
                     <div class="form-group">
-                        <label class="col-sm-2 control-label" for="textinput">Area</label>
+                        <label class="col-sm-2 control-label" for="textinput">Metode Pengukuran</label>
                         <div class="col-sm-10">
-                            <input class="form-control" value="<?php echo $master_kpis['area']; ?>" readonly>
+                            <input class="form-control" value="<?php echo $master_kpis['metode_pengukuran']; ?>" readonly>
 
                         </div>
                     </div>
                     <div class="form-group">
-                        <label class="col-sm-2 control-label" for="textinput">Deskripsi</label>
+                        <label class="col-sm-2 control-label" for="textinput">Satuan</label>
                         <div class="col-sm-10">
-                            <input class="form-control" value="<?php echo $master_kpis['perspektif']; ?>" readonly>
+                            <input class="form-control" value="<?php echo $master_kpis['satuan']; ?>" readonly>
 
                         </div>
                     </div>

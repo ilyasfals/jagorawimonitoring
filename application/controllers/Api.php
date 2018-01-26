@@ -45,8 +45,7 @@ class Api extends CI_Controller
         return;
     }
 
-    public function users()
-    {
+    public function users(){
         /** AJAX Handle */
         if (
             isset($_SERVER['HTTP_X_REQUESTED_WITH']) &&
@@ -82,8 +81,7 @@ class Api extends CI_Controller
         return;
     }
 
-    public function employees()
-    {
+    public function employees(){
         /** AJAX Handle */
         if (
             isset($_SERVER['HTTP_X_REQUESTED_WITH']) &&
@@ -116,8 +114,7 @@ class Api extends CI_Controller
         return;
     }
 
-    public function departement()
-    {
+    public function departement(){
         /** AJAX Handle */
         if (
             isset($_SERVER['HTTP_X_REQUESTED_WITH']) &&
@@ -152,8 +149,7 @@ class Api extends CI_Controller
         return;
     }
 
-    public function seksi()
-    {
+    public function seksi(){
         /** AJAX Handle */
         if (
             isset($_SERVER['HTTP_X_REQUESTED_WITH']) &&
@@ -188,8 +184,7 @@ class Api extends CI_Controller
         return;
     }
 
-    public function jabatan()
-    {
+    public function jabatan(){
         /** AJAX Handle */
         if (
             isset($_SERVER['HTTP_X_REQUESTED_WITH']) &&
@@ -224,8 +219,7 @@ class Api extends CI_Controller
         return;
     }
 
-    public function posisi()
-    {
+    public function posisi(){
         /** AJAX Handle */
         if (
             isset($_SERVER['HTTP_X_REQUESTED_WITH']) &&
@@ -260,8 +254,7 @@ class Api extends CI_Controller
         return;
     }
 
-    public function role()
-    {
+    public function role(){
         /** AJAX Handle */
         if (
             isset($_SERVER['HTTP_X_REQUESTED_WITH']) &&
@@ -294,8 +287,7 @@ class Api extends CI_Controller
         return;
     }
 
-    public function pulls($id_pulls=NULL)
-    {
+    public function pulls($id_pulls=NULL){
         /** AJAX Handle */
         if (
             isset($_SERVER['HTTP_X_REQUESTED_WITH']) &&
@@ -362,8 +354,8 @@ class Api extends CI_Controller
         }
         return;
     }
-    public function kpis($id_kpis=NULL)
-    {
+
+    public function kpis($id_kpis=NULL){
         /** AJAX Handle */
         if (
             isset($_SERVER['HTTP_X_REQUESTED_WITH']) &&
@@ -431,8 +423,7 @@ class Api extends CI_Controller
         return;
     }
 
-    public function normalisasi()
-    {
+    public function normalisasi(){
         /** AJAX Handle */
         if (
             isset($_SERVER['HTTP_X_REQUESTED_WITH']) &&
@@ -469,4 +460,42 @@ class Api extends CI_Controller
         return;
     }
 
+    public function kpi(){
+        /** AJAX Handle */
+        if (
+            isset($_SERVER['HTTP_X_REQUESTED_WITH']) &&
+            !empty($_SERVER['HTTP_X_REQUESTED_WITH']) &&
+            strtolower($_SERVER['HTTP_X_REQUESTED_WITH']) == 'xmlhttprequest'
+        ) {
+            $this->load->model('Datatables_model');
+
+            /**
+             * Mengambil Parameter dan Perubahan nilai dari setiap
+             * aktifitas pada table
+             */
+            $datatables = $_POST;
+            $datatables['table'] = 'kpis';
+            $datatables['id-table'] = 'id_kpis';
+            $year = $_SESSION['tahun'];
+            $datatables['init-where'] = 'tahun = '.$year;
+
+            /**
+             * Kolom yang ditampilkan
+             */
+            $datatables['col-display'] = array(
+                'id_pulls_gardu',
+                'id_gardus',
+                'real_petugas',
+                'pemasukan',
+
+            );
+            /**
+             * menggunakan table join
+             */
+            //$datatables['join']    = 'INNER JOIN position ON position = id_position';
+
+            $this->Datatables_model->Datatables($datatables);
+        }
+        return;
+    }
 }

@@ -40,6 +40,7 @@ class Rekaptransaksis_model extends CI_Model {
             $transaksi['bulan_jumlah'] = array();
             $transaksi['bulan_nilai'] = array();
             $transaksi['bulan_nilai_kumulatif'] = array();
+            $transaksi['bulan_jumlah_kumulatif'] = array();
 
             //Rekap bulanan
             $sql = 'select bulan, nilai, jumlah from rekap_transaksi
@@ -64,9 +65,12 @@ class Rekaptransaksis_model extends CI_Model {
                 array_push($transaksi['bulan_nilai'], intval($row->nilai));
                 if ($iRekap == 0) {
                     array_push($transaksi['bulan_nilai_kumulatif'], $transaksi['bulan_nilai'][$iRekap]);
+                    array_push($transaksi['bulan_jumlah_kumulatif'], $transaksi['bulan_jumlah'][$iRekap]);
                 }
-                else
-                    array_push($transaksi['bulan_nilai_kumulatif'], $transaksi['bulan_nilai_kumulatif'][$iRekap-1] + $transaksi['bulan_nilai'][$iRekap]);
+                else {
+                    array_push($transaksi['bulan_nilai_kumulatif'], $transaksi['bulan_nilai_kumulatif'][$iRekap - 1] + $transaksi['bulan_nilai'][$iRekap]);
+                    array_push($transaksi['bulan_jumlah_kumulatif'], $transaksi['bulan_jumlah_kumulatif'][$iRekap - 1] + $transaksi['bulan_jumlah'][$iRekap]);
+                }
                 $iRekap++;
             }
 
@@ -79,6 +83,7 @@ class Rekaptransaksis_model extends CI_Model {
                 array_push($transaksi['bulan_jumlah'], 0);
                 array_push($transaksi['bulan_nilai'], 0);
                 array_push($transaksi['bulan_nilai_kumulatif'], $transaksi['bulan_nilai_kumulatif'][$jumlahBulan-1]);
+                array_push($transaksi['bulan_jumlah_kumulatif'], $transaksi['bulan_jumlah_kumulatif'][$jumlahBulan-1]);
             }
 
 
@@ -168,7 +173,6 @@ class Rekaptransaksis_model extends CI_Model {
             $transaksi['target_transaksi_kumulatif'] = array();
             $transaksi['delta_transaksi'] = array();
 
-
             for ($x = 1; $x <= 12; $x++) {
                 array_push($transaksi['target_transaksi'], 0);
                 array_push($transaksi['target_transaksi_kumulatif'], 0);
@@ -198,6 +202,49 @@ class Rekaptransaksis_model extends CI_Model {
                 else
                     $transaksi['target_transaksi_kumulatif'][$x] = $transaksi['target_transaksi_kumulatif'][$x-1]+$transaksi['target_transaksi'][$x];
             }
+
+            /*
+             * Target volume
+             */
+
+            $sql = 'select target_1, target_2, target_3, target_4, target_5, target_6, target_7, target_8, target_9, target_10, target_11, target_12 from kpis 
+                      where id_master_kpis=4 AND tahun ='.$year;
+            $list = $this->db->query($sql);
+
+            $transaksi['target_volume'] = array();
+            $transaksi['target_volume_kumulatif'] = array();
+            $transaksi['delta_volume'] = array();
+
+            for ($x = 1; $x <= 12; $x++) {
+                array_push($transaksi['target_volume'], 0);
+                array_push($transaksi['target_volume_kumulatif'], 0);
+                array_push($transaksi['delta_volume'], 0);
+            }
+
+
+            foreach ($list->result() as $row) {
+                $transaksi['target_volume'][0] = (int)$row->target_1;
+                $transaksi['target_volume'][1] = (int)$row->target_2;
+                $transaksi['target_volume'][2] = (int)$row->target_3;
+                $transaksi['target_volume'][3] = (int)$row->target_4;
+                $transaksi['target_volume'][4] = (int)$row->target_5;
+                $transaksi['target_volume'][5] = (int)$row->target_6;
+                $transaksi['target_volume'][6] = (int)$row->target_7;
+                $transaksi['target_volume'][7] = (int)$row->target_8;
+                $transaksi['target_volume'][8] = (int)$row->target_9;
+                $transaksi['target_volume'][9] = (int)$row->target_10;
+                $transaksi['target_volume'][10] = (int)$row->target_11;
+                $transaksi['target_volume'][11] = (int)$row->target_12;
+            }
+            for ($x = 0; $x < 12; $x++) {
+                $transaksi['delta_volume'][$x] = $transaksi['bulan_jumlah'][$x]-$transaksi['target_volume'][$x];
+                if($x==0)
+                    $transaksi['target_volume_kumulatif'][$x] = $transaksi['target_volume'][$x];
+                else
+                    $transaksi['target_volume_kumulatif'][$x] = $transaksi['target_volume_kumulatif'][$x-1]+$transaksi['target_volume'][$x];
+            }
+
+            //var_dump($transaksi['bulan_jumlah_kumulatif']); die();
 
             $sql = 'select max(time) as last from pull_log where tipe = 2'; //FORMAT 2017-09-28
             $list = $this->db->query($sql);

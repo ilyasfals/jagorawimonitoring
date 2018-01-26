@@ -43,7 +43,6 @@
     </div>
 </nav>
 <!-- begin:content -->
-<!-- <div class="row"> -->
 
 <!-- begin:sidebar -->
 <div class="sidebar">
@@ -89,7 +88,7 @@
                         <a class="collapsed" data-toggle="collapse"
                            href="<?php echo base_url()?>#transaksi" data-href="#transaksi"
                            data-link="#">
-                            <i class="fa icon-kpi"></i> <span>Transaksi</span>
+                            <i class="fa icon-senkom"></i> <span>Transaksi</span>
                             <span class="caret"></span>
                         </a>
                         <div id="transaksi" class="collapse">
@@ -104,7 +103,7 @@
                 <li class="dropdownmenu">
                     <a class="collapsed" data-toggle="collapse"
                        href="<?php echo base_url()?>#dashboard" data-href="#dashboard"
-                       data-link="#"><i class="fa icon-user"></i> <span>Dashboard</span>
+                       data-link="#"><i class="fa icon-statistik"></i> <span>Dashboard</span>
                         <span class="caret"></span>
                     </a>
                     <div id="dashboard" class="collapse">
@@ -112,7 +111,7 @@
                             <li><a href="<?php echo base_url();?>dashboard/cutoff">Transaksi</a></li>
 <!--                            <li><a href="--><?php //echo base_url();?><!--dashboard">Transaksi (RT)</a></li>-->
                             <li>
-                                <a href="<?php echo base_url();?>dashboard/kpi">KPI</a></li>
+                                <a href="<?php echo base_url();?>dashboard/kpidt">KPI</a></li>
                         </ul>
                     </div>
                 </li>

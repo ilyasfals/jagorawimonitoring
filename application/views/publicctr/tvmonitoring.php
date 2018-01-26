@@ -8,6 +8,7 @@
 
 <link href="<?php echo base_url('assets/css/c3.min.css');?>" rel="stylesheet" />
 <link href="<?php echo base_url('assets/css/jquery.dataTables.min.css');?>" rel="stylesheet" />
+<link href="<?php echo base_url('assets/plugins/odometer/themes/odometer-theme-default.css');?>" rel="stylesheet" />
 
 
 <script src="<?php echo base_url('assets/js/Chart.bundle.min.js');?>"></script>
@@ -20,6 +21,22 @@
         -ms-user-select: none;
     }
 </style>
+
+<style>
+    .odometer {
+        font-size: 40pt;
+        font-weight:bold;
+    }
+</style>
+
+<script>
+    window.odometerOptions = {
+        format: '(.ddd)',
+        duration: 600000,
+        animation: 'count'
+    };
+</script>
+
 <div style="position: absolute; top: 0; right: 0; bottom: 0; left: 0;">
     <div class="row">
         <div class="col-lg-12">
@@ -31,8 +48,8 @@
         </div>
         <div class="col-md-12">
             <div class="col-md-4">
-                <div class="grid-content"><br/>
-                    <span class="big-font" id="totalJumlahTransaksi"> <?php echo $transaksi['jumlah'];?> </span> Transaksi
+                <div class="grid-content" style="padding: 10px 10px 0px;">
+                    <div class="odometer"><?php echo $lasttenminutes[0]['last'];?></div>
                 </div>
             </div>
             <div class="col-md-6">
@@ -95,8 +112,15 @@
 
 
 <script src="<?php echo base_url('assets/js/jquery.dataTables.min.js');?>"></script>
+<script src="<?php echo base_url('assets/plugins/odometer/odometer.min.js');?>"></script>
+
 <script>
     $(document).ready(function() {
+
+        setTimeout(function(){
+            $('.odometer').html(<?php echo $transaksi['jumlah'];?>);
+        }, 1000);
+
         var totalNilaiTransaksi = $("#totalNilaiTransaksi").text();
         function nilaiString() {
             if(totalNilaiTransaksi < 1000){
@@ -496,7 +520,7 @@
             options: {
                 title:{
                     display:true,
-                    text:"Transaksi Rupiah - Bulanan"
+                    text:"Pendapatan - Bulanan"
                 },
                 tooltips: {
                     mode: 'index',
@@ -517,7 +541,7 @@
                     yAxes: [{
                         scaleLabel: {
                             display: true,
-                            labelString: 'Transaksi'
+                            labelString: 'Pendapatan'
                         },
                         ticks: {
                             beginAtZero: true,
@@ -741,7 +765,7 @@
                             // get the data label and data value to display
                             // convert the data value to local string so it uses a comma seperated number
                             var dataLabel = data.labels[tooltipItem.index];
-                            var value = ': Rp.' + data.datasets[tooltipItem.datasetIndex].data[tooltipItem.index].toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
+                            var value = ': ' + data.datasets[tooltipItem.datasetIndex].data[tooltipItem.index].toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
 
                             // make this isn't a multi-line label (e.g. [["label 1 - line 1, "line 2, ], [etc...]])
                             if (Chart.helpers.isArray(dataLabel)) {

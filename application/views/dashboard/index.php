@@ -89,6 +89,19 @@
 </div>
 <div class="row">
     <div class="col-md-12">
+        <div class="col-md-12">
+            <div class="grid-content">
+                <h5>Volume Lalu Lintas</h5>
+                <h4>Jumlah Kendaraan</h4>
+                <div style="width: 100%">
+                    <canvas id="spline_volume_kumulatif_chartjs"></canvas>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-12">
         <div class="col-md-6">
             <div class="grid-content">
                 <h5>Sebaran Tahunan</h5>
@@ -166,9 +179,8 @@
     $js_array = json_encode($transaksi['bulan_nilai_gol5']);
     echo "var bulan_nilai_gol5 = ". $js_array . ";\n";
 
-    $js_array = json_encode($transaksi['delta_transaksi']);
-    echo "var delta_transaksi = ". $js_array . ";\n";
-
+    $js_array = json_encode($transaksi['target_transaksi']);
+    echo "var bulan_target = ". $js_array . ";\n";
 
     $js_array_bulan = json_encode($transaksi['bulan_nama']);
     echo "var bulanNama = ". $js_array_bulan . ";\n";
@@ -178,6 +190,14 @@
         labels: ["January", "February", "March", "April", "May", "June",
             "July", "Agustus", "September", "Oktober", "November", "Desember"],
         datasets: [{
+            type: 'line',
+            label: 'Target',
+            fill: false,
+            backgroundColor: window.chartColors.green,
+            borderColor: window.chartColors.green,
+            borderDash: [5, 5],
+            data: bulan_target
+        },{
             label: 'Gol. 1',
             backgroundColor: window.chartColors.red,
             stack: 'Stack 0',
@@ -202,11 +222,6 @@
             backgroundColor: window.chartColors.blue,
             stack: 'Stack 0',
             data:  bulan_nilai_gol5,
-        },{
-            label: 'Realisasi-Target',
-            backgroundColor: window.chartColors.grey,
-            stack: 'Stack 1',
-            data:  delta_transaksi,
         }]
     };
 
@@ -287,6 +302,34 @@
             backgroundColor: window.chartColors.blue,
             stack: 'Stack 0',
             data:  bulan_jumlah_gol5,
+        }]
+    };
+
+    <?php
+    $js_array = json_encode($transaksi['bulan_jumlah_kumulatif']);
+    echo "var bulan_volume_kumulatif = ". $js_array . ";\n";
+
+    $js_array = json_encode($transaksi['target_volume_kumulatif']);
+    echo "var bulan_target_volume_kumulatif = ". $js_array . ";\n";
+    ?>
+
+
+    var spline_volume_kumulatif_chartjs_data = {
+        labels: ["January", "February", "March", "April", "May", "June",
+            "July", "Agustus", "September", "Oktober", "November", "Desember"],
+        datasets: [{
+            label: "Target",
+            fill: false,
+            backgroundColor: window.chartColors.green,
+            borderColor: window.chartColors.green,
+            borderDash: [5, 5],
+            data: bulan_target_volume_kumulatif,
+        },{
+            label: "Realisasi",
+            fill: false,
+            backgroundColor: window.chartColors.blue,
+            borderColor: window.chartColors.blue,
+            data: bulan_volume_kumulatif,
         }]
     };
 
@@ -430,8 +473,58 @@
             }
         });
 
-        var ctx4 = document.getElementById("yearly_pie_chartjs").getContext("2d");
-        window.myPie = new Chart(ctx4, {
+        var ctx4 = document.getElementById("spline_volume_kumulatif_chartjs").getContext("2d");
+        window.myLine = new Chart(ctx4, {
+            type: 'line',
+            data: spline_volume_kumulatif_chartjs_data,
+            options: {
+                responsive: true,
+                title:{
+                    display:true,
+                    text:'Target vs Realisasi - Bulanan'
+                },
+                tooltips: {
+                    mode: 'index',
+                    intersect: false,
+                    callbacks: {
+                        label: function(tooltipItem, data) {
+                            return tooltipItem.yLabel.toString().replace(/\B(?=(\d{3})+(?!\d))/g, "."); }, },
+                },
+                hover: {
+                    mode: 'nearest',
+                    intersect: true
+                },
+                scales: {
+                    xAxes: [{
+                        display: true,
+                        scaleLabel: {
+                            display: true,
+                            labelString: 'Bulan'
+                        }
+                    }],
+                    yAxes: [{
+                        display: true,
+                        scaleLabel: {
+                            display: true,
+                            labelString: 'Volume Lalu LIntas'
+                        },
+                        ticks: {
+                            beginAtZero: true,
+                            callback: function(value, index, values) {
+                                if(parseInt(value) >= 1000){
+                                    return '' + value.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
+                                } else {
+                                    return '' + value;
+                                }
+                            }
+                        }
+                    }]
+                }
+            }
+        });
+
+        var ctx5 = document.getElementById("yearly_pie_chartjs").getContext("2d");
+        window.myPie = new Chart(ctx5, {
             type: 'pie',
             data: {
                 datasets: [{
@@ -503,8 +596,8 @@
             }
         });
 
-        var ctx5 = document.getElementById("yearly_pie2_chartjs").getContext("2d");
-        window.myPie = new Chart(ctx5, {
+        var ctx6 = document.getElementById("yearly_pie2_chartjs").getContext("2d");
+        window.myPie = new Chart(ctx6, {
             type: 'pie',
             data: {
                 datasets: [{

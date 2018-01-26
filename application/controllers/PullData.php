@@ -59,19 +59,22 @@ class PullData extends CI_Controller {
 
         $this->load->helper('file');
         $DB1 = $this->load->database('default', TRUE);
+        $currentYear = date('Y');
 
         //INSERT DATA
         $sqlInsert ='REPLACE INTO rekap_transaksi (tahun, bulan, golongan, gerbang, gerbang_s, nilai, jumlah)
-                        select EXTRACT(year FROM tgl_trx) as tahun, EXTRACT(month FROM tgl_trx) as bulan, gol, 
-                        id_gerbang_trx, id_gerbang_trx,
-                        sum(tarif) as nilai, count(id) as jumlah 
-                        from pcds_tbltrx_open 
-                        group by tahun, bulan, gol, id_gerbang_trx
-                        order by tahun, bulan, gol, id_gerbang_trx';
+            select EXTRACT(year FROM tgl_trx) as tahun, EXTRACT(month FROM tgl_trx) as bulan, gol, 
+            id_gerbang_trx, id_gerbang_trx,
+            sum(tarif) as nilai, count(id) as jumlah 
+            from pcds_tbltrx_open 
+            group by tahun, bulan, gol, id_gerbang_trx
+            order by tahun, bulan, gol, id_gerbang_trx';
 
-        var_dump($sqlInsert);
+        $queryLastTenMinutes = 'update lasttenminutes set last=current, current =  (select sum(jumlah) from rekap_transaksi where tahun='.$currentYear.')';
 
+        var_dump($queryLastTenMinutes);
         $DB1->query($sqlInsert);
+        $DB1->query($queryLastTenMinutes);
 
 
         $this->db = $this->load->database('default', TRUE);

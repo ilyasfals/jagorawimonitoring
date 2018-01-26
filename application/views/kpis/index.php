@@ -19,9 +19,9 @@
             <thead>
             <tr>
                 <th>#</th>
-                <th>Perspektif</th>
-                <th>Area</th>
-                <th>Deskripsi</th>
+                <th>Indikator</th>
+                <th>Metode Pengukuran</th>
+                <th>Satuan</th>
                 <th>Action</th>
             </tr>
             </thead>
@@ -34,7 +34,7 @@
                     <td><?php echo $master_kpi[1] ?></td>
                     <td><?php echo $master_kpi[2] ?></td>
                     <td><?php echo $master_kpi[3] ?></td>
-                    <td><?php if ( $master_kpi[0] === $_SESSION['role']) { ?>
+                    <td><?php if ( $master_kpi[0] === $_SESSION['role'] || $master_kpi[0] ==='ALL')  { ?>
                         <a href="<?php echo base_url();?>kpis/edit/<?php echo $tahun.'/'.$master_kpi[4] ?>"><span class="fa fa-edit"></span></a>
                         <?php } ?>
                     </td>
