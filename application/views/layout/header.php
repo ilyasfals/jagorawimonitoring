@@ -27,9 +27,9 @@
                                 class="caret"></span></a>
                     <ul id="yw3" class="dropdown-menu">
                         <li>
-                            <a tabindex="-1" href="#">Profil</a></li>
+                            <a tabindex="-1" href="<?php echo base_url('user/profil') ?>" >Profil</a></li>
                         <li>
-                            <a tabindex="-1" href="#">Ubah
+                            <a tabindex="-1" href="<?php echo base_url('user/ubahpassword') ?>">Ubah
                                 sandi</a></li>
                     </ul>
                 </li>
@@ -220,3 +220,25 @@
         </div>
     </div>
 </div>
+
+
+
+<!-- Modal -->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title">Modal title</h4>
+
+            </div>
+            <div class="modal-body"><div class="te"></div></div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+        <!-- /.modal-content -->
+    </div>
+    <!-- /.modal-dialog -->
+</div>
+<!-- /.modal -->

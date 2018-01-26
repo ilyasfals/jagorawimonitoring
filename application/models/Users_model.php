@@ -31,6 +31,18 @@ class Users_model extends CI_Model {
         return $this->db->where('id_user', $id)+$this->db->update('users',$data);
     }
 
+
+    public function update_password()
+    {
+        $this->load->helper('url');
+        $data = array(
+            'password' => $this->input->post('password')
+        );
+        $id=  $_SESSION['npp'];
+        $username=  $_SESSION['username'];
+        return $this->db->where('id_employees = '.$id.' AND username = \'.$username.\'')+$this->db->update('users',$data);
+    }
+
     public function get_users($id = FALSE){
         if ($id === FALSE) {
             $query = $this->db->get('users');
