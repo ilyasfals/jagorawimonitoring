@@ -96,6 +96,9 @@
                                 <li>
                                     <a href="<?php echo base_url();?>pulls/normalisasi">Normalisasi</a>
                                 </li>
+                                <li>
+                                    <a href="<?php echo base_url();?>pulls/targetPendapatan">Target Pendapatan</a>
+                                </li>
                             </ul>
                         </div>
                     </li>

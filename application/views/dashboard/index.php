@@ -187,8 +187,8 @@
 
     ?>
     var monthly_bar_chartjs_data = {
-        labels: ["January", "February", "March", "April", "May", "June",
-            "July", "Agustus", "September", "Oktober", "November", "Desember"],
+        labels: ["Januari", "Februari", "Maret", "April", "Mei", "Juni",
+            "Juli", "Agustus", "September", "Oktober", "November", "Desember"],
         datasets: [{
             type: 'line',
             label: 'Target',
@@ -235,8 +235,8 @@
 
 
     var spline_nilai_kumulatif_chartjs_data = {
-        labels: ["January", "February", "March", "April", "May", "June",
-            "July", "Agustus", "September", "Oktober", "November", "Desember"],
+        labels: ["Januari", "Februari", "Maret", "April", "Mei", "Juni",
+            "Juli", "Agustus", "September", "Oktober", "November", "Desember"],
         datasets: [{
             label: "Target",
             fill: false,
@@ -275,8 +275,8 @@
     ?>
 
     var monthly_bar2_chartjs_data = {
-        labels: ["January", "February", "March", "April", "May", "June",
-            "July", "Agustus", "September", "Oktober", "November", "Desember"],
+        labels: ["Januari", "Februari", "Maret", "April", "Mei", "Juni",
+            "Juli", "Agustus", "September", "Oktober", "November", "Desember"],
         datasets: [{
             label: 'Gol. 1',
             backgroundColor: window.chartColors.red,
@@ -315,8 +315,8 @@
 
 
     var spline_volume_kumulatif_chartjs_data = {
-        labels: ["January", "February", "March", "April", "May", "June",
-            "July", "Agustus", "September", "Oktober", "November", "Desember"],
+        labels: ["Januari", "Februari", "Maret", "April", "Mei", "Juni",
+            "Juli", "Agustus", "September", "Oktober", "November", "Desember"],
         datasets: [{
             label: "Target",
             fill: false,

@@ -156,4 +156,44 @@ class Pulls extends CI_Controller {
             redirect(base_url('pulls/normalisasi/'));
         }
     }
+    public function targetPendapatan(){
+        $this->load->helper('form');
+        $this->load->library('form_validation');
+        $this->load->model('targetpendapatan_model');
+
+        $data['title'] = 'Key Performance Indicator';
+        $data['subtitle'] = 'Formulir';
+
+        $year = $_SESSION['tahun'];
+        $data['tahun'] =  $year;
+
+        $data['target'] = $this->targetpendapatan_model->getTarget($year);
+
+        $this->form_validation->set_rules('tahun', 'Tahun', 'required');
+
+        $this->form_validation->set_rules('target_1', 'Target Januari', 'required');
+        $this->form_validation->set_rules('target_2', 'Target Februari', 'required');
+        $this->form_validation->set_rules('target_3', 'Target Maret', 'required');
+        $this->form_validation->set_rules('target_4', 'Target April', 'required');
+        $this->form_validation->set_rules('target_5', 'Target Mei', 'required');
+        $this->form_validation->set_rules('target_6', 'Target Juni', 'required');
+        $this->form_validation->set_rules('target_7', 'Target July', 'required');
+        $this->form_validation->set_rules('target_8', 'Target Agustus', 'required');
+        $this->form_validation->set_rules('target_9', 'Target September', 'required');
+        $this->form_validation->set_rules('target_10', 'Target Oktober', 'required');
+        $this->form_validation->set_rules('target_11', 'Target November', 'required');
+        $this->form_validation->set_rules('target_12', 'Target Desember', 'required');
+
+        $target = $this->targetpendapatan_model->getTarget($year);
+        if ($this->form_validation->run() === FALSE){
+            if( $target == null){
+                $target = $this->targetpendapatan_model->getTarget($year);
+            }
+            $data['target'] = $target;
+            $this->template->load('wrapper', 'contents' , 'pulls/targetPendapatan', $data);
+        }else{
+            $data['normalisasis'] = $this->targetpendapatan_model->update_target();
+            redirect(base_url('pulls/targetPendapatan'));
+        }
+    }
 }

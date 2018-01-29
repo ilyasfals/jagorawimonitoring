@@ -24,6 +24,7 @@
                 <li><a href="<?php echo base_url() ?>dashboard/kpidt/101">Triwulan 1</a></li>
                 <li><a href="<?php echo base_url() ?>dashboard/kpidt/102">Triwulan 2</a></li>
                 <li><a href="<?php echo base_url() ?>dashboard/kpidt/103">Triwulan 3</a></li>
+                <li><a href="<?php echo base_url() ?>dashboard/kpidt/104">Triwulan 4</a></li>
                 <li role="separator" class="divider"></li>
                 <li><a href="<?php echo base_url() ?>dashboard/kpidt/1">Januari</a></li>
                 <li><a href="<?php echo base_url() ?>dashboard/kpidt/2">Februari</a></li>

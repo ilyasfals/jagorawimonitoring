@@ -32,7 +32,6 @@ class Normalisasis_model extends CI_Model {
             'pendapatan_4' => $this->input->post('pendapatan_4'),
             'pendapatan_5' => $this->input->post('pendapatan_5'),
         );
-        var_dump($normalisasi);
         if(is_null($normalisasi)){ //edit
             return $this->db->insert('normalisasis', $data);
         }else{ //create

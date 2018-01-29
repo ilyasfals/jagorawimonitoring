@@ -222,7 +222,12 @@ class Kpis_model extends CI_Model {
         $sql ='';
         $sql;
         if($param==0){
-           $sql="select ";
+           $sql='select master_kpis.id_master_kpis, master_kpis.indikator, master_kpis.metode_pengukuran
+                    , (target_1+target_2+target_3+target_4+target_5+target_6+target_7+target_8+target_9+target_10+target_11+target_12) as target, 
+                    (realisasi_1+realisasi_2+realisasi_3+realisasi_4+realisasi_5+realisasi_6+realisasi_7+realisasi_8+realisasi_9+realisasi_10+realisasi_11+realisasi_12) as realisasi, kategori 
+                from master_kpis
+                left join kpis on kpis.id_master_kpis=master_kpis.id_master_kpis
+                where tahun='.$year;
         }else if($param <=12){
             $sql='select master_kpis.id_master_kpis, master_kpis.indikator, master_kpis.metode_pengukuran
                     , target_'.$param.' as target, realisasi_'.$param.' as realisasi, kategori 
@@ -230,7 +235,32 @@ class Kpis_model extends CI_Model {
                 left join kpis on kpis.id_master_kpis=master_kpis.id_master_kpis
                 where tahun='.$year;
         }else{
-            $data['parameter'] = 'Triwulan '.$param % 100;
+            $triwulan = $param % 100;
+            if($triwulan ==1){
+                $sql='select master_kpis.id_master_kpis, master_kpis.indikator, master_kpis.metode_pengukuran
+                    , (target_1+target_2+target_3) as target, (realisasi_1+realisasi_2+realisasi_3) as realisasi, kategori 
+                from master_kpis
+                left join kpis on kpis.id_master_kpis=master_kpis.id_master_kpis
+                where tahun='.$year;
+            }else if($triwulan ==2){
+                $sql='select master_kpis.id_master_kpis, master_kpis.indikator, master_kpis.metode_pengukuran
+                    , (target_4+target_5+target_6) as target, (realisasi_4+realisasi_5+realisasi_6) as realisasi, kategori 
+                from master_kpis
+                left join kpis on kpis.id_master_kpis=master_kpis.id_master_kpis
+                where tahun='.$year;
+            }else if($triwulan ==3){
+            $sql='select master_kpis.id_master_kpis, master_kpis.indikator, master_kpis.metode_pengukuran
+                    , (target_7+target_8+target_9) as target, (realisasi_7+realisasi_8+realisasi_9) as realisasi, kategori 
+                from master_kpis
+                left join kpis on kpis.id_master_kpis=master_kpis.id_master_kpis
+                where tahun='.$year;
+            }else if($triwulan ==4){
+            $sql='select master_kpis.id_master_kpis, master_kpis.indikator, master_kpis.metode_pengukuran
+                    , (target_10+target_11+target_12) as target, (realisasi_10+realisasi_11+realisasi_12) as realisasi, kategori 
+                from master_kpis
+                left join kpis on kpis.id_master_kpis=master_kpis.id_master_kpis
+                where tahun='.$year;
+            }
         }
         $kpi['row_hasil_kpis'] = array();
         $list = $this->db->query($sql);
