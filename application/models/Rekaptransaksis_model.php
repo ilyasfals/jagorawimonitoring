@@ -24,10 +24,14 @@ class Rekaptransaksis_model extends CI_Model {
         }else{
             $sql = 'select sum(jumlah) as jumlah, sum(nilai) as nilai 
                     from rekap_transaksi 
-                    where tahun = '.$year.'
-                     AND bulan not in(
+                    where tahun = '.$year.' AND bulan not in(
                         select bulan from normalisasis where tahun ='.$year.'
-                     )';
+                    )
+                    group by tahun
+                    union
+                    select sum(lalin_1) as jumlah, sum(pendapatan_1) as nilai 
+                    from normalisasis where tahun ='.$year.' 
+                    group by tahun';
 
             $list = $this->db->query($sql);
             foreach ($list->result() as $row) {

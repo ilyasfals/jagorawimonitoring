@@ -64,10 +64,11 @@ $query_builder = TRUE;
 
 $db['default'] = array(
 	'dsn'	=> '',
-	'hostname' => 'localhost',
-	'username' => 'root',
-	'password' => '',
-	'database' => 'jmjreport',
+    'hostname' => 'localhost',
+    'port' => '3353',
+    'username' => 'root',
+    'password' => '##Jagorawi1978**',
+    'database' => 'jmjreport',
 	'dbdriver' => 'mysqli',
 	'dbprefix' => '',
 	'pconnect' => FALSE,

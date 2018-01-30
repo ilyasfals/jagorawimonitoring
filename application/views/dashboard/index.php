@@ -28,13 +28,13 @@
         </h1>
     </div>
     <div class="col-md-12">
-        <div class="col-md-4">
+        <div class="col-md-5">
             <div class="grid-content">
                 <h4>Total Volume Lalu Lintas(Lalin)</h4>
                     <br/> <span class="big-font" id="totalJumlahTransaksi"> <?php echo $transaksi['jumlah'];?> </span>
             </div>
         </div>
-        <div class="col-md-6">
+        <div class="col-md-5    ">
             <div class="grid-content">
                 <h4>Total Pendapatan</h4>
                 <br/> <span class="big-font" id="totalNilaiTransaksi"><?php echo $transaksi['nilai'];?> </span>
